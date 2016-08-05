@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/actividades_culturales_nuevo/';
+$config['base_url']	= 'http://localhost/actividades_culturales/';
 
 /*
 |--------------------------------------------------------------------------
