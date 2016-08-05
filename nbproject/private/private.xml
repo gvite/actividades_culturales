@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="20">
+        <file>
+            <url>application/views/alumnos/comprobante_css.php</url>
+            <bookmark id="4">
+                <name/>
+                <line>10</line>
+                <key/>
+            </bookmark>
+            <bookmark id="3">
+                <name/>
+                <line>18</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
+            <url>js/validacion_valida.js</url>
+            <bookmark id="18">
+                <name/>
+                <line>13</line>
+                <key/>
+            </bookmark>
+            <bookmark id="8">
+                <name/>
+                <line>27</line>
+                <key/>
+            </bookmark>
+            <bookmark id="13">
+                <name/>
+                <line>28</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/application/views/alumnos/comprobante_css.php</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/application/views/admin/reportes/reporte1_pdf.php</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/application/views/admin/reportes/reporte1_css.php</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/application/views/admin/validacion_datos_view.php</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/js/validacion_valida.js</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/application/controllers/admin/validacion.php</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/application/models/baucher_talleres_model.php</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/application/models/baucher_model.php</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/application/models/usuarios_model.php</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/js/comun.js</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/js/inscripcion.js</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/application/views/main/header_view.php</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/application/models/semestres_model.php</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/application/hooks/hook.php</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/application/controllers/alumnos/inscripcion.php</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/application/models/talleres_model.php</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/application/controllers/admin/inscribir.php</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/application/views/alumnos/comprobante_view.php</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/application/controllers/admin/usuarios.php</file>
+            <file>file:/D:/xampp/htdocs/actividades_culturales_nuevo/application/views/admin/usuarios_view.php</file>
+        </group>
+    </open-files>
+</project-private>
