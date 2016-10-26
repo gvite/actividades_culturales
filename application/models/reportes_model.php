@@ -40,7 +40,7 @@ class Reportes_model extends CI_Model {
     }
 
     public function getPresupuesto1($inicio, $fin) {
-        $this->db->select('bt.id,t.taller,bt.aportacion,b.folio_caja,b.fecha_caja,b.folio,c.carrera,u.nombre,u.paterno,u.materno,u.tipo_usuario_id');
+        $this->db->select('bt.id,t.taller,bt.aportacion, bt.beca,b.folio_caja,b.fecha_caja,b.folio,c.carrera,u.nombre,u.paterno,u.materno,u.tipo_usuario_id');
         $this->db->join('taller_semestre AS ts' , 'bt.taller_semestre_id = ts.id' , 'LEFT');
         $this->db->join('talleres AS t' , 'ts.taller_id = t.id' , 'LEFT');
         $this->db->join('baucher AS b' , 'bt.baucher_id = b.id' , 'LEFT');
@@ -56,7 +56,7 @@ class Reportes_model extends CI_Model {
     }
     
     public function getUsuarioByTaller($taller_id , $tipo_usuario , $semestre_id = '',$fecha_ini = '', $fecha_fin = ''){
-        $this->db->select('COUNT(bt.id) as count_user, SUM(bt.aportacion) as suma');
+        $this->db->select('COUNT(bt.id) as count_user, SUM(bt.aportacion) as suma , SUM(bt.beca) as beca_sum');
         $this->db->join('taller_semestre as ts' , 'ts.id=bt.taller_semestre_id');
         $this->db->join('baucher as b' , 'b.id=bt.baucher_id');
         $this->db->join('usuarios as u' , 'u.id=b.usuario_id');
@@ -75,7 +75,7 @@ class Reportes_model extends CI_Model {
     }
 
     public function getSumBySemestreMonth($semestre , $inicio = '' , $fin = ''){
-        $this->db->select('SUM(bt.aportacion) as suma , MONTH(b.fecha_caja) as mes');
+        $this->db->select('SUM(bt.aportacion) as suma, SUM(bt.beca) as beca_sum , MONTH(b.fecha_caja) as mes');
         $this->db->join('baucher as b' , 'b.id=bt.baucher_id');
         $this->db->join('taller_semestre as ts' , 'ts.id=bt.taller_semestre_id');
         $this->db->join('semestres as s' , 's.id=ts.semestre_id');

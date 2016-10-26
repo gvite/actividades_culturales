@@ -147,7 +147,7 @@ class Reportes extends CI_Controller {
                 $new_alumnos = array_chunk($alumnos, $limite);
                 $total = 0;
                 foreach ($alumnos as $alumno) {
-                    $total += $alumno['aportacion'];
+                    $total += $alumno['aportacion'] - $alumno["beca"];
                 }
                 foreach ($new_alumnos as $key => $alumno_aux) {
                     $data['alumnos'] = $alumno_aux;

@@ -55,7 +55,7 @@ if (!defined('BASEPATH'))
                     <td><?php echo $taller['traba']['count_user']; ?></td>
                     <td><?php echo $taller['exter']['count_user']; ?></td>
                     <td><?php echo $taller['uni']['count_user'] + $taller['exuni']['count_user'] + $taller['exter']['count_user'] + $taller['traba']['count_user']; ?></td>
-                    <td><?php echo money_format( '%n' , $taller['uni']['suma'] + $taller['exuni']['suma'] + $taller['exter']['suma'] + $taller['traba']['suma']);    ?>
+                    <td><?php echo money_format( '%n' , $taller['uni']['suma'] + $taller['exuni']['suma'] + $taller['exter']['suma'] + $taller['traba']['suma'] - $taller['uni']['beca_sum'] - $taller['exuni']['beca_sum'] - $taller['exter']['beca_sum'] - $taller['traba']['beca_sum']);    ?>
                         <?php //echo $taller['uni']['suma'] + $taller['exuni']['suma'] + $taller['exter']['suma'] + $taller['traba']['suma']; ?></td>
                 </tr>
                 <?php
@@ -63,7 +63,7 @@ if (!defined('BASEPATH'))
                 $total['exuni'] += $taller['exuni']['count_user'];
                 $total['traba'] += $taller['traba']['count_user'];
                 $total['exter'] += $taller['exter']['count_user'];
-                $total['suma'] += $taller['uni']['suma'] + $taller['exuni']['suma'] + $taller['exter']['suma'] + $taller['traba']['suma'];
+                $total['suma'] += $taller['uni']['suma'] + $taller['exuni']['suma'] + $taller['exter']['suma'] + $taller['traba']['suma'] - $taller['uni']['beca_sum'] - $taller['exuni']['beca_sum'] - $taller['exter']['beca_sum'] - $taller['traba']['beca_sum'];
             }
             ?>
             <tr>
@@ -93,7 +93,7 @@ if (!defined('BASEPATH'))
                     ?>
                     <tr>
                         <td><?php echo $mes_name[$mes['mes']];?></td>
-                        <td><?php echo money_format('%n', $mes['suma']);?></td>
+                        <td><?php echo money_format('%n', $mes['suma'] - $mes['beca_sum']);?></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -101,7 +101,7 @@ if (!defined('BASEPATH'))
                         <td></td>
                     </tr>
                     <?php
-                    $total += $mes['suma'];
+                    $total += $mes['suma'] - $mes["beca_sum"];
                 }
                 ?>
                 <tr>

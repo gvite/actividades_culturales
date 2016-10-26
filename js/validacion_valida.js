@@ -93,4 +93,11 @@ $(document).on('ready', function () {
             $('#aportacion_voluntaria_content').addClass('hidden');
         }
     });
+    $('#ingresa_beca').on('click' , function(){
+        if($(this).is(':checked')){
+            $('#aportacion_beca_content').removeClass('hidden');
+        }else{
+            $('#aportacion_beca_content').addClass('hidden');
+        }
+    });
 });

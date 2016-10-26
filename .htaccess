@@ -3,8 +3,8 @@ Options FollowSymLinks
     RewriteEngine on
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ /actividades_culturales_nuevo/index.php?/$1 [L]
+    RewriteRule ^(.*)$ /actividades_culturales/index.php?/$1 [L]
 </IfModule>
 <IfModule !mod_rewrite.c>
-    ErrorDocument 404 /actividades_culturales_nuevo/index.php
+    ErrorDocument 404 /actividades_culturales/index.php
 </IfModule>

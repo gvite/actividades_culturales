@@ -30,6 +30,7 @@ if (!defined('BASEPATH'))
                 if($taller_ant == null){
                     $taller_ant = $alumno['taller'];
                 }
+                $beca = $alumno["beca"];
                 if($alumno['taller'] !== $taller_ant){
                     ?>
                     <tr>
@@ -46,10 +47,10 @@ if (!defined('BASEPATH'))
                     <td></td>
                 </tr>
                     <?php
-                    $total_taller = $alumno['aportacion'];
+                    $total_taller = $alumno['aportacion'] - $beca;
                     $taller_ant = null;
                 }else{
-                    $total_taller += $alumno['aportacion'];
+                    $total_taller += $alumno['aportacion'] - $beca;
                 }
                 ?>
                 <tr>
@@ -57,7 +58,7 @@ if (!defined('BASEPATH'))
                     <td><?php echo exchange_date($alumno['fecha_caja']); ?></td>
                     <td>
                         <?php
-                        echo money_format('%n', $alumno['aportacion']);
+                        echo money_format('%n', $alumno['aportacion'] - $beca);
                         //echo $alumno['aportacion'];
                         ?>
                     </td>

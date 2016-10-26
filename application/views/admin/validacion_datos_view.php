@@ -139,13 +139,21 @@ if (!defined('BASEPATH'))
     </div>
 </div>
 <?php
-if ($baucher['status'] == 0) {
-    ?>
+if ($baucher['status'] == 0 || get_type() == 1) {
+?>
     <div class="row">
         <div class="modal fade active" id="valida_folio_dialog" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
+                <?php
+                    if ($baucher['status'] == 0) {
+                        ?>
                     <form class="form-horizontal" action="<?php echo base_url(); ?>admin/validacion/valida_insc/<?php echo $baucher['id'] ?>" role="form" id="valida_folio_form">
+                    <?php
+                    }else if(get_type() == 1){
+                        ?>
+                        <form class="form-horizontal" action="<?php echo base_url(); ?>admin/validacion/edit/<?php echo $baucher['id'] ?>" role="form" id="valida_folio_form">
+                    <?php } ?>
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h3>Informaci&oacute;n de recibo</h3>
@@ -167,45 +175,6 @@ if ($baucher['status'] == 0) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" data-dismiss="modal" class="btn">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Validar</button>
-                        </div>
-                    </form>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div>
-    </div>
-    <?php
-}else if(get_type() == 1){
-    ?>
-    <div class="row">
-        <div class="modal fade active" id="valida_folio_dialog" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form class="form-horizontal" action="<?php echo base_url(); ?>admin/validacion/edit/<?php echo $baucher['id'] ?>" role="form" id="valida_folio_form">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h3>Informaci&oacute;n de recibo</h3>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label class="control-label col-lg-4" for="numero_caja">No. Recibo</label>
-                                <div class="col-lg-8">
-                                    <input class="form-control" name="numero_caja" type="text" placeholder="Caja" id="numero_caja" value="<?php echo $baucher['folio_caja'];?>">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-lg-4" for="fecha_caja">Fecha de Recibo</label>
-                                <div class="controls col-lg-8">
-                                    <div class="input-group date fecha_input" id="nacimiento_user" data-date-format="DD-MM-YYYY">
-                                        <input name="fecha_caja" class="form-control" id="fecha_caja" type="text" placeholder="dd-mm-yyyy" value="<?php echo exchange_date($baucher['fecha_caja']);?>" />
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" name="baportacion" value="1" id="ingresa_aportacion"> Ingresar Aportación
@@ -217,10 +186,21 @@ if ($baucher['status'] == 0) {
                                     <input class="form-control" name="aportacion" type="text" placeholder="Aportacion voluntaria" id="aportacion" value="">
                                 </div>
                             </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="baportacion" value="1" id="ingresa_beca"> Ingresar Beca
+                                </label>
+                            </div>
+                            <div class="form-group hidden" id="aportacion_beca_content">
+                                <label class="control-label col-lg-4" for="beca">Porcentaje de Beca</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control" name="beca" type="text" placeholder="Beca" id="beca" value="">
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" data-dismiss="modal" class="btn">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="submit" class="btn btn-primary">Validar</button>
                         </div>
                     </form>
                 </div><!-- /.modal-content -->
