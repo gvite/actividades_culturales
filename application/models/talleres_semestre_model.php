@@ -77,7 +77,7 @@ class Talleres_semestre_model extends CI_Model {
     function check_bt_delete($id){
         $this->db->select('id');
         $this->db->where('taller_semestre_id' , $id);
-        $result = $this->db->get('baucher_talleres as ts');
+        $result = $this->db->get('baucher as ts');
         return ($result->num_rows() == 0) ? true : false;
     }
 }

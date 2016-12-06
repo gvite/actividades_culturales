@@ -136,15 +136,7 @@ if (!defined('BASEPATH'))
                             ?>
                             <tr>
                                 <td><?php echo str_pad($baucher['folio'], 11, "0", STR_PAD_LEFT); ?></td>
-                                <td><ul><?php
-                                    if (is_array($baucher['talleres'])) {
-                                        foreach ($baucher['talleres'] as $key2 => $taller_semestre) {
-                                        ?>
-                                        <li><?php echo $taller_semestre['taller'];?></li>
-                                        <?php
-                                        }
-                                    }
-                                ?></ul></td>
+                                <td><ul><?php echo $baucher['taller']; ?></ul></td>
                                 <td><?php echo exchange_date_time($baucher['fecha_expedicion']) ?></td>
                                 <td><?php
                                     if ($baucher['status'] == 0) {

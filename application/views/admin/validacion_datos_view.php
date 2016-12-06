@@ -69,6 +69,7 @@ if (!defined('BASEPATH'))
                     <th>Sal&oacute;n</th>
                     <th>Aportación</th>
                     <th>Voluntario</th>
+                    <th>Beca</th>
                     <th>Total</th>
                     <th>Acciones</th>
                 </tr>
@@ -76,49 +77,28 @@ if (!defined('BASEPATH'))
             <tbody>
                 <?php
                 $costo_total = 0;
-                foreach ($talleres as $taller) {
-                    ?>
-                    <tr>
-                        <td><?php echo $taller['grupo'] ?></td>
-                        <td><?php echo $taller['taller'] ?></td>
-                        <td><?php echo $taller['nombre'] . ' ' . $taller['paterno'] . ' ' . $taller['materno'] ?></td>
-                        <td><?php echo $taller['salon'] ?></td>
-                        <td>$ <?php
-                            switch ($baucher['tipo']) {
-                                case 2:
-                                    $costo_total = $taller['costo_alumno'];
-                                    echo $taller['costo_alumno'];
-                                    break;
-                                case 3:
-                                    $costo_total = $taller['costo_exalumno'];
-                                    echo $taller['costo_exalumno'];
-                                    break;
-                                case 4:
-                                    $costo_total = $taller['costo_trabajador'];
-                                    echo $taller['costo_trabajador'];
-                                    break;
-                                case 5:
-                                    $costo_total = $taller['costo_externo'];
-                                    echo $taller['costo_externo'];
-                                    break;
-                            }
-                            ?>
-                        </td>
-                        <td>$ <?php echo $taller['aportacion'] - $costo_total; ?></td>
-                        <td>$ <?php echo $taller['aportacion'];
-                        ?></td>
-                        <td>
-                            <?php
-                            if (get_type_user() == 1) {
-                            ?>
-                            <a class="btn btn-success pull-right" href="<?php echo base_url(); ?>admin/cambio/index/<?php echo $baucher['id'];?>/<?php echo $taller['id'];?>" data-toggle="modal">Cambiar</a></td>
-                            <?php
-                            }
-                            ?>
-                    </tr>
-                    <?php
-                }
+                
                 ?>
+                <tr>
+                    <td><?php echo $baucher['grupo'] ?></td>
+                    <td><?php echo $baucher['taller'] ?></td>
+                    <td><?php echo $baucher['nombre'] . ' ' . $baucher['paterno'] . ' ' . $baucher['materno'] ?></td>
+                    <td><?php echo $baucher['salon'] ?></td>
+                    <td>$ <?php echo $baucher['aportacion']?>
+                    </td>
+                    <td>$ <?php echo $baucher['extra']; ?></td>
+                    <td>$ <?php echo $baucher['beca'];?></td>
+                    <td>$ <?php echo $baucher['aportacion'] + $baucher['extra'] - $baucher["beca"];?></td>
+                    
+                    <td>
+                        <?php
+                        if (get_type_user() == 1) {
+                        ?>
+                        <a class="btn btn-success pull-right" href="<?php echo base_url(); ?>admin/cambio/index/<?php echo $baucher['id'];?>/<?php echo $baucher['ts_id'];?>" data-toggle="modal">Cambiar</a></td>
+                        <?php
+                        }
+                        ?>
+                </tr>
                 
             </tbody>
         </table>
@@ -188,11 +168,11 @@ if ($baucher['status'] == 0 || get_type() == 1) {
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="baportacion" value="1" id="ingresa_beca"> Ingresar Beca
+                                    <input type="checkbox" name="bbeca" value="1" id="ingresa_beca"> Ingresar Beca
                                 </label>
                             </div>
                             <div class="form-group hidden" id="aportacion_beca_content">
-                                <label class="control-label col-lg-4" for="beca">Porcentaje de Beca</label>
+                                <label class="control-label col-lg-4" for="beca">Beca</label>
                                 <div class="col-lg-8">
                                     <input class="form-control" name="beca" type="text" placeholder="Beca" id="beca" value="">
                                 </div>

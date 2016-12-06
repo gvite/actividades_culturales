@@ -137,8 +137,7 @@ class Usuarios_model extends CI_Model {
             }
         }
         $this->db->join('baucher as b', 'b.usuario_id=u.id');
-        $this->db->join('baucher_talleres as bt', 'b.id=bt.baucher_id');
-        $this->db->join('taller_semestre as ts', 'bt.taller_semestre_id=ts.id');
+        $this->db->join('taller_semestre as ts', 'b.taller_semestre_id=ts.id');
         $semestres = $this->input->post('semestres');
         $where = '(';
         foreach ($semestres as $semestre) {
@@ -169,8 +168,7 @@ class Usuarios_model extends CI_Model {
             }
         }
         $this->db->join('baucher as b', 'b.usuario_id=u.id');
-        $this->db->join('baucher_talleres as bt', 'b.id=bt.baucher_id');
-        $this->db->join('taller_semestre as ts', 'bt.taller_semestre_id=ts.id');
+        $this->db->join('taller_semestre as ts', 'b.taller_semestre_id=ts.id');
         $semestres = $this->input->post('semestres');
         $where = '(';
         foreach ($semestres as $semestre) {
@@ -198,8 +196,7 @@ class Usuarios_model extends CI_Model {
             }
         }
         $this->db->join('baucher as b', 'b.usuario_id=u.id');
-        $this->db->join('baucher_talleres as bt', 'b.id=bt.baucher_id');
-        $this->db->join('taller_semestre as ts', 'bt.taller_semestre_id=ts.id');
+        $this->db->join('taller_semestre as ts', 'b.taller_semestre_id=ts.id');
         $semestres = $this->input->post('semestres');
         $where = '(';
         foreach ($semestres as $semestre) {
@@ -235,8 +232,7 @@ class Usuarios_model extends CI_Model {
             }
         }
         $this->db->join('baucher as b', 'b.usuario_id=u.id');
-        $this->db->join('baucher_talleres as bt', 'b.id=bt.baucher_id');
-        $this->db->join('taller_semestre as ts', 'bt.taller_semestre_id=ts.id');
+        $this->db->join('taller_semestre as ts', 'b.taller_semestre_id=ts.id');
         $semestres = $this->input->post('semestres');
         $where = '(';
         foreach ($semestres as $semestre) {

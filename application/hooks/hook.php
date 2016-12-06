@@ -87,6 +87,10 @@ class Hook {
                 redirect('inicio','refresh');
             }
         }
+        /*if(strpos($CI->uri->uri_string() , "mantenimiento") === false){
+            $CI->load->helper(array('sesion' , 'url'));
+            redirect('mantenimiento','refresh');
+        }*/
     }
 
 }

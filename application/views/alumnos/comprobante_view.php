@@ -79,60 +79,56 @@ if (!defined('BASEPATH'))
             <?php
             $costo_total = 0;
             $has_piano = false;
-            foreach ($talleres as $taller) {
-                ?>
-                <tr>
-                    <td><?php echo $taller['grupo'] ?></td>
-                    <td><?php echo $taller['taller'] ?></td>
-                    <td><?php echo $taller['nombre'] . ' ' . $taller['paterno'] . ' ' . $taller['materno'] ?></td>
-                    <td><?php echo $taller['salon'] ?></td>
-                    <td>
-                        <?php
-                        if($taller['id'] == 11){
-                            $has_piano = true;
-                        }
-                        if (is_array($taller['horarios'])) {
-                            for ($i = 1; $i <= 5; $i++) {
-                                for ($j = 0; $j < count($taller['horarios']); $j++) {
-                                    if ($taller['horarios'][$j]['dia'] == $i) {
-                                        $dia = '';
-                                        switch ($i) {
-                                            case 1:
-                                                $dia = 'Lun';
-                                                break;
-                                            case 2:
-                                                $dia = 'Mar';
-                                                break;
-                                            case 3:
-                                                $dia = 'Mie';
-                                                break;
-                                            case 4:
-                                                $dia = 'Jue';
-                                                break;
-                                            case 5:
-                                                $dia = 'Vie';
-                                                break;
-                                        }
-                                        echo '<div>' . $dia . ' ' . substr($taller['horarios'][$j]['inicio'], 0, -3) . ' - ' . substr($taller['horarios'][$j]['termino'], 0, -3) . '</div>';
+            ?>
+            <tr>
+                <td><?php echo $baucher['grupo'] ?></td>
+                <td><?php echo $baucher['taller'] ?></td>
+                <td><?php echo $baucher['nombre'] . ' ' . $baucher['paterno'] . ' ' . $baucher['materno'] ?></td>
+                <td><?php echo $baucher['salon'] ?></td>
+                <td>
+                    <?php
+                    if($baucher['id'] == 11){
+                        $has_piano = true;
+                    }
+                    if (is_array($baucher['horarios'])) {
+                        for ($i = 1; $i <= 5; $i++) {
+                            for ($j = 0; $j < count($baucher['horarios']); $j++) {
+                                if ($baucher['horarios'][$j]['dia'] == $i) {
+                                    $dia = '';
+                                    switch ($i) {
+                                        case 1:
+                                            $dia = 'Lun';
+                                            break;
+                                        case 2:
+                                            $dia = 'Mar';
+                                            break;
+                                        case 3:
+                                            $dia = 'Mie';
+                                            break;
+                                        case 4:
+                                            $dia = 'Jue';
+                                            break;
+                                        case 5:
+                                            $dia = 'Vie';
+                                            break;
                                     }
+                                    echo '<div>' . $dia . ' ' . substr($baucher['horarios'][$j]['inicio'], 0, -3) . ' - ' . substr($baucher['horarios'][$j]['termino'], 0, -3) . '</div>';
                                 }
                             }
-                        } else {
-                            ?>
-                            -
-                            <?php
                         }
+                    } else {
                         ?>
-                    </td>
-                    <td><?php
-                        echo '$ ' . $taller['aportacion'];
-                        $costo_total += $taller['aportacion'];
-                        ?>
-                    </td>
-                </tr>
-                <?php
-            }
-            ?>
+                        -
+                        <?php
+                    }
+                    ?>
+                </td>
+                <td><?php
+                    echo '$ ' . $baucher['aportacion'];
+                    $costo_total += $baucher['aportacion'];
+                    ?>
+                </td>
+            </tr>
             <tr class="tr_total">
                 <td colspan="5" class="td_total">Total</td>
                 <td><?php echo '$ ' . $costo_total ?></td>

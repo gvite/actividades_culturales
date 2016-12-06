@@ -47,10 +47,8 @@ class Validacion extends CI_Controller {
             $this->load->model('baucher_model');
             $data['baucher'] = $this->baucher_model->get_by_folio($folio);
             if ($data['baucher']) {
-                $this->load->model('baucher_talleres_model');
                 $this->load->helper('sesion');
                 $this->load->helper('date');
-                $data['talleres'] = $this->baucher_talleres_model->get_by_baucher($data['baucher']['id']);
                 $data['usuario'] = $this->usuarios_model->get($data['baucher']['usuario_id']);
                 $this->load->helper(array('url', 'sesion'));
                 $data['active'] = 'validacion';

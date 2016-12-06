@@ -33,9 +33,9 @@ class Listas extends CI_Controller {
         if ($semestre_id != '') {
             $data['talleres'] = $this->talleres_semestre_model->get_by_semestre($semestre_id);
             if (is_array($data['talleres'])) {
-                $this->load->model('baucher_talleres_model');
+                
                 foreach ($data['talleres'] as $key => $taller) {
-                    $count = $this->baucher_talleres_model->count_insc($taller['id']);
+                    $count = $this->baucher_model->count_insc($taller['id']);
                     $data['talleres'][$key]['count'] = $count;
                 }
             }
@@ -48,7 +48,6 @@ class Listas extends CI_Controller {
 
     public function get_lista_taller($taller_id = '') {
         if ($taller_id != '') {
-            $this->load->model('baucher_talleres_model');
             $data['taller'] = $this->talleres_semestre_model->get_with_name($taller_id);
             if ($data['taller']) {
                 $this->load->helper(array('url', 'sesion', 'date'));
@@ -60,7 +59,7 @@ class Listas extends CI_Controller {
                     $data['puede_inscribir'] = false;
                 }
                 $this->load->view('main/header_view', $data);
-                $data['alumnos'] = $this->baucher_talleres_model->get_by_taller($taller_id);
+                $data['alumnos'] = $this->baucher_model->get_by_taller($taller_id);
                 $this->load->view('admin/lista_taller_view', $data);
                 $this->load->view('main/footer_view', '');
             } else {
@@ -73,7 +72,6 @@ class Listas extends CI_Controller {
 
     public function get_lista_asistencia($taller_id = '') {
         if ($taller_id != '') {
-            $this->load->model('baucher_talleres_model');
             $data['taller'] = $this->talleres_semestre_model->get_with_name($taller_id);
             if ($data['taller']) {
                 $this->load->helper(array('url', 'sesion', 'date'));
@@ -86,7 +84,6 @@ class Listas extends CI_Controller {
                     $data['puede_inscribir'] = false;
                 }
                 $this->load->view('main/header_view', $data);
-                //$data['alumnos'] = $this->baucher_talleres_model->get_by_taller($taller_id);
                 $data['id'] = $taller_id;
                 $this->load->view('admin/lista_asistencia_main_view', $data);
                 $this->load->view('main/footer_view', '');
@@ -101,14 +98,13 @@ class Listas extends CI_Controller {
     public function get_pdf_lista($taller_id = '') {
         if ($taller_id != '') {
             ini_set("memory_limit","1024M");
-            $this->load->model('baucher_talleres_model');
             $data['taller'] = $this->talleres_semestre_model->get_with_name($taller_id);
             if (is_array($data['taller'])) {
                 $data['taller']['horarios'] = $this->taller_semestre_horario_model->get_by_taller_sem($data['taller']['id']);
-                $data['taller']['inscritos'] = $this->baucher_talleres_model->count_insc_validados($data['taller']['id']);
+                $data['taller']['inscritos'] = $this->baucher_model->count_insc_validados($data['taller']['id']);
                 $this->load->helper(array('url', 'sesion', 'date'));
                 $dias = $this->get_dias_taller($data['taller']['ini_sem'], $data['taller']['fin_sem'], $data['taller']['horarios']);
-                $data['alumnos'] = $this->baucher_talleres_model->get_by_taller_insc($taller_id);
+                $data['alumnos'] = $this->baucher_model->get_by_taller_insc($taller_id);
                 if (is_array($dias)) {
                     $meses = array(
                         '1' => 'Enero',

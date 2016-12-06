@@ -11,7 +11,7 @@ class Baucher_talleres_model extends CI_Controller {
     }
 
     public function get_by_baucher($baucher_id) {
-        $this->db->select('bt.aportacion,bt.id as bt_id,ts.id, ts.grupo,t.taller,t.costo_alumno,t.costo_exalumno,t.costo_trabajador,t.costo_externo,p.nombre,p.paterno,p.materno,s.salon');
+        $this->db->select('bt.aportacion,bt.beca,bt.extra,bt.id as bt_id,ts.id, ts.grupo,t.taller,t.costo_alumno,t.costo_exalumno,t.costo_trabajador,t.costo_externo,p.nombre,p.paterno,p.materno,s.salon');
         $this->db->join('taller_semestre as ts', 'bt.taller_semestre_id=ts.id');
         $this->db->join('talleres as t', 't.id=ts.taller_id');
         $this->db->join('profesores as p', 'p.id=ts.profesor_id');

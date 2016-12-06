@@ -60,34 +60,33 @@ class Alumnos extends CI_Controller {
             echo json_encode(array('status' => 'MSG', 'type' => 'warning', "message" => $errors));
         } else {
             $this->load->model('usuarios_model');
-            $this->load->model('baucher_talleres_model');
             if ($alumno == '0') {
                 $data['alumnos'] = $this->usuarios_model->get_all_alumnos();
                 if (is_array($data['alumnos'])) {
                     foreach ($data['alumnos'] as $key => $alumno) {
-                        $data['alumnos'][$key]['materias'] = $this->baucher_talleres_model->count_validadas_by_usuario($alumno['id']);
-                        $data['alumnos'][$key]['materias_sin'] = $this->baucher_talleres_model->count_no_validadas_by_usuario($alumno['id']);
+                        $data['alumnos'][$key]['materias'] = $this->baucher_model->count_validadas_by_usuario($alumno['id']);
+                        $data['alumnos'][$key]['materias_sin'] = $this->baucher_model->count_no_validadas_by_usuario($alumno['id']);
                     }
                 }
                 $data['exalumnos'] = $this->usuarios_model->get_all_exalumnos();
                 if (is_array($data['exalumnos'])) {
                     foreach ($data['exalumnos'] as $key => $alumno) {
-                        $data['exalumnos'][$key]['materias'] = $this->baucher_talleres_model->count_validadas_by_usuario($alumno['id']);
-                        $data['exalumnos'][$key]['materias_sin'] = $this->baucher_talleres_model->count_no_validadas_by_usuario($alumno['id']);
+                        $data['exalumnos'][$key]['materias'] = $this->baucher_model->count_validadas_by_usuario($alumno['id']);
+                        $data['exalumnos'][$key]['materias_sin'] = $this->baucher_model->count_no_validadas_by_usuario($alumno['id']);
                     }
                 }
                 $data['trabajadores'] = $this->usuarios_model->get_all_trabajadores();
                 if (is_array($data['trabajadores'])) {
                     foreach ($data['trabajadores'] as $key => $alumno) {
-                        $data['trabajadores'][$key]['materias'] = $this->baucher_talleres_model->count_validadas_by_usuario($alumno['id']);
-                        $data['trabajadores'][$key]['materias_sin'] = $this->baucher_talleres_model->count_no_validadas_by_usuario($alumno['id']);
+                        $data['trabajadores'][$key]['materias'] = $this->baucher_model->count_validadas_by_usuario($alumno['id']);
+                        $data['trabajadores'][$key]['materias_sin'] = $this->baucher_model->count_no_validadas_by_usuario($alumno['id']);
                     }
                 }
                 $data['externos'] = $this->usuarios_model->get_all_externos();
                 if (is_array($data['externos'])) {
                     foreach ($data['externos'] as $key => $alumno) {
-                        $data['externos'][$key]['materias'] = $this->baucher_talleres_model->count_validadas_by_usuario($alumno['id']);
-                        $data['externos'][$key]['materias_sin'] = $this->baucher_talleres_model->count_no_validadas_by_usuario($alumno['id']);
+                        $data['externos'][$key]['materias'] = $this->baucher_model->count_validadas_by_usuario($alumno['id']);
+                        $data['externos'][$key]['materias_sin'] = $this->baucher_model->count_no_validadas_by_usuario($alumno['id']);
                     }
                 }
                 $data['tipo_alumnos'] = array(2, 3, 4, 5);
@@ -102,8 +101,8 @@ class Alumnos extends CI_Controller {
                             $data['alumnos'] = $this->usuarios_model->get_alumnos_by_query();
                             if (is_array($data['alumnos'])) {
                                 foreach ($data['alumnos'] as $key => $alumno) {
-                                    $data['alumnos'][$key]['materias'] = $this->baucher_talleres_model->count_validadas_by_usuario($alumno['id']);
-                                    $data['alumnos'][$key]['materias_sin'] = $this->baucher_talleres_model->count_no_validadas_by_usuario($alumno['id']);
+                                    $data['alumnos'][$key]['materias'] = $this->baucher_model->count_validadas_by_usuario($alumno['id']);
+                                    $data['alumnos'][$key]['materias_sin'] = $this->baucher_model->count_no_validadas_by_usuario($alumno['id']);
                                 }
                             }
                             $data['alumnos_data'] = $this->input->post('alumnos_data');
@@ -112,8 +111,8 @@ class Alumnos extends CI_Controller {
                             $data['exalumnos'] = $this->usuarios_model->get_exalumnos_by_query();
                             if (is_array($data['exalumnos'])) {
                                 foreach ($data['exalumnos'] as $key => $alumno) {
-                                    $data['exalumnos'][$key]['materias'] = $this->baucher_talleres_model->count_validadas_by_usuario($alumno['id']);
-                                    $data['exalumnos'][$key]['materias_sin'] = $this->baucher_talleres_model->count_no_validadas_by_usuario($alumno['id']);
+                                    $data['exalumnos'][$key]['materias'] = $this->baucher_model->count_validadas_by_usuario($alumno['id']);
+                                    $data['exalumnos'][$key]['materias_sin'] = $this->baucher_model->count_no_validadas_by_usuario($alumno['id']);
                                 }
                             }
                             $data['exalumnos_data'] = $this->input->post('exalumnos_data');
@@ -122,8 +121,8 @@ class Alumnos extends CI_Controller {
                             $data['trabajadores'] = $this->usuarios_model->get_trabajadores_by_query();
                             if (is_array($data['trabajadores'])) {
                                 foreach ($data['trabajadores'] as $key => $alumno) {
-                                    $data['trabajadores'][$key]['materias'] = $this->baucher_talleres_model->count_validadas_by_usuario($alumno['id']);
-                                    $data['trabajadores'][$key]['materias_sin'] = $this->baucher_talleres_model->count_no_validadas_by_usuario($alumno['id']);
+                                    $data['trabajadores'][$key]['materias'] = $this->baucher_model->count_validadas_by_usuario($alumno['id']);
+                                    $data['trabajadores'][$key]['materias_sin'] = $this->baucher_model->count_no_validadas_by_usuario($alumno['id']);
                                 }
                             }
                             $data['trabajadores_data'] = $this->input->post('trabajadores_data');
@@ -132,8 +131,8 @@ class Alumnos extends CI_Controller {
                             $data['externos'] = $this->usuarios_model->get_externos_by_query();
                             if (is_array($data['externos'])) {
                                 foreach ($data['externos'] as $key => $alumno) {
-                                    $data['externos'][$key]['materias'] = $this->baucher_talleres_model->count_validadas_by_usuario($alumno['id']);
-                                    $data['externos'][$key]['materias_sin'] = $this->baucher_talleres_model->count_no_validadas_by_usuario($alumno['id']);
+                                    $data['externos'][$key]['materias'] = $this->baucher_model->count_validadas_by_usuario($alumno['id']);
+                                    $data['externos'][$key]['materias_sin'] = $this->baucher_model->count_no_validadas_by_usuario($alumno['id']);
                                 }
                             }
                             $data['externos_data'] = $this->input->post('externos_data');

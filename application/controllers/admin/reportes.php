@@ -18,7 +18,6 @@ class Reportes extends CI_Controller {
         $this->load->model('carreras_model');
         $this->load->helper(array('url', 'sesion', 'date'));
         $data['active'] = 'reportes';
-        //$this->insert_aportacion();
         $data['semestre_actual'] = $this->semestres_model->get_actual();
         if ($data['semestre_actual']) {
             $data['puede_inscribir'] = $this->semestres_model->puede_insc($data['semestre_actual']['id']);
@@ -250,9 +249,9 @@ class Reportes extends CI_Controller {
         }
     }
 
-    private function insert_aportacion() {
-        $this->load->model('baucher_talleres_model');
-        $inscripciones = $this->baucher_talleres_model->get_by_semestre(4);
+    public function insert_aportacion() {
+        $this->load->model("baucher_model");
+        $inscripciones = $this->baucher_model->get_by_semestre(1);
         if (is_array($inscripciones)) {
             foreach ($inscripciones as $ins) {
                 $costo = false;
@@ -266,7 +265,7 @@ class Reportes extends CI_Controller {
                     $costo = $ins['costo_externo'];
                 }
                 $data = array('aportacion' => $costo);
-                $this->baucher_talleres_model->update($ins['id'], $data);
+                $this->baucher_model->update($ins['id'], $data);
             }
         }
     }

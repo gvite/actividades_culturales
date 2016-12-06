@@ -34,10 +34,9 @@ class Inscripcion extends CI_Controller {
         $data['talleres'] = $this->talleres_semestre_model->get_by_semestre($data['semestre_actual']['id']);
         if (is_array($data['talleres'])) {
             //$this->load->model('baucher_model');
-            $this->load->model('baucher_talleres_model');
             foreach ($data['talleres'] as $key => $taller) {
                 $this->check_status_taller($taller['id']);
-                $count = $this->baucher_talleres_model->count_insc($taller['id']);
+                $count = $this->baucher_model->count_insc($taller['id']);
                 $data['talleres'][$key]['insc_count'] = $count;
                 $data['talleres'][$key]['percent'] = ($count * 100) / $taller['cupo'];
                 $data['talleres'][$key]['status'] = false;
@@ -45,7 +44,7 @@ class Inscripcion extends CI_Controller {
                     $data['talleres'][$key]['status'] = $this->baucher_model->get_status_by_user($taller['id']);
                 }
                 $data['talleres'][$key]['puede_mas'] = true;
-                if ($taller['taller_id'] == 11 && $this->baucher_talleres_model->count_taller_insc(11, $data['semestre_actual']['id']) > 0) {
+                if ($taller['taller_id'] == 11 && $this->baucher_model->count_taller_insc(11, $data['semestre_actual']['id']) > 0) {
                     $data['talleres'][$key]['puede_mas'] = false;
                 }
                 $data['talleres'][$key]['horarios'] = $this->taller_semestre_horario_model->get_by_taller_sem($taller['id']);
@@ -61,7 +60,7 @@ class Inscripcion extends CI_Controller {
                         $data['talleres'][$key]['costo'] = $taller['costo_exalumno'];
                         break;
                     case 4:
-                        $data['talleres'][$key]['num_trabajador'] = $this->baucher_talleres_model->count_trabajadores_insc($taller['id']);
+                        $data['talleres'][$key]['num_trabajador'] = $this->baucher_model->count_trabajadores_insc($taller['id']);
                         $data['talleres'][$key]['costo'] = $taller['costo_trabajador'];
                         break;
                     case 5:
@@ -70,12 +69,7 @@ class Inscripcion extends CI_Controller {
                 }
             }
         }
-        $data['bauchers'] = $this->baucher_model->get_by_user_semestre($data['semestre_actual']['id']);
-        if(is_array($data['bauchers'])){
-            foreach($data['bauchers'] as $key => $baucher){
-                $data['bauchers'][$key]['talleres'] = $this->baucher_talleres_model->get_by_baucher($baucher['id']);
-            }
-        }
+        $data['bauchers'] = $this->baucher_model->get_by_user_with_taller();
         $this->load->view("alumnos/inscripcion_view", $data);
         $this->load->view('main/footer_view', '');
     }
@@ -94,7 +88,6 @@ class Inscripcion extends CI_Controller {
                 $exito = true;
                 $errors = array();
                 $this->load->model('talleres_semestre_model');
-                $this->load->model('baucher_talleres_model');
                 $piano_insc = 0;
                 foreach ($ids as $id) {
                     $this->check_status_taller($id);
@@ -110,13 +103,13 @@ class Inscripcion extends CI_Controller {
                         }
                         $ids_aux[] = array('id' => $id , 'taller' => $taller['taller']);
                         if ($status == false || $status['status'] == 3) {
-                            $count = $this->baucher_talleres_model->count_insc($id);
+                            $count = $this->baucher_model->count_insc($id);
                             if ($count >= $taller['cupo']) {
                                 $errors[] = 'El cupo esta lleno para ' . $taller['taller'] . 'Intenta ser mas r&aacute;pido para la pr&oacute;xima XD.';
                                 //$errors[count($errors) - 1]['id'] = $id;
                                 $exito = false;
                             }
-                            if (get_type_user() == 4 && $this->baucher_talleres_model->count_trabajadores_insc($id) >= 2) {
+                            if (get_type_user() == 4 && $this->baucher_model->count_trabajadores_insc($id) >= 2) {
                                 $errors[] = 'Lo siento solo se pueden inscribir un maximo de 2 trabajadores en cada taller.';
                                 //$errors[count($errors) - 1]['id'] = $id;
                                 $exito = false;
@@ -146,25 +139,16 @@ class Inscripcion extends CI_Controller {
                                 $exito = false;
                             }
                         }
+                        $ts = $this->talleres_semestre_model->get($id['id'] , 'taller_id');
                         $data = array(
                             'usuario_id' => get_id(),
                             'folio' => $folio,
                             'fecha_expedicion' => date('Y-m-d H:i:s'),
+                            'taller_semestre_id' => $id['id'],
+                            'aportacion' => $this->talleres_model->get_costo_by_tipo($ts['taller_id'] , get_type_user()),
                             'status' => 0
                         );
                         $baucher_id = $this->baucher_model->insert($data);
-                        if ($baucher_id) {
-                            $exito = true;
-                            $ts = $this->talleres_semestre_model->get($id['id'] , 'taller_id');
-                            $data_aux = array(
-                                'taller_semestre_id' => $id['id'],
-                                'baucher_id' => $baucher_id,
-                                'aportacion' => $this->talleres_model->get_costo_by_tipo($ts['taller_id'] , get_type_user())
-                            );
-                            if ($this->baucher_talleres_model->insert($data_aux) === false) {
-                                $exito = false;
-                            }
-                        }
                         if ($exito) {
                             $bauchers[] = array(
                                 'id' => $baucher_id,
@@ -214,10 +198,8 @@ class Inscripcion extends CI_Controller {
     }
 
     public function get_pdf($baucher_id) {
-        $this->load->model('baucher_talleres_model');
-        $this->load->model('baucher_model');
 
-        $data['baucher'] = $this->baucher_model->get($baucher_id);
+        $data['baucher'] = $this->baucher_model->get_with_all($baucher_id);
         if ($data['baucher']) {
             $this->load->helper('sesion');
             $route = str_replace("\\", "/", FCPATH) . "uploads/comprobantes/" . get_id() . '/';
@@ -227,12 +209,12 @@ class Inscripcion extends CI_Controller {
             }
                 $this->load->helper('date');
                 $termina_hora = 20;
-                $data['talleres'] = $this->baucher_talleres_model->get_by_baucher($baucher_id);
+                /*$data['taller'] = $this->baucher_model->get_by_baucher($baucher_id);
                 if (is_array($data['talleres'])) {
-                    foreach ($data['talleres'] as $key2 => $taller_semestre) {
-                        $data['talleres'][$key2]['horarios'] = $this->taller_semestre_horario_model->get_by_taller_sem($taller_semestre['id']);
-                    }
-                }
+                    foreach ($data['talleres'] as $key2 => $taller_semestre) {*/
+                $data['baucher']['horarios'] = $this->taller_semestre_horario_model->get_by_taller_sem($data["baucher"]['ts_id']);
+                    /*}
+                }*/
                 $date_aux = getdate(strtotime($data['baucher']['fecha_expedicion']));
                 if ($date_aux['wday'] > 3) {
                     $date_termino_insc = mktime($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 4, $date_aux['year']);
