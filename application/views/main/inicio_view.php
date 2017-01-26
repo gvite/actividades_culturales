@@ -3,9 +3,11 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 if ($tiempo !== false) {
     ?>
-    <div class="row pull-right" id="content_count">
-        <div><p>Inscripci&oacute;n inicia en:</p></div>
-        <div id="counter" data-time="<?php echo $tiempo ?>"></div>
+    <div class="row" id="content_count">
+        <div class="col-md-4 col-md-offset-8">
+            <div><p>Inscripci&oacute;n inicia en:</p></div>
+            <div id="counter" data-time="<?php echo $tiempo ?>"></div>
+        </div>
     </div>
 <?php } ?>
 <div class="row">
