@@ -2,7 +2,7 @@ $(document).on('ready', function () {
     get_lista_taller_semestre($('#talleres_semestre_div .panel-heading h3.actual').data('id'));
     $('#calendar_actividades').fullCalendar({
         header: {
-            left: 'prev,next',
+            left: '',
             center: '',
             right: 'agendaWeek,agendaDay'
         },

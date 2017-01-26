@@ -64,68 +64,60 @@ if (get_type_user() != 1 && $talleres !== false) {
         <?php
         if (get_type_user() == 2 || get_type_user() === false) {
             ?>
-            <div class="col-md-3">
-                <div class="alert alert-info">
-                    Alumnos
-                    <ul>
-                        <!--<li>Original y Copia de credencial de alumno</li>
-                        <li>Presentar Original y copia del voucher generado para validar la inscripci&oacute;n en el Departamento de Actividades Culturales</li>
-                        <li>Ticket de caja en original y 2 copia</li>
-                        <li>Comprobante de inscripción al semestre 2016-2</li>-->
-                        <li>Original y Copia de credencial de alumno</li>
-                        <li>Presentar Original y copia del voucher generado para validar la inscripción en el Departamento de Actividades Culturales</li>
-                    </ul>
-                </div>
+            <div class="bs-callout bs-callout-primary">
+                <h4>Alumnos</h4>
+                <ul>
+                    <!--<li>Original y Copia de credencial de alumno</li>
+                    <li>Presentar Original y copia del voucher generado para validar la inscripci&oacute;n en el Departamento de Actividades Culturales</li>
+                    <li>Ticket de caja en original y 2 copia</li>
+                    <li>Comprobante de inscripción al semestre 2016-2</li>-->
+                    <li>Original y Copia de credencial de alumno</li>
+                    <li>Presentar Original y copia del voucher generado para validar la inscripción en el Departamento de Actividades Culturales</li>
+                </ul>
             </div>
             <?php
         }
         if (get_type_user() == 4 || get_type_user() === false) {
             ?>
-            <div class="col-md-3">
-                <div class="alert alert-info">
-                    Trabajadores
-                    <ul>
-                        <!--<li>Original y Copia de credencial de trabajador</li>
-                        <li>Presentar Original y copia del voucher generado para validar la inscripci&oacute;n en el Departamento de Actividades Culturales</li>
-                        <li>Ticket de caja en original y 2 copia</li>-->
-                        <li>Original y Copia de credencial de trabajador</li>
-                        <li>Presentar Original y copia del voucher generado para validar la inscripción en el Departamento de Actividades Culturales.</li>
-                    </ul>
-                </div>
+            <div class="bs-callout bs-callout-primary">
+                <h4>Trabajadores</h4>
+                <ul>
+                    <!--<li>Original y Copia de credencial de trabajador</li>
+                    <li>Presentar Original y copia del voucher generado para validar la inscripci&oacute;n en el Departamento de Actividades Culturales</li>
+                    <li>Ticket de caja en original y 2 copia</li>-->
+                    <li>Original y Copia de credencial de trabajador</li>
+                    <li>Presentar Original y copia del voucher generado para validar la inscripción en el Departamento de Actividades Culturales.</li>
+                </ul>
             </div>
             <?php
         }
         if (get_type_user() == 3 || get_type_user() === false) {
             ?>
-            <div class="col-md-3">
-                <div class="alert alert-info">
-                    Exalumnos
-                    <ul>
-                        <!--<li>Original y Copia de credencial de ex-alumno o Identificaci&oacute;n oficial + Historial academico</li>
+            <div class="bs-callout bs-callout-primary">
+                <h4>Exalumnos</h4>
+                <ul>
+                    <!--<li>Original y Copia de credencial de ex-alumno o Identificaci&oacute;n oficial + Historial academico</li>
                         <li>Presentar Original y copia del voucher generado para validar la inscripci&oacute;n en el Departamento de Actividades Culturales</li>
                         <li>Ticket de caja en original y 2 copia</li>-->
                         <li>Original y Copia de credencial de ex-alumno o Identificación oficial + Historial academico</li>
                         <li>Presentar Original y copia del voucher generado para validar la inscripción en el Departamento de Actividades Culturales</li>
                         <li>Ticket de caja en original y 2 copias.</li>
-                    </ul>
-                </div>
+                </ul>
             </div>
             <?php
         }
         if (get_type_user() == 5 || get_type_user() === false) {
             ?>
-            <div class="col-md-3">
-                <div class="alert alert-info">
-                    Externos
-                    <ul>
-                        <!--<li>Original y copia de identificaci&oacute;n oficial.</li>
-                        <li>Presentar Original y copia del voucher generado para validar la inscripci&oacute;n en el Departamento de Actividades Culturales</li>
-                        <li>Ticket de caja en original y 2 copia</li>-->
-                        <li>Original y copia de identificación oficial.</li>
-                        <li>Presentar Original y copia del voucher generado para validar la inscripción en el Departamento de Actividades Culturales</li>
-                        <li>Ticket de caja en original y 2 copias</li>
-                    </ul>
-                </div>
+            <div class="bs-callout bs-callout-primary">
+                <h4>Externos</h4>
+                <ul>
+                    <!--<li>Original y copia de identificaci&oacute;n oficial.</li>
+                    <li>Presentar Original y copia del voucher generado para validar la inscripci&oacute;n en el Departamento de Actividades Culturales</li>
+                    <li>Ticket de caja en original y 2 copia</li>-->
+                    <li>Original y copia de identificación oficial.</li>
+                    <li>Presentar Original y copia del voucher generado para validar la inscripción en el Departamento de Actividades Culturales</li>
+                    <li>Ticket de caja en original y 2 copias</li>
+                </ul>
             </div>
             <?php
         }

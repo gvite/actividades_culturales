@@ -167,6 +167,17 @@ if ($baucher['status'] == 0) {
                                     </div>
                                 </div>
                             </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="baportacion" value="1" id="ingresa_aportacion"> Ingresar Aportación
+                                </label>
+                            </div>
+                            <div class="form-group hidden" id="aportacion_voluntaria_content">
+                                <label class="control-label col-lg-4" for="aportacion">Aportación voluntaria</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control" name="aportacion" type="text" placeholder="Aportacion voluntaria" id="aportacion" value="">
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" data-dismiss="modal" class="btn">Cancelar</button>
@@ -211,7 +222,7 @@ if ($baucher['status'] == 0) {
                                     <input type="checkbox" name="baportacion" value="1" id="ingresa_aportacion"> Ingresar Aportación
                                 </label>
                             </div>
-                            <div class="form-group hidden" id="aportacion_voluntaria_content">
+                            <div class="form-group <?php if($baucher[""]){?>hidden<?php } ?>" id="aportacion_voluntaria_content">
                                 <label class="control-label col-lg-4" for="aportacion">Aportación voluntaria</label>
                                 <div class="col-lg-8">
                                     <input class="form-control" name="aportacion" type="text" placeholder="Aportacion voluntaria" id="aportacion" value="">

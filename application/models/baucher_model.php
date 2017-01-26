@@ -148,6 +148,10 @@ class Baucher_model extends CI_Model {
         $result = $this->db->get('baucher as b');
         return ($result->num_rows() > 0) ? $result->row_array() : false;
     }
+    function get_all(){
+        $result = $this->db->get('baucher as b');
+        return ($result->num_rows() > 0) ? $result->result_array() : false;
+    }
     public function get_last_query() {
         $last_query = '';
         if (isset($this->db->queries)) {

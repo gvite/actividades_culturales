@@ -20,6 +20,12 @@ class Baucher_talleres_model extends CI_Controller {
         $result = $this->db->get('baucher_talleres as bt');
         return ($result->num_rows() > 0) ? $result->result_array() : FALSE;
     }
+
+    public function get_by_baucher_id($baucher_id){
+        $this->db->where("baucher_id" , $baucher_id);
+        $result = $this->db->get('baucher_talleres as bt');
+        return ($result->num_rows() > 0) ? $result->result_array() : FALSE;
+    }
     
     public function get_one_by_baucher_taller($baucher_id) {
         $this->db->select('*');

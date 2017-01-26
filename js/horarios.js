@@ -1,7 +1,7 @@
 $(document).on('ready' , function(){
     $('#calendar_horarios').fullCalendar({
         header: {
-            left: 'prev,next',
+            left: '',
             center: '',
             right: 'agendaWeek,agendaDay'
         },
