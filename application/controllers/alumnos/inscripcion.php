@@ -149,7 +149,7 @@ class Inscripcion extends CI_Controller {
                             'status' => 0
                         );
                         $baucher_id = $this->baucher_model->insert($data);
-                        if ($exito) {
+                        
                             $bauchers[] = array(
                                 'id' => $baucher_id,
                                 'folio' => str_pad($data['folio'], 11, "0", STR_PAD_LEFT),
@@ -157,9 +157,7 @@ class Inscripcion extends CI_Controller {
                                 'taller' => $id['taller'],
                                 'taller_id' => $id['id']
                             );
-                        } else {
-                            $bauchers[] = false;
-                        }
+                        
                     }
                     echo json_encode(array('status' => 'MSG', 'type' => 'success', 'message' => 'La inscripción ha finalizado.', 'bauchers' => $bauchers));
                 } else {

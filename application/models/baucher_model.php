@@ -155,9 +155,10 @@ class Baucher_model extends CI_Model {
         $this->db->join('talleres as t', 't.id=ts.taller_id');
         $this->db->join('profesores as p', 'p.id=ts.profesor_id');
         $this->db->join('salones as s', 's.id=ts.salon_id');
+        $this->db->join('semestres as se', 'se.id=ts.semestre_id');
         $this->db->where('ts.semestre_id', $semestre_id);
-        $this->db->where('s.ini_insc >= b.fecha_expedicion');
-        $this->db->where('s.ini_sem <= b.fecha_expedicion');
+        $this->db->where('se.ini_insc >= b.fecha_expedicion');
+        $this->db->where('se.ini_sem <= b.fecha_expedicion');
         $this->db->group_by('b.id');
         $result = $this->db->get('baucher as b');
         return ($result->num_rows() > 0) ? $result->result_array() : false;
