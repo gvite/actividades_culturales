@@ -12,7 +12,7 @@ class Login extends CI_Controller {
     public function valida() {
         $nickname = $this->input->post('user');
         $pass = $this->input->post('pass');
-        $this->load->model('usuarios_model');
+        $this->load->model(array('usuarios_model' , 'baucher_model'));
         $user = $this->usuarios_model->valida($nickname, $pass);
         if ($user) {
             $this->load->helper('sesion');
@@ -21,6 +21,7 @@ class Login extends CI_Controller {
             set_type($user['tipo']);
             set_type_user($user['type_user']);
             set_id($user['id']);
+            set_talleres_inscritos($this->baucher_model->count_validadas_by_usuario($user['id']));
             echo json_encode(array('status' => 'OK'));
         } else {
             echo json_encode(array('status' => 'MSG', 'type' => 'warning', 'message' => 'Usuario y/o contrase&ntilde;a no v&aacute;lidos'));

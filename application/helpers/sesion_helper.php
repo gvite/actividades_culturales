@@ -54,6 +54,18 @@ if (!function_exists('set_name')) {
         $_SESSION['usercomplete_culturales'] = $name;
     }
 }
+if (!function_exists('get_talleres_inscritos')) {
+    function get_talleres_inscritos() {
+        @session_start();
+        return (isset($_SESSION['usertalleres_inscritos_culturales'])) ? $_SESSION['usertalleres_inscritos_culturales'] : 0;
+    }
+}
+if (!function_exists('set_talleres_inscritos')) {
+    function set_talleres_inscritos($talleres_inscritos) {
+        @session_start();
+        $_SESSION['usertalleres_inscritos_culturales'] = $talleres_inscritos;
+    }
+}
 if (!function_exists('get_id')) {
     function get_id() {
         @session_start();

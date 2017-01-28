@@ -20,43 +20,46 @@ if (!defined('BASEPATH'))
     <ul>
         <?php
         switch ($usuario['tipo_usuario_id']) {
-            case 2:
+            case 1: case 2:
                 ?>
-                <!--<li>Original y Copia de credencial de alumno</li>
-                <li>Presentar Original y copia del voucher generado para validar la inscripci&oacute;n en el Departamento de Actividades Culturales</li>
-                <li>Ticket de caja en original y 2 copia</li>
-                <li>Comprobante de inscripción al semestre 2016-2</li>-->
-                <li>Original y Copia de credencial de alumno</li>
-                <li>Presentar Original y copia del voucher generado para validar la inscripción en el Departamento de Actividades Culturales</li>
+                <li>Original y Copia de hoja de inscripción al taller</li>
+                <?php if ($usuario["count_talleres_insc"] === 0) {?>
+                <li>2 fotografías tamaño infantil</li>
+                <li>Copia de credencial del alumno</li>
+                <?php } ?>
+                <li>Tira de materias o comprobante de inscripción</li>
+                <li>Ticket de pago y 2 copias del mismo</li>
                 <?php
                 break;
             case 3:
                 ?>
-                <!--<li>Original y Copia de credencial de ex-alumno o Identificaci&oacute;n oficial + Historial academico</li>
-                <li>Presentar Original y copia del voucher generado para validar la inscripci&oacute;n en el Departamento de Actividades Culturales</li>
-                <li>Ticket de caja en original y 2 copia</li>-->
-                <li>Original y Copia de credencial de ex-alumno o Identificación oficial + Historial academico</li>
-                <li>Presentar Original y copia del voucher generado para validar la inscripción en el Departamento de Actividades Culturales</li>
-                <li>Ticket de caja en original y 2 copias.</li>
+                <li>Original y Copia de hoja de inscripción al taller</li>
+                <?php if ($usuario["count_talleres_insc"] === 0) {?>
+                <li>2 fotografías tamaño infantil</li>
+                <li>Copia de credencial de exalumno</li>
+                <?php } ?>
+                <li>Ticket de pago y 2 copias del mismo</li>
                 <?php
                 break;
             case 4:
                 ?>
-                <!--<li>Original y Copia de credencial de trabajador</li>
-                <li>Presentar Original y copia del voucher generado para validar la inscripci&oacute;n en el Departamento de Actividades Culturales</li>
-                <li>Ticket de caja en original y 2 copia</li>-->
-                <li>Original y Copia de credencial de trabajador</li>
-                <li>Presentar Original y copia del voucher generado para validar la inscripción en el Departamento de Actividades Culturales.</li>
+                <li>Original y Copia de hoja de inscripción al taller</li>
+                <?php if ($usuario["count_talleres_insc"] === 0) {?>
+                <li>2 fotografías tamaño infantil</li>
+                <li>Copia de credencial de empleado</li>
+                <?php } ?>
+                <li>Copia de talón de cheque</li>
+                <li>Ticket de pago y 2 copias del mismo</li>
                 <?php
                 break;
             case 5:
                 ?>
-                <!--<li>Original y copia de identificaci&oacute;n oficial.</li>
-                <li>Presentar Original y copia del voucher generado para validar la inscripci&oacute;n en el Departamento de Actividades Culturales</li>
-                <li>Ticket de caja en original y 2 copia</li>-->
-                <li>Original y copia de identificación oficial.</li>
-                <li>Presentar Original y copia del voucher generado para validar la inscripción en el Departamento de Actividades Culturales</li>
-                <li>Ticket de caja en original y 2 copias</li>
+                <li>Original y Copia de hoja de inscripción al taller</li>
+                <?php if ($usuario["count_talleres_insc"] === 0) {?>
+                <li>2 fotografías tamaño infantil</li>
+                <li>Copia de identificación oficial</li>
+                <?php } ?>
+                <li>Ticket de pago y 2 copias del mismo</li>
                 <?php
                 break;
         }
