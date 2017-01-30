@@ -61,7 +61,7 @@ class Inscribir extends CI_Controller {
             $this->load->helper('date');
             $data['semestres'] = $this->semestres_model->get_all();
             $this->load->model('talleres_semestre_model');
-            $data['talleres'] = $this->talleres_semestre_model->get_by_semestre($data['semestre_actual']['id']);
+            $data['talleres'] = $this->talleres_semestre_model->get_by_semestre_type_user($data['semestre_actual']['id'] , $data['alumno']['tipo_usuario_id']);
             if (is_array($data['talleres'])) {
                 //$this->load->model('baucher_model');
                 foreach ($data['talleres'] as $key => $taller) {
@@ -128,7 +128,7 @@ class Inscribir extends CI_Controller {
                 foreach ($ids as $id) {
                     $this->check_status_taller($id);
                     $status = $this->baucher_model->get_status_by_user($id , $user_id);
-                    $taller = $this->talleres_semestre_model->get_with_name($id);
+                    $taller = $this->talleres_semestre_model->get_with_name_type_user($id , $usuario['tipo_usuario_id']);
                     if (is_array($taller)) {
                         if ($taller['taller_id'] == 11) {
                             $piano_insc++;
@@ -185,17 +185,13 @@ class Inscribir extends CI_Controller {
                             'aportacion' => $this->talleres_model->get_costo_by_tipo($ts['taller_id'] , $usuario['tipo_usuario_id'])
                         );
                         $baucher_id = $this->baucher_model->insert($data);
-                        if ($exito) {
-                            $bauchers[] = array(
-                                'id' => $baucher_id,
-                                'folio' => str_pad($data['folio'], 11, "0", STR_PAD_LEFT),
-                                'fecha_expedicion' => $data['fecha_expedicion'],
-                                'taller' => $id['taller'],
-                                'taller_id' => $id['id']
-                            );
-                        } else {
-                            $bauchers[] = false;
-                        }
+                        $bauchers[] = array(
+                            'id' => $baucher_id,
+                            'folio' => str_pad($data['folio'], 11, "0", STR_PAD_LEFT),
+                            'fecha_expedicion' => $data['fecha_expedicion'],
+                            'taller' => $id['taller'],
+                            'taller_id' => $id['id']
+                        );
                     }
                     echo json_encode(array('status' => 'MSG', 'type' => 'success', 'message' => 'La inscripción ha finalizado.', 'bauchers' => $bauchers));
                 } else {
@@ -225,6 +221,7 @@ class Inscribir extends CI_Controller {
                     $date_termino_insc = mktime($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 2, $date_aux['year']);
                 }
                 $data['usuario'] = $this->usuarios_model->get($user_id);
+                $data['usuario']['count_talleres_insc'] = $this->baucher_model->count_validadas_by_usuario($user_id);
                 $data['date_fin'] = getdate($date_termino_insc);
                 $data['termina_hora'] = $termina_hora;
                 $content = $this->load->view('alumnos/comprobante_view', $data, true);

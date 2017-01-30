@@ -31,7 +31,7 @@ class Inscripcion extends CI_Controller {
             $data['puede_inscribir'] = false;
         }
         $this->load->view('main/header_view', $data);
-        $data['talleres'] = $this->talleres_semestre_model->get_by_semestre($data['semestre_actual']['id']);
+        $data['talleres'] = $this->talleres_semestre_model->get_by_semestre_type_user($data['semestre_actual']['id'],get_type_user());
         if (is_array($data['talleres'])) {
             //$this->load->model('baucher_model');
             foreach ($data['talleres'] as $key => $taller) {
@@ -92,7 +92,7 @@ class Inscripcion extends CI_Controller {
                 foreach ($ids as $id) {
                     $this->check_status_taller($id);
                     $status = $this->baucher_model->get_status_by_user($id);
-                    $taller = $this->talleres_semestre_model->get_with_name($id);
+                    $taller = $this->talleres_semestre_model->get_with_name_type_user($id , get_type_user());
                     if (is_array($taller)) {
                         if ($taller['taller_id'] == 11) {
                             $piano_insc++;
@@ -125,7 +125,7 @@ class Inscripcion extends CI_Controller {
                             $exito = false;
                         }
                     } else {
-                        $errors [] = 'Taller no Encontrado. No Jueges con el sistema.';
+                        $errors [] = 'Taller no Encontrado o no lo puedes inscribir. No Jueges con el sistema.';
                     }
                 }
                 if ($exito) {
@@ -222,6 +222,7 @@ class Inscripcion extends CI_Controller {
                     $date_termino_insc = mktime($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 2, $date_aux['year']);
                 }
                 $data['usuario'] = $this->usuarios_model->get(get_id());
+                $data['usuario']['count_talleres_insc'] = get_talleres_inscritos();
                 $data['date_fin'] = getdate($date_termino_insc);
                 $data['termina_hora'] = $termina_hora;
                 $content = $this->load->view('alumnos/comprobante_view', $data, true);
