@@ -32,7 +32,15 @@ class Talleres_semestre extends CI_Controller {
         $this->load->view("admin/talleres_semestre_view", $data);
         $this->load->view('main/footer_view', '');
     }
-
+    public function get($id = '') {
+        if ($id !== '') {
+            $this->load->model('talleres_semestre_model');
+            $taller = $this->talleres_semestre_model->get($id);
+            echo json_encode(array('status' => 'OK', 'taller' => $taller));
+        } else {
+            echo json_encode(array('status' => 'MSG', 'type' => 'error', "message" => 'Se encontro una inconsistencia'));
+        }
+    }
     public function get_talleres($semestre_id = '') {
         if ($semestre_id !== '') {
             $this->load->model('talleres_semestre_model');
@@ -75,7 +83,11 @@ class Talleres_semestre extends CI_Controller {
                 'profesor_id' => $this->input->post('profesor'),
                 'salon_id' => $this->input->post('salon'),
                 'cupo' => $this->input->post('cupo'),
-                'grupo' => $this->input->post('grupo')
+                'grupo' => $this->input->post('grupo'),
+                'puede_alumno' => ($this->input->post('can_alumnos') == 1) ? 1:0,
+                'puede_trabajador' => ($this->input->post('can_exalumnos') == 1) ? 1:0,
+                'puede_exalumno' => ($this->input->post('can_trabajadores') == 1) ? 1:0,
+                'puede_externo' => ($this->input->post('can_externos') == 1) ? 1:0
             );
             $this->load->model('talleres_semestre_model');
             $id = $this->talleres_semestre_model->insert($data);
@@ -108,7 +120,10 @@ class Talleres_semestre extends CI_Controller {
                 'profesor_id' => $this->input->post('profesor'),
                 'salon_id' => $this->input->post('salon'),
                 'cupo' => $this->input->post('cupo'),
-                'grupo' => $this->input->post('grupo')
+                'puede_alumno' => ($this->input->post('can_alumnos') == 1) ? 1:0,
+                'puede_trabajador' => ($this->input->post('can_exalumnos') == 1) ? 1:0,
+                'puede_exalumno' => ($this->input->post('can_trabajadores') == 1) ? 1:0,
+                'puede_externo' => ($this->input->post('can_externos') == 1) ? 1:0
             );
             $this->load->model('talleres_semestre_model');
             if ($this->talleres_semestre_model->update($id, $data)) {
