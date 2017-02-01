@@ -1,4 +1,3 @@
-<ul class="nav nav-pills nav-stacked nav-divider" id="main_menu">
     <?php
     if (!isset($no_menu)) {
         if (!isset($active)) {
@@ -15,7 +14,7 @@
         switch (get_type()) {
             case 1:
                 ?>
-            <li class="<?php echo ($active === 'actividades') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/talleres.jsp" data-name="actividades"><span class="glyphicon glyphicon-book"></span> Registro de &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;actividades</a></li>
+            <li class="<?php echo ($active === 'actividades') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/talleres.jsp" data-name="actividades"><span class="glyphicon glyphicon-book"></span> Registro de actividades</a></li>
                 <?php if (isset($puede_inscribir) && !$puede_inscribir) { ?>
                 <li class="<?php echo ($active === 'inscribir') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/inscribir.jsp" data-name="inscribir"><span class="glyphicon glyphicon-pencil"></span> Inscripci&oacute;n</a></li>
                 <?php } ?>
@@ -46,4 +45,3 @@
         }
     }
     ?>
-</ul>

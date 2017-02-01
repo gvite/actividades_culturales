@@ -68,40 +68,55 @@
         </script>
     </head>
     <body cz-shortcut-listen="true">
-        <div class="images-header">
-            <img src="<?php echo base_url() ?>images/logo.png"/>
-            <img src="<?php echo base_url() ?>images/logo1.jpg"/>
-        </div>
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="<?php echo base_url() ?>inicio.jsp">Extensi&oacute;n Universitaria - FES Arag&oacute;n <strong id="hora_sistema"><span class="hora"><?php echo date('H');?></span>:<span class="minutos"><?php echo date('i');?></span>:<span class="segundos"><?php echo date('s');?></span></strong></a>
+        <div class="container-fluid" id="header_images">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="<?php echo base_url() ?>images/logo.png"/>
                 </div>
-                <div id="nav_bar_div">
+                <div class="col-md-8">
+                    <img src="<?php echo base_url() ?>images/logo1.jpg"/>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-default" role="navigation" id="navbar_main">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_bar_div" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Navegación</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    
+                    <a class="navbar-brand" href="<?php echo base_url() ?>inicio.jsp"><img width="32px" class="inicio-imagen" src="<?php echo base_url(); ?>images/icon_transparent.png" alt="actividades culturales" /> Extensi&oacute;n Universitaria <span>FES Arag&oacute;n </span><span id="hora_sistema"><span class="hora"><?php echo date('H');?></span>:<span class="minutos"><?php echo date('i');?></span>:<span class="segundos"><?php echo date('s');?></span></span></a>
+                </div>
+                <div id="nav_bar_div" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <?php echo $this->load->view("main/menu_view");?>
                     <?php if (!get_id()) { ?>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a id="logout_link" href="#form_login_modal" data-toggle="modal" class="btn btn-link">Entrar <span class="glyphicon glyphicon-log-in"></span></a></li>
-                            <li><a class="btn btn-link" id="registro_link" href="<?php echo base_url() ?>acceso/registro.jsp">Registrar <span class="glyphicon glyphicon-edit"></span></a></li>
-                        </ul>
+                            <li class="always_view"><a id="logout_link" href="#form_login_modal" data-toggle="modal" class="btn btn-link">Entrar <span class="glyphicon glyphicon-log-in"></span></a></li>
+                            <li class="always_view"><a class="btn btn-link" id="registro_link" href="<?php echo base_url() ?>acceso/registro.jsp">Registrar <span class="glyphicon glyphicon-edit"></span></a></li>
                     <?php } else { ?>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
+                            <li class="always_view">
                                 <a id="user_link" class="btn btn-link btn-small dropdown-toggle" data-toggle="dropdown" href="#" ><?php echo get_name(); ?> <span class="glyphicon glyphicon-user"><span class="caret"></span></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="<?php echo base_url() ?>acceso/cambia_contra.jsp">Cambiar Contrase&ntilde;a</a></li>
                                     <li><a href="<?php echo base_url() ?>perfil.jsp">Perfil</a></li>
                                 </ul>
                             </li>
-                            <li><a id="logout_link" href="<?php echo base_url() ?>acceso/login/logout.jsp" class="btn btn-link btn-small">Salir <span class="glyphicon glyphicon-log-out"></span></a></li>
-                        </ul>
+                            <li class="always_view"><a id="logout_link" href="<?php echo base_url() ?>acceso/login/logout.jsp" class="btn btn-link btn-small">Salir <span class="glyphicon glyphicon-log-out"></span></a></li>
                     <?php } ?>
+
+                    </ul>
                 </div>
             </div>
         </nav>
         <div class="container-fluid" id="content_main">
             <div class="row">
                 <div class="col-md-2">
+                    <ul class="nav nav-pills nav-stacked nav-divider" id="main_menu">
                     <?php echo $this->load->view("main/menu_view");?>
+                    </ul>
                 </div>
                 <div class="col-md-10" id="container">
                     

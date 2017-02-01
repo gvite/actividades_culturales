@@ -27,7 +27,7 @@ if (!defined('BASEPATH'))
                     </div>
                     <div class="modal-footer">
                         <a href="<?php echo base_url();?>acceso/login/recuperar_contra_form" id="recuperar_contrasenia" class="btn-link">Recuperar Contrase&ntilde;a</a>
-                        <button type="button" data-dismiss="modal" class="btn">Cancelar</button>
+                        
                         <button type="submit" class="btn btn-primary">Entrar</button>
                     </div>
                 </form>
