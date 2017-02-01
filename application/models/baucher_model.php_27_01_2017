@@ -155,10 +155,9 @@ class Baucher_model extends CI_Model {
         $this->db->join('talleres as t', 't.id=ts.taller_id');
         $this->db->join('profesores as p', 'p.id=ts.profesor_id');
         $this->db->join('salones as s', 's.id=ts.salon_id');
-        $this->db->join('semestres as se', 'se.id=ts.semestre_id');
         $this->db->where('ts.semestre_id', $semestre_id);
-        $this->db->where('se.ini_insc >= b.fecha_expedicion');
-        $this->db->where('se.ini_sem <= b.fecha_expedicion');
+        $this->db->where('s.ini_insc >= b.fecha_expedicion');
+        $this->db->where('s.ini_sem <= b.fecha_expedicion');
         $this->db->group_by('b.id');
         $result = $this->db->get('baucher as b');
         return ($result->num_rows() > 0) ? $result->result_array() : false;
@@ -264,7 +263,7 @@ class Baucher_model extends CI_Model {
         return ($result->num_rows() > 0) ? $result->result_array() : false;
     }
     public function get_by_taller($id) {
-        $result = $this->db->query('SELECT u.nombre, u.paterno, u.materno,u.email, tu.usuario , b.folio , b.status FROM usuarios AS u INNER JOIN baucher AS b ON b.usuario_id = u.id inner join  tipo_usuario as tu on tu.id=u.tipo_usuario_id WHERE b.taller_semestre_id = ' . $id . ' AND (b.`status` = 0 OR b.`status` = 1) GROUP BY b.id ORDER BY u.paterno ASC');
+        $result = $this->db->query('SELECT u.nombre, u.paterno, u.materno , b.folio , b.status FROM usuarios AS u INNER JOIN baucher AS b ON b.usuario_id = u.id WHERE b.taller_semestre_id = ' . $id . ' AND (b.`status` = 0 OR b.`status` = 1) GROUP BY b.id ORDER BY u.paterno ASC');
         return ($result->num_rows() > 0) ? $result->result_array() : false;
     }
 

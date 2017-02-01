@@ -15,6 +15,8 @@ if (!defined('BASEPATH'))
                 <th>#</th>
                 <th>Folio de baucher</th>
                 <th>Alumno</th>
+                <th>Tipo</th>
+                <th>Contacto</th>
                 <th>Status</th>
                 <th>Acciones</th>
             </tr>
@@ -28,6 +30,8 @@ if (!defined('BASEPATH'))
                         <td><?php echo $key + 1 ?></td>
                         <td><?php echo str_pad($alumno['folio'], 11, "0", STR_PAD_LEFT); ?></td>
                         <td><?php echo $alumno['paterno'] . ' ' . $alumno['materno'] . ' ' . $alumno['nombre'] ?></td>
+                        <td><?php echo $alumno['usuario']?></td>
+                        <td><?php echo $alumno['email']?></td>
                         <td>
                             <?php
                             if ($alumno['status'] == 0) {

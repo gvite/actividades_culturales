@@ -251,7 +251,7 @@ class Reportes extends CI_Controller {
 
     public function insert_aportacion() {
         $this->load->model("baucher_model");
-        $inscripciones = $this->baucher_model->get_by_semestre(1);
+        $inscripciones = $this->baucher_model->get_by_semestre(3);
         if (is_array($inscripciones)) {
             foreach ($inscripciones as $ins) {
                 $costo = false;

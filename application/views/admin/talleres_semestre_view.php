@@ -129,6 +129,27 @@ if (!defined('BASEPATH'))
                                     <input type="text" class="form-control" name="grupo" id="grupo_input" value=""/>
                                 </div>
                             </div>
+                            <div class="control-group">
+                            <label class="control-label" for="grupo_input">Alumnos que se pueden inscribir</label>
+                                <div class="controls">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="can_alumnos" id="can_input_a" value="1"/>
+                                        Alumnos
+                                    </label class="checkbox-inline">
+                                    
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="can_exalumnos" id="can_input_ex" value="1"/>Exalumnos
+                                    </label>
+                                    
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="can_trabajadores" id="can_input_t" value="1"/>Trabajadores
+                                    </label>
+                                    
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="can_externos" id="can_input_et" value="1"/>Externos
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" data-dismiss="modal" class="btn">Cancelar</button>

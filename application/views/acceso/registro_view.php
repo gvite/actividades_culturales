@@ -78,7 +78,23 @@ if (!defined('BASEPATH'))
                         <input type="text" id="num_cuenta" class="form-control" name="num_cuenta" />
                     </div>
                 </div>
-                <div>
+                <div class="control-group">
+                    <label class="control-label" for="facultad_select">*Facultad</label>
+                    <div class="control">
+                        <select name="facultad" id="facultad_select" class="form-control">
+                            <?php
+                            if (is_array($facultades)) {
+                                foreach ($facultades as $facultad) {
+                            ?>
+                                    <option value="<?php echo $facultad['id'] ?>"><?php echo $facultad['facultad'] ?></option>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
                     <label class="control-label" for="carrera_select">*Carrera</label>
                     <div class="control">
                         <select name="carrera" id="carrera_select" class="form-control">
@@ -102,6 +118,22 @@ if (!defined('BASEPATH'))
                 </div>
             </div>
             <div id="datos_trabajador" class="datos_usuario_tipo">
+                <div class="control-group">
+                    <label class="control-label" for="facultad_select_t">*Facultad</label>
+                    <div class="control">
+                        <select name="facultad_t" id="facultad_select_t" class="form-control">
+                            <?php
+                            if (is_array($facultades)) {
+                                foreach ($facultades as $facultad) {
+                            ?>
+                                    <option value="<?php echo $facultad['id'] ?>"><?php echo $facultad['facultad'] ?></option>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
                 <div class="control-group">
                     <label class="control-label" for="num_trabajador">*No. Trabajador</label>
                     <div class="controls">

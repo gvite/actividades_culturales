@@ -52,8 +52,8 @@
         }
         ?>
         <script type="text/javascript">
-            var base_url = "<?php echo base_url(); ?>";
-            var usuario_data = {
+            const base_url = "<?php echo base_url(); ?>";
+            const usuario_data = {
                 user: "<?php echo (get_user()) ? get_user() : ''; ?>",
                 name: "<?php echo (get_name()) ? get_name() : ''; ?>",
                 type: "<?php echo get_type() ?>"

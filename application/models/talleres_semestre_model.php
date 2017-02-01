@@ -28,6 +28,30 @@ class Talleres_semestre_model extends CI_Model {
         $result = $this->db->get('taller_semestre as ts');
         return ($result->num_rows() > 0) ? $result->result_array() : false;
     }
+    public function get_by_semestre_type_user($id , $type_user) {
+        $this->db->select('t.id as taller_id, ts.id,ts.cupo,ts.grupo , t.taller,p.nombre,p.paterno,p.materno,p.id as profesor_id,sa.salon,sa.id as salon_id,t.costo_alumno , t.costo_exalumno , t.costo_trabajador ,t.costo_externo');
+        $this->db->join('talleres AS t' , 'ts.taller_id = t.id');
+        $this->db->join('profesores AS p' , 'ts.profesor_id = p.id');
+        $this->db->join('salones AS sa' , 'ts.salon_id = sa.id');
+        $this->db->where('ts.semestre_id' , $id);
+        switch($type_user){
+            case 1: case 2:
+                $this->db->where('ts.puede_alumno' , 1);
+                break;
+            case 3:
+                $this->db->where('ts.puede_exalumno' , 1);
+                break;
+            case 4:
+                $this->db->where('ts.puede_trabajador' , 1);
+                break;
+            case 5:
+                $this->db->where('ts.puede_externo' , 1);
+                break;
+        }
+        $this->db->order_by('t.taller');
+        $result = $this->db->get('taller_semestre as ts');
+        return ($result->num_rows() > 0) ? $result->result_array() : false;
+    }
     public function get_by_semestre_group($id) {
         $this->db->select('t.id as taller_id, ts.id,ts.cupo,ts.grupo , t.taller,p.nombre,p.paterno,p.materno,p.id as profesor_id,sa.salon,sa.id as salon_id,t.costo_alumno , t.costo_exalumno , t.costo_trabajador ,t.costo_externo');
         $this->db->join('talleres AS t' , 'ts.taller_id = t.id');
@@ -60,6 +84,31 @@ class Talleres_semestre_model extends CI_Model {
         $this->db->join('salones AS s' , 'ts.salon_id = s.id');
         $this->db->join('semestres AS sm' , 'ts.semestre_id = sm.id');
         $this->db->where('ts.id' , $id);
+        $this->db->limit(1);
+        $result = $this->db->get('taller_semestre AS ts');
+        return ($result->num_rows() > 0) ? $result->row_array() : false;
+    }
+    public function get_with_name_type_user($id , $type_user){
+        $this->db->select('ts.id,ts.cupo,ts.grupo,t.taller,t.id as taller_id,s.salon, s.id as salon_id,p.id as profesor_id,p.paterno,p.nombre,p.materno,sm.ini_sem,sm.fin_sem,sm.semestre');
+        $this->db->join('talleres AS t' , 'ts.taller_id = t.id');
+        $this->db->join('profesores AS p' , 'ts.profesor_id = p.id');
+        $this->db->join('salones AS s' , 'ts.salon_id = s.id');
+        $this->db->join('semestres AS sm' , 'ts.semestre_id = sm.id');
+        $this->db->where('ts.id' , $id);
+        switch($type_user){
+            case 1: case 2:
+                $this->db->where('ts.puede_alumno' , 1);
+                break;
+            case 3:
+                $this->db->where('ts.puede_exalumno' , 1);
+                break;
+            case 4:
+                $this->db->where('ts.puede_trabajador' , 1);
+                break;
+            case 5:
+                $this->db->where('ts.puede_externo' , 1);
+                break;
+        }
         $this->db->limit(1);
         $result = $this->db->get('taller_semestre AS ts');
         return ($result->num_rows() > 0) ? $result->row_array() : false;

@@ -66,68 +66,80 @@ if (get_type_user() != 1 && $talleres !== false) {
         <?php
         if (get_type_user() == 2 || get_type_user() === false) {
             ?>
-            <div class="col-md-3">
-                <div class="alert alert-info">
-                    Alumnos
-                    <ul>
-                        <!--<li>Original y Copia de credencial de alumno</li>
-                        <li>Presentar Original y copia del voucher generado para validar la inscripci&oacute;n en el Departamento de Actividades Culturales</li>
-                        <li>Ticket de caja en original y 2 copia</li>
-                        <li>Comprobante de inscripción al semestre 2016-2</li>-->
-                        <li>Original y Copia de credencial de alumno</li>
-                        <li>Presentar Original y copia del voucher generado para validar la inscripción en el Departamento de Actividades Culturales</li>
-                    </ul>
-                </div>
+            <div class="bs-callout bs-callout-primary">
+                <h4>Alumnos</h4>
+                <?php if (get_type_user() === false) {?>
+                <p>Alumnos que ya se han inscrito anteriormente a algún taller sólo presentar los de color <span class="label label-success">verde</span></p>
+                <p>Alumnos que se inscriben por primera vez a algún taller presentar los de color <span class="label label-success">verde</span> y <span class="label label-primary">azul</span></p>
+                <?php } ?>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-success">Original y Copia de hoja de inscripción al taller</li>
+                    <?php if (get_talleres_inscritos() === 0) {?>
+                    <li class="list-group-item list-group-item-<?php echo (get_type_user() === false)?"primary": "success";?>">2 fotografías tamaño infantil</li>
+                    <li class="list-group-item list-group-item-<?php echo (get_type_user() === false)?"primary": "success";?>">Copia de credencial del alumno</li>
+                    <?php } ?>
+                    <li class="list-group-item list-group-item-success">Tira de materias o comprobante de inscripción</li>
+                    <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
+                    
+                </ul>
             </div>
             <?php
         }
         if (get_type_user() == 4 || get_type_user() === false) {
             ?>
-            <div class="col-md-3">
-                <div class="alert alert-info">
-                    Trabajadores
-                    <ul>
-                        <!--<li>Original y Copia de credencial de trabajador</li>
-                        <li>Presentar Original y copia del voucher generado para validar la inscripci&oacute;n en el Departamento de Actividades Culturales</li>
-                        <li>Ticket de caja en original y 2 copia</li>-->
-                        <li>Original y Copia de credencial de trabajador</li>
-                        <li>Presentar Original y copia del voucher generado para validar la inscripción en el Departamento de Actividades Culturales.</li>
-                    </ul>
-                </div>
+            <div class="bs-callout bs-callout-primary">
+                <h4>Empleados Universitarios</h4>
+                <?php if (get_type_user() === false) {?>
+                <p>Empleados que ya se han inscrito anteriormente a algún taller sólo presentar los de color <span class="label label-success">verde</span></p>
+                <p>Empleados que se inscriben por primera vez a algún taller presentar los de color <span class="label label-success">verde</span> y <span class="label label-primary">azul</span></p>
+                <?php } ?>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-success">Original y Copia de hoja de inscripción al taller</li>
+                    <?php if (get_talleres_inscritos() === 0) {?>
+                    <li class="list-group-item list-group-item-<?php echo (get_type_user() === false)?"primary": "success";?>">2 fotografías tamaño infantil</li>
+                    <li class="list-group-item list-group-item-<?php echo (get_type_user() === false)?"primary": "success";?>">Copia de credencial de empleado</li>
+                    <?php } ?>
+                    <li class="list-group-item list-group-item-success">Copia de talón de cheque</li>
+                    <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
+                </ul>
             </div>
             <?php
         }
         if (get_type_user() == 3 || get_type_user() === false) {
             ?>
-            <div class="col-md-3">
-                <div class="alert alert-info">
-                    Exalumnos
-                    <ul>
-                        <!--<li>Original y Copia de credencial de ex-alumno o Identificaci&oacute;n oficial + Historial academico</li>
-                        <li>Presentar Original y copia del voucher generado para validar la inscripci&oacute;n en el Departamento de Actividades Culturales</li>
-                        <li>Ticket de caja en original y 2 copia</li>-->
-                        <li>Original y Copia de credencial de ex-alumno o Identificación oficial + Historial academico</li>
-                        <li>Presentar Original y copia del voucher generado para validar la inscripción en el Departamento de Actividades Culturales</li>
-                        <li>Ticket de caja en original y 2 copias.</li>
-                    </ul>
-                </div>
+            <div class="bs-callout bs-callout-primary">
+                <h4>Egresados</h4>
+                <?php if (get_type_user() === false) {?>
+                <p>Egresados que ya se han inscrito anteriormente a algún taller sólo presentar los de color <span class="label label-success">verde</span></p>
+                <p>Egresados que se inscriben por primera vez a algún taller presentar los de color <span class="label label-success">verde</span> y <span class="label label-primary">azul</span></p>
+                <?php } ?>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-success">Original y Copia de hoja de inscripción al taller</li>
+                    <?php if (get_talleres_inscritos() === 0) {?>
+                    <li class="list-group-item list-group-item-<?php echo (get_type_user() === false)?"primary": "success";?>">2 fotografías tamaño infantil</li>
+                    <li class="list-group-item list-group-item-<?php echo (get_type_user() === false)?"primary": "success";?>">Copia de credencial de exalumno</li>
+                    <?php } ?>
+                    <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
+                </ul>
             </div>
             <?php
         }
         if (get_type_user() == 5 || get_type_user() === false) {
             ?>
-            <div class="col-md-3">
-                <div class="alert alert-info">
-                    Externos
-                    <ul>
-                        <!--<li>Original y copia de identificaci&oacute;n oficial.</li>
-                        <li>Presentar Original y copia del voucher generado para validar la inscripci&oacute;n en el Departamento de Actividades Culturales</li>
-                        <li>Ticket de caja en original y 2 copia</li>-->
-                        <li>Original y copia de identificación oficial.</li>
-                        <li>Presentar Original y copia del voucher generado para validar la inscripción en el Departamento de Actividades Culturales</li>
-                        <li>Ticket de caja en original y 2 copias</li>
-                    </ul>
-                </div>
+            <div class="bs-callout bs-callout-primary">
+                <h4>Externos</h4>
+                <?php if (get_type_user() === false) {?>
+                <p>Externos que ya se han inscrito anteriormente a algún taller sólo presentar los de color <span class="label label-success">verde</span></p>
+                <p>Externos que se inscriben por primera vez a algún taller presentar los de color <span class="label label-success">verde</span> y <span class="label label-primary">azul</span></p>
+                <?php } ?>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-success">Original y Copia de hoja de inscripción al taller</li>
+                    <?php if (get_talleres_inscritos() === 0) {?>
+                    <li class="list-group-item list-group-item-<?php echo (get_type_user() === false)?"primary": "success";?>">2 fotografías tamaño infantil</li>
+                    <li class="list-group-item list-group-item-<?php echo (get_type_user() === false)?"primary": "success";?>">Copia de identificación oficial</li>
+                    <?php } ?>
+                    <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
+                </ul>
             </div>
             <?php
         }
