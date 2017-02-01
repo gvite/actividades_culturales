@@ -178,7 +178,12 @@ $(document).on('ready', function () {
     });
     $('.btn-agregar-taller-sem').on('click', function () {
         $('#taller_semestre_form select').val(0);
-        $('#taller_semestre_form .control-group input').val('');
+        $('#taller_semestre_form #cupo_input').val("");
+        $('#taller_semestre_form #grupo_input').val("");
+        $('#taller_semestre_form #can_input_a').prop("checked" , false);
+        $('#taller_semestre_form #can_input_ex').prop("checked" , false);
+        $('#taller_semestre_form #can_input_t').prop("checked" , false);
+        $('#taller_semestre_form #can_input_et').prop("checked" , false);
         $('#taller_semestre_form').attr('action', base_url + 'admin/talleres_semestre/insert');
         $('#add_talleres_semestre_modal h3').text('Agregar nuevo');
         $('#add_talleres_semestre_modal').modal('show');
@@ -255,14 +260,30 @@ function addEventDragg($element) {
     });
     $element.find('.btn-editar').on('click', function () {
         var $padre = $(this).closest('.dragg_div');
-        $('#taller_semestre_form #taller_select').val($padre.find('.taller_span').data('id'));
-        $('#taller_semestre_form #profesores_select').val($padre.find('.profesor_span').data('id'));
-        $('#taller_semestre_form #salones_select').val($padre.find('.salon_span').data('id'));
-        $('#taller_semestre_form #cupo_input').val($padre.find('.cupo_span').data('id'));
-        $('#taller_semestre_form #grupo_input').val($padre.find('.grupo_span').data('id'));
-        $('#taller_semestre_form').attr('action', base_url + 'admin/talleres_semestre/update/' + $(this).closest('.dragg_div').data('id'));
-        $('#add_talleres_semestre_modal h3').text('Editar');
-        $('#add_talleres_semestre_modal').modal('show');
+
+        $.ajax({
+            url: base_url + 'admin/talleres_semestre/get/' + $(this).closest('.dragg_div').data('id'),
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                if (data.status === "OK") {
+                    $('#taller_semestre_form #taller_select').val(data.taller.taller_id);
+                    $('#taller_semestre_form #profesores_select').val(data.taller.profesor_id);
+                    $('#taller_semestre_form #salones_select').val(data.taller.salon_id);
+                    $('#taller_semestre_form #cupo_input').val(data.taller.cupo);
+                    $('#taller_semestre_form #grupo_input').val(data.taller.grupo);
+                    $('#taller_semestre_form #can_input_a').prop("checked" , (data.taller.puede_alumno == 1) ? true:false);
+                    $('#taller_semestre_form #can_input_ex').prop("checked" , (data.taller.puede_exalumno == 1) ? true:false);
+                    $('#taller_semestre_form #can_input_t').prop("checked" , (data.taller.puede_trabajador == 1) ? true:false);
+                    $('#taller_semestre_form #can_input_et').prop("checked" , (data.taller.puede_externo == 1) ? true:false);
+                    $('#taller_semestre_form').attr('action', base_url + 'admin/talleres_semestre/update/' + data.taller.id);
+                    $('#add_talleres_semestre_modal h3').text('Editar');
+                    $('#add_talleres_semestre_modal').modal('show');
+                } else {
+                    alerts(data.type, data.message);
+                }
+            }
+        });
     });
     $element.find('.btn-remove').on('click', function () {
         var $dragg = $(this).closest('.dragg_div');

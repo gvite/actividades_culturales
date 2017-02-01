@@ -12,12 +12,14 @@ class Registro extends CI_Controller {
     public function index() {
         $this->load->helper(array('url', 'sesion'));
         $this->load->model('carreras_model');
+        $this->load->model('facultades_model');
         $this->load->model('ocupaciones_model');
         $data['js'][] = 'js/registro.js';
         $data['js'][] = 'js/acceso.js';
         $data['no_menu'] = true;
         $this->load->view('main/header_view', $data);
         $data['carreras'] = $this->carreras_model->get_all();
+        $data['facultades'] = $this->facultades_model->get_all();
         $data['ocupaciones'] = $this->ocupaciones_model->get_all();
         $this->load->view('acceso/registro_view', $data);
         $this->load->view('acceso/login_view', $data);
@@ -26,7 +28,7 @@ class Registro extends CI_Controller {
 
     public function insert() {
         $this->load->library('form_validation');
-        $this->form_validation->set_rules("user", "Usuario", "xss|required|callback_valida_user");
+        $this->form_validation->set_rules("user", "Usuario", "xss|required|alpha_dash|callback_valida_user");
         $this->form_validation->set_rules("pass", "Contrase&ntilde;a", "xss|required|callback_valida_pass[" . $this->input->post('repass') . "]");
         $this->form_validation->set_rules("repass", "Repite contrase&ntilde;a", "xss|required");
         $this->form_validation->set_rules("name_user", "Nombre", "xss|required");
@@ -37,14 +39,17 @@ class Registro extends CI_Controller {
         $this->form_validation->set_rules("type_user", "Tipo de usuario", "xss|required|is_natural_no_zero");
         $this->form_validation->set_message("required", "Introduce %s");
         $this->form_validation->set_message("valid_email", "Introduce un correo v&aacute;lido");
+        $this->form_validation->set_message("alpha_dash", "%s: sólo se permite caracteres alfanuemericos.");
         $this->form_validation->set_message("is_natural_no_zero", "Introduce un tipo de usuario v&aacute;lido");
         $tipo = $this->input->post('type_user');
         if ($tipo == 2 || $tipo == 3) {
             $this->form_validation->set_rules("num_cuenta", "N&uacute;mero de cuenta", "xss|required|exact_length[9]|callback_valida_nocta");
+            $this->form_validation->set_rules("facultad", "Facultad", "xss|required");
             $this->form_validation->set_rules("carrera", "Carrera", "xss|required");
             $this->form_validation->set_rules("ingreso_egreso", "Tipo de usuario", "xss|required");
             $this->form_validation->set_message("exact_length", "El n&uacute;mero de cuenta debe tener una longitud de 9");
         } else if ($tipo == 4) {
+            $this->form_validation->set_rules("facultad_t", "Facultad", "xss|required");
             $this->form_validation->set_rules("num_trabajador", "N&uacute;mero de Trabajador", "xss|required");
             $this->form_validation->set_rules("turno_prof", "Turno", "xss|required");
             $this->form_validation->set_rules("area", "Area", "xss|required");

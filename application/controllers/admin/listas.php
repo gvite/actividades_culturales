@@ -10,6 +10,7 @@ class Listas extends CI_Controller {
         $this->load->model('talleres_semestre_model');
         $this->load->model('semestres_model');
         $this->load->model('taller_semestre_horario_model');
+        $this->load->model('baucher_model');
         $this->load->library('archivos');
     }
 
