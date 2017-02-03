@@ -14,9 +14,11 @@ class Baucher_model extends CI_Model {
     public function get_by_taller_status($taller_semestre_id, $status , $status2 = '') {
         $this->db->select('b.*');
         $this->db->where('b.taller_semestre_id', $taller_semestre_id);
-        $this->db->where('status', $status);
+        
         if($status2 !== ''){
-            $this->db->or_where('status', $status2);
+            $this->db->where('(b.status='. $status . ' OR b.status=' . $status2 . ")");
+        }else{
+            $this->db->where('b.status', $status);
         }
         $result = $this->db->get('baucher as b');
         return ($result->num_rows() > 0) ? $result->result_array() : false;
@@ -181,7 +183,7 @@ class Baucher_model extends CI_Model {
         $last_query = '';
         if (isset($this->db->queries)) {
             foreach ($this->db->queries AS $query) {
-                $last_query .= "\n\n" . $query;
+                $last_query = $query;
             }
         }
         return $last_query;

@@ -28,7 +28,7 @@ class Talleres_semestre_model extends CI_Model {
         $result = $this->db->get('taller_semestre as ts');
         return ($result->num_rows() > 0) ? $result->result_array() : false;
     }
-    public function get_by_semestre_type_user($id , $type_user) {
+    public function get_by_semestre_type_user($id , $type_user = "") {
         $this->db->select('t.id as taller_id, ts.id,ts.cupo,ts.grupo , t.taller,p.nombre,p.paterno,p.materno,p.id as profesor_id,sa.salon,sa.id as salon_id,t.costo_alumno , t.costo_exalumno , t.costo_trabajador ,t.costo_externo');
         $this->db->join('talleres AS t' , 'ts.taller_id = t.id');
         $this->db->join('profesores AS p' , 'ts.profesor_id = p.id');
