@@ -113,10 +113,12 @@
         </nav>
         <div class="container-fluid" id="content_main">
             <div class="row">
+                <?php if(!isset($hide_menu) || $hide_menu == false){?>
                 <div class="col-md-2">
                     <ul class="nav nav-pills nav-stacked nav-divider" id="main_menu">
                     <?php echo $this->load->view("main/menu_view");?>
                     </ul>
                 </div>
-                <div class="col-md-10" id="container">
+                <?php } ?>
+                <div class="col-md-<?php echo (!isset($hide_menu) || !$hide_menu)?10:12;?>" id="container">
                     

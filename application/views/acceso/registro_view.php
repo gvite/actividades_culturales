@@ -3,7 +3,7 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 ?>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 col-md-offset-3">
         <form class="form-signin form-horizontal" id="registro_form" action="<?php echo base_url(); ?>acceso/registro/insert">
             <h3>Datos de acceso</h3>
             <div class="control-group">
@@ -186,7 +186,7 @@ if (!defined('BASEPATH'))
             </div>
             <input type="hidden" name="pass" class="form-control" id="pass_input" />
             <input type="hidden" name="repass" class="form-control" id="repass_input">
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="submit" class="btn btn-primary ">Registrar</button>
         </form>
     </div>
 </div>

@@ -17,6 +17,7 @@ class Registro extends CI_Controller {
         $data['js'][] = 'js/registro.js';
         $data['js'][] = 'js/acceso.js';
         $data['no_menu'] = true;
+        $data['hide_menu'] = true;
         $this->load->view('main/header_view', $data);
         $data['carreras'] = $this->carreras_model->get_all();
         $data['facultades'] = $this->facultades_model->get_all();
