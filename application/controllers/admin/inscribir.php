@@ -61,7 +61,7 @@ class Inscribir extends CI_Controller {
             $this->load->helper('date');
             $data['semestres'] = $this->semestres_model->get_all();
             $this->load->model('talleres_semestre_model');
-            $data['talleres'] = $this->talleres_semestre_model->get_by_semestre_type_user($data['semestre_actual']['id'] , $data['alumno']['tipo_usuario_id']);
+            $data['talleres'] = $this->talleres_semestre_model->get_by_semestre_type_user($data['semestre_actual']['id']);
             if (is_array($data['talleres'])) {
                 //$this->load->model('baucher_model');
                 foreach ($data['talleres'] as $key => $taller) {
@@ -140,16 +140,6 @@ class Inscribir extends CI_Controller {
                         $ids_aux[] = array('id' => $id , 'taller' => $taller['taller']);
                         if ($status == false || $status['status'] == 3) {
                             $count = $this->baucher_model->count_insc($id);
-                            if ($count >= $taller['cupo']) {
-                                $errors[] = 'El cupo esta lleno para ' . $taller['taller'] . 'Intenta ser mas r&aacute;pido para la pr&oacute;xima XD.';
-                                //$errors[count($errors) - 1]['id'] = $id;
-                                $exito = false;
-                            }
-                            if ($usuario['tipo_usuario_id'] == 4 && $this->baucher_model->count_trabajadores_insc($id) >= 2) {
-                                $errors[] = 'Lo siento solo se pueden inscribir un maximo de 2 trabajadores en cada taller.';
-                                //$errors[count($errors) - 1]['id'] = $id;
-                                $exito = false;
-                            }
                         } else {
                             if ($status['status'] == 0) {
                                 $errors[] = 'Materia inscrita anteriormente (Sin validaci&oacute;n): ' . $taller['taller'];

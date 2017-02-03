@@ -20,18 +20,16 @@ if (!defined('BASEPATH'))
                         if (($taller['status'] === false || $taller['status']['status'] == 3)) {
                             ?>
                             <div class="panel panel-<?php
-                            if ($taller['percent'] < 100 && $taller['num_trabajador'] < 2 && $taller['puede_mas']) {
+                            
                                 echo 'default dragg-taller-div';
-                            } else {
-                                echo 'danger alert-agotado';
-                            }
+                            
                             ?>" data-id="<?php echo $taller['id'] ?>">
                                 <div class="panel-heading">
                                     <h4 class="name-taller" data-name="<?php echo $taller['taller'] ?>"><?php echo $taller['taller'] ?></h4>
                                 </div>
                                 <div class="panel-body">
                                     <div class="profesor-taller">Profesor: <?php echo $taller['paterno'] . ' ' . $taller['materno'] . ' ' . $taller['nombre'] ?></div>
-                                    <span class="badge pull-right"><?php echo ($taller['percent'] < 100) ? $taller['insc_count'] . '/' . $taller['cupo'] : 'Agotado'; ?></span>
+                                    <span class="badge pull-right"><?php echo $taller['insc_count'] . '/' . $taller['cupo']; ?></span>
                                     <div>Grupo: <span class="grupo-taller"><?php echo $taller['grupo'] ?></span></div>
                                     <div>Sal&oacute;n: <span class="salon-taller"><?php echo $taller['salon'] ?></span></div>
                                     <div class="horario-taller">Horario: 
@@ -74,11 +72,6 @@ if (!defined('BASEPATH'))
                                         </span>
                                     </div>
                                     <?php
-                                    if ($taller['num_trabajador'] >= 2) {
-                                        ?>
-                                        <span class="label label-warning">* No puede haber mas de 2 trabajadores</span>
-                                        <?php
-                                    }
                                     if (!$taller['puede_mas']) {
                                         ?>
                                         <span class="label label-warning">* Ya inscribiste este taller <br /> en caso de que no hayas completado la inscripci&oacute;n <br /> a tiempo se aplica una penalizaci&oacute;n de un dia <br /> a partir de la fecha de expiraci&oacute;n</span>
