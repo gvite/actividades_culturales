@@ -146,7 +146,7 @@ if (!defined('BASEPATH'))
                                     }
                                     ?></td>
                                 <td>
-                                    <a data-events="0" class="btn btn-link" data-id="<?php echo $baucher['id'] ?>" href="<?php echo base_url(); ?>alumnos/inscripcion/get_pdf/<?php echo $baucher['id'] ?>" target="_blank">Imprimir</a>
+                                    <a data-events="0" class="btn btn-link" data-id="<?php echo $baucher['id'] ?>" href="<?php echo base_url(); ?>admin/inscribir/get_pdf/<?php echo $baucher['id'] ?>" target="_blank">Imprimir</a>
                                     <a class="btn btn-link" href="<?php echo base_url(); ?>admin/validacion/get_baucher/<?php echo $baucher['folio'] ?>">Validar</a>
                                 </td>
                             </tr>
