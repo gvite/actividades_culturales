@@ -66,7 +66,7 @@ if (get_type_user() != 1 && $talleres !== false) {
             ?>
             <div class="bs-callout bs-callout-primary">
                 <h4>Alumnos</h4>
-                <?php if (get_type_user() === false) {?>
+                <!--<?php if (get_type_user() === false) {?>
                 <p>Alumnos que ya se han inscrito anteriormente a algún taller sólo presentar los de color <span class="label label-success">verde</span></p>
                 <p>Alumnos que se inscriben por primera vez a algún taller presentar los de color <span class="label label-success">verde</span> y <span class="label label-primary">azul</span></p>
                 <?php } ?>
@@ -79,6 +79,11 @@ if (get_type_user() != 1 && $talleres !== false) {
                     <li class="list-group-item list-group-item-success">Tira de materias o comprobante de inscripción</li>
                     <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
                     
+                </ul>-->
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-success">Original y Copia de hoja de inscripción al taller.</li>
+                    <li class="list-group-item list-group-item-success">Copia de credencial que compruebe su status (alumno, empleado universitario o egresado).</li>
+                    
                 </ul>
             </div>
             <?php
@@ -87,7 +92,7 @@ if (get_type_user() != 1 && $talleres !== false) {
             ?>
             <div class="bs-callout bs-callout-primary">
                 <h4>Empleados Universitarios</h4>
-                <?php if (get_type_user() === false) {?>
+                <!--<?php if (get_type_user() === false) {?>
                 <p>Empleados que ya se han inscrito anteriormente a algún taller sólo presentar los de color <span class="label label-success">verde</span></p>
                 <p>Empleados que se inscriben por primera vez a algún taller presentar los de color <span class="label label-success">verde</span> y <span class="label label-primary">azul</span></p>
                 <?php } ?>
@@ -99,6 +104,11 @@ if (get_type_user() != 1 && $talleres !== false) {
                     <?php } ?>
                     <li class="list-group-item list-group-item-success">Copia de talón de cheque</li>
                     <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
+                </ul>-->
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-success">Original y Copia de hoja de inscripción al taller.</li>
+                    <li class="list-group-item list-group-item-success">Copia de credencial que compruebe su status (alumno, empleado universitario o egresado).</li>
+                    
                 </ul>
             </div>
             <?php
@@ -107,7 +117,7 @@ if (get_type_user() != 1 && $talleres !== false) {
             ?>
             <div class="bs-callout bs-callout-primary">
                 <h4>Egresados</h4>
-                <?php if (get_type_user() === false) {?>
+                <!--<?php if (get_type_user() === false) {?>
                 <p>Egresados que ya se han inscrito anteriormente a algún taller sólo presentar los de color <span class="label label-success">verde</span></p>
                 <p>Egresados que se inscriben por primera vez a algún taller presentar los de color <span class="label label-success">verde</span> y <span class="label label-primary">azul</span></p>
                 <?php } ?>
@@ -118,6 +128,11 @@ if (get_type_user() != 1 && $talleres !== false) {
                     <li class="list-group-item list-group-item-<?php echo (get_type_user() === false)?"primary": "success";?>">Copia de credencial de exalumno</li>
                     <?php } ?>
                     <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
+                </ul>-->
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-success">Original y Copia de hoja de inscripción al taller.</li>
+                    <li class="list-group-item list-group-item-success">Copia de credencial que compruebe su status (alumno, empleado universitario o egresado).</li>
+                    
                 </ul>
             </div>
             <?php
@@ -126,7 +141,7 @@ if (get_type_user() != 1 && $talleres !== false) {
             ?>
             <div class="bs-callout bs-callout-primary">
                 <h4>Externos</h4>
-                <?php if (get_type_user() === false) {?>
+                <!--<?php if (get_type_user() === false) {?>
                 <p>Externos que ya se han inscrito anteriormente a algún taller sólo presentar los de color <span class="label label-success">verde</span></p>
                 <p>Externos que se inscriben por primera vez a algún taller presentar los de color <span class="label label-success">verde</span> y <span class="label label-primary">azul</span></p>
                 <?php } ?>
@@ -137,6 +152,11 @@ if (get_type_user() != 1 && $talleres !== false) {
                     <li class="list-group-item list-group-item-<?php echo (get_type_user() === false)?"primary": "success";?>">Copia de identificación oficial</li>
                     <?php } ?>
                     <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
+                </ul>-->
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-success">Original y Copia de hoja de inscripción al taller.</li>
+                    <li class="list-group-item list-group-item-success">Identificación oficial.</li>
+                    <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo.</li>
                 </ul>
             </div>
             <?php

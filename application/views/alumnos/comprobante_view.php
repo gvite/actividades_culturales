@@ -7,6 +7,7 @@ if (!defined('BASEPATH'))
     <h4>FES - ARAG&Oacute;N</h4>
     <h5>UNIDAD DE EXTENSI&Oacute;N UNIVERSITARIA</h5>
     <h5>DEPARTAMENTO DE ACTIVIDADES CULTURALES</h5>
+    <h5>HOJA DE INSCRIPCI&Oacute;N</h5>
     <div>
         <div>Folio: <?php echo str_pad($baucher['folio'], 11, "0", STR_PAD_LEFT); ?></div>
         <div>Fecha Expedici&oacute;n: <?php echo exchange_date_time($baucher['fecha_expedicion']) ?></div>
@@ -23,43 +24,25 @@ if (!defined('BASEPATH'))
             case 1: case 2:
                 ?>
                 <li>Original y Copia de hoja de inscripción al taller</li>
-                <?php if ($usuario["count_talleres_insc"] === 0) {?>
-                <li>2 fotografías tamaño infantil</li>
-                <li>Copia de credencial del alumno</li>
-                <?php } ?>
-                <li>Tira de materias o comprobante de inscripción</li>
-                <li>Ticket de pago y 2 copias del mismo</li>
+                <li>Copia de credencial que compruebe su status de alumno.</li> 
                 <?php
                 break;
             case 3:
                 ?>
                 <li>Original y Copia de hoja de inscripción al taller</li>
-                <?php if ($usuario["count_talleres_insc"] === 0) {?>
-                <li>2 fotografías tamaño infantil</li>
-                <li>Copia de credencial de exalumno</li>
-                <?php } ?>
-                <li>Ticket de pago y 2 copias del mismo</li>
+                <li>Copia de credencial que compruebe su status de exalumno.</li>
                 <?php
                 break;
             case 4:
                 ?>
                 <li>Original y Copia de hoja de inscripción al taller</li>
-                <?php if ($usuario["count_talleres_insc"] === 0) {?>
-                <li>2 fotografías tamaño infantil</li>
-                <li>Copia de credencial de empleado</li>
-                <?php } ?>
-                <li>Copia de talón de cheque</li>
-                <li>Ticket de pago y 2 copias del mismo</li>
+                <li>Copia de credencial que compruebe su status de empleado.</li>
                 <?php
                 break;
             case 5:
                 ?>
-                <li>Original y Copia de hoja de inscripción al taller</li>
-                <?php if ($usuario["count_talleres_insc"] === 0) {?>
-                <li>2 fotografías tamaño infantil</li>
-                <li>Copia de identificación oficial</li>
-                <?php } ?>
-                <li>Ticket de pago y 2 copias del mismo</li>
+                <li>Identificación oficial.</li>
+                <li>Ticket de pago y 2 copias del mismo.</li>
                 <?php
                 break;
         }
