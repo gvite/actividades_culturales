@@ -15,6 +15,9 @@
     color: #5E99BD;
     display: none;
 }
+#header_images{
+    background-color: #10264B;
+}
 body > #content_main .images-header img{
     display: inline;
 }
