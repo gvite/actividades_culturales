@@ -72,6 +72,15 @@ class Usuarios_model extends CI_Model {
         return ($result->num_rows() > 0) ? $result->row_array() : false;
     }
 
+    public function get_with_type_user($id) {
+        $this->db->select("u.nickname,u.nombre,u.paterno,u.materno,u.email,tu.usuario as tipo_usuario");
+        $this->db->where('u.id', $id);
+        $this->db->join("tipo_usuario as tu","tu.id=u.tipo_usuario_id");
+        $this->db->limit(1);
+        $result = $this->db->get('usuarios as u');
+        return ($result->num_rows() > 0) ? $result->row_array() : false;
+    }
+
     public function get_all_alumnos() {
         $this->db->select('u.id,u.nombre,u.paterno,u.materno,u.status,u.nickname,da.no_cuenta,da.ingreso_egreso as ingreso,c.carrera');
         $this->db->join('datos_alumnos_ex as da', 'da.usuario_id=u.id');
@@ -274,6 +283,13 @@ class Usuarios_model extends CI_Model {
             $where[] = '(nombre like "%' . $nam . '%" OR paterno like "%' . $nam . '%" OR materno like "%' . $nam . '%")';
         }
         $this->db->where(implode(' and ' , $where));
+        $result = $this->db->get('usuarios as u');
+        return ($result->num_rows() > 0) ? $result->result_array() : false;
+    }
+    public function get_usuarios() {
+        $this->db->select('u.* , tu.usuario as tipo_usuario');
+        $this->db->join("tipo_usuario as tu","tu.id=u.tipo_usuario_id");
+        $this->db->order_by('u.paterno');
         $result = $this->db->get('usuarios as u');
         return ($result->num_rows() > 0) ? $result->result_array() : false;
     }

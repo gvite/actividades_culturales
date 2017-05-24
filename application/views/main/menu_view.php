@@ -20,8 +20,9 @@
                 <?php } ?>
                 <li class="<?php echo ($active === 'validacion') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/validacion.jsp" data-name="validacion"><span class="glyphicon glyphicon-check"></span> Validaci&oacute;n</a></li>
                 <li class="<?php echo ($active === 'listas') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/listas.jsp" data-name="listas"><span class="glyphicon glyphicon-list"></span> Listas</a></li>
-                <li class="<?php echo ($active === 'alumnos') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/alumnos.jsp" data-name="alumnos"><span class="glyphicon glyphicon-user"></span> Alumnos</a></li>
+                <!--<li class="<?php echo ($active === 'alumnos') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/alumnos.jsp" data-name="alumnos"><span class="glyphicon glyphicon-user"></span> Alumnos</a></li>-->
                 <li class="<?php echo ($active === 'reportes') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/reportes/carrera.jsp" data-name="reportes"><span class="glyphicon glyphicon-file"></span> Reportes</a></li>
+                <li class="<?php echo ($active === 'usuarios') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/usuarios.jsp" data-name="reportes"><span class="glyphicon glyphicon-file"></span> Usuarios</a></li>
                 <?php
                 if(get_type_user() == 1){
                 ?>
