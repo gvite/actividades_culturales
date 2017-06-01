@@ -46,7 +46,7 @@ if (!defined('BASEPATH'))
                             ?>
                         </td>
                         <td>
-                            <a href="<?php echo base_url(); ?>admin/validacion/get_baucher/<?php echo str_pad($alumno['folio'], 11, "0", STR_PAD_LEFT); ?>.jsp">Ver detalle</a>
+                            <a href="<?php echo base_url(); ?>admin/validacion/get_baucher/<?php echo str_pad($alumno['folio'], 11, "0", STR_PAD_LEFT); ?>">Ver detalle</a>
                         </td>
                     </tr>
                     <?php

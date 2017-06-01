@@ -47,5 +47,5 @@ $(document).on('ready' , function(){
     });
 });
 function actualiza_pagina(){
-    window.location.href = base_url + 'inicio.jsp';
+    window.location.href = base_url + 'inicio';
 }

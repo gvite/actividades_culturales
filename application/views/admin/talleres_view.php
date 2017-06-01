@@ -5,11 +5,11 @@ if (!defined('BASEPATH'))
 <div class="row">
     <div class="col-md-12">
         <ul class="nav nav-tabs" id="sub_menu_pasos">
-            <li class="active"><a href="<?php echo base_url() ?>admin/talleres.jsp" data-name="talleres">Talleres</a></li>
-            <li><a href="<?php echo base_url() ?>admin/semestres.jsp" data-name="semestres">Semestres</a></li>
-            <li><a href="<?php echo base_url() ?>admin/profesores.jsp" data-name="profesores">Profesores</a></li>
-            <li><a href="<?php echo base_url() ?>admin/salones.jsp" data-name="salones">Salones</a></li>
-            <li><a href="<?php echo base_url() ?>admin/talleres_semestre.jsp" data-name="talleres_semestre">Asignaci&oacute;n</a></li>
+            <li class="active"><a href="<?php echo base_url() ?>admin/talleres" data-name="talleres">Talleres</a></li>
+            <li><a href="<?php echo base_url() ?>admin/semestres" data-name="semestres">Semestres</a></li>
+            <li><a href="<?php echo base_url() ?>admin/profesores" data-name="profesores">Profesores</a></li>
+            <li><a href="<?php echo base_url() ?>admin/salones" data-name="salones">Salones</a></li>
+            <li><a href="<?php echo base_url() ?>admin/talleres_semestre" data-name="talleres_semestre">Asignaci&oacute;n</a></li>
         </ul>
     </div>
 </div>
@@ -78,7 +78,7 @@ if (!defined('BASEPATH'))
         <div class="modal fade" id="add_talleres_modal">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form class="form-horizontal" id="talleres_form" action="<?php echo base_url() ?>admin/talleres/insert.jsp">
+                    <form class="form-horizontal" id="talleres_form" action="<?php echo base_url() ?>admin/talleres/insert">
                         <div class="modal-header">
                             <button class="close" data-dismiss="modal" type="button">&times;</button>
                             <h3>Agregar Taller</h3>

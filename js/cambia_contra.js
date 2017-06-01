@@ -11,7 +11,7 @@ $(document).on('ready', function () {
             dataType: 'json',
             success: function (data) {
                 if(data.status === 'OK'){
-                    window.location.href = base_url + 'acceso/cambia_contra/contrasenia_exito.jsp';
+                    window.location.href = base_url + 'acceso/cambia_contra/contrasenia_exito';
                 }else{
                     alerts(data.type , data.message);
                 }

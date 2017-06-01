@@ -88,23 +88,23 @@
                         <span class="icon-bar"></span>
                     </button>
                     
-                    <a class="navbar-brand" href="<?php echo base_url() ?>inicio.jsp"><img width="32px" class="inicio-imagen" src="<?php echo base_url(); ?>images/icon_transparent.png" alt="actividades culturales" /> Extensi&oacute;n Universitaria <span>FES Arag&oacute;n </span><span id="hora_sistema"><span class="hora"><?php echo date('H');?></span>:<span class="minutos"><?php echo date('i');?></span>:<span class="segundos"><?php echo date('s');?></span></span></a>
+                    <a class="navbar-brand" href="<?php echo base_url() ?>inicio"><img width="32px" class="inicio-imagen" src="<?php echo base_url(); ?>images/icon_transparent.png" alt="actividades culturales" /> Extensi&oacute;n Universitaria <span>FES Arag&oacute;n </span><span id="hora_sistema"><span class="hora"><?php echo date('H');?></span>:<span class="minutos"><?php echo date('i');?></span>:<span class="segundos"><?php echo date('s');?></span></span></a>
                 </div>
                 <div id="nav_bar_div" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <?php echo $this->load->view("main/menu_view");?>
                     <?php if (!get_id()) { ?>
                             <li class="always_view"><a id="logout_link" href="#form_login_modal" data-toggle="modal" class="btn btn-link">Entrar <span class="glyphicon glyphicon-log-in"></span></a></li>
-                            <li class="always_view"><a class="btn btn-link" id="registro_link" href="<?php echo base_url() ?>acceso/registro.jsp">Registrar <span class="glyphicon glyphicon-edit"></span></a></li>
+                            <li class="always_view"><a class="btn btn-link" id="registro_link" href="<?php echo base_url() ?>acceso/registro">Registrar <span class="glyphicon glyphicon-edit"></span></a></li>
                     <?php } else { ?>
                             <li class="always_view">
                                 <a id="user_link" class="btn btn-link btn-small dropdown-toggle" data-toggle="dropdown" href="#" ><?php echo get_name(); ?> <span class="glyphicon glyphicon-user"><span class="caret"></span></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="<?php echo base_url() ?>acceso/cambia_contra.jsp">Cambiar Contrase&ntilde;a</a></li>
-                                    <li><a href="<?php echo base_url() ?>perfil.jsp">Perfil</a></li>
+                                    <li><a href="<?php echo base_url() ?>acceso/cambia_contra">Cambiar Contrase&ntilde;a</a></li>
+                                    <li><a href="<?php echo base_url() ?>perfil">Perfil</a></li>
                                 </ul>
                             </li>
-                            <li class="always_view"><a id="logout_link" href="<?php echo base_url() ?>acceso/login/logout.jsp" class="btn btn-link btn-small">Salir <span class="glyphicon glyphicon-log-out"></span></a></li>
+                            <li class="always_view"><a id="logout_link" href="<?php echo base_url() ?>acceso/login/logout" class="btn btn-link btn-small">Salir <span class="glyphicon glyphicon-log-out"></span></a></li>
                     <?php } ?>
 
                     </ul>

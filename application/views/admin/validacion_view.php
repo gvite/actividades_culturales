@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
     <div class="col-md-10">
         <div class="row">
             <div>
-                <form class="form-signin form-horizontal" id="search_folio_form" action="<?php echo base_url(); ?>admin/validacion/verifica_folio.jsp">
+                <form class="form-signin form-horizontal" id="search_folio_form" action="<?php echo base_url(); ?>admin/validacion/verifica_folio">
                     <div class="control-group col-xs-1">
                         <label class="control-label" for="folio_input">Folio</label>
                     </div>
