@@ -86,10 +86,12 @@ class Registro extends CI_Controller {
                     $data2['no_cuenta'] = $this->input->post('num_cuenta');
                     $data2['ingreso_egreso'] = $this->input->post('ingreso_egreso');
                     $data2['carrera_id'] = $this->input->post('carrera');
+                    $data2['facultad_id'] = $this->input->post('facultad');
                     $this->load->model('datos_alumnos_ex_model');
                     $id_datos = $this->datos_alumnos_ex_model->insert($data2);
                 } else if ($tipo == 4) {
                     $data2['no_trabajador'] = $this->input->post('num_trabajador');
+                    $data2['facultad_id'] = $this->input->post('facultad_t');
                     $data2['turno'] = $this->input->post('turno_prof');
                     $data2['area'] = $this->input->post('area');
                     $this->load->model('datos_trabajador_model');
