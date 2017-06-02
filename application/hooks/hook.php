@@ -13,6 +13,7 @@ class Hook {
             'horarios' , 
             'horarios/get_talleres_by_semestre/*', 
             'acceso/registro/insert' , 
+            'acceso/registro/check_user' , 
             'admin/taller_semestre_horario/get_by_semestre/*',
             'admin/talleres/get_info/*');
         $CI->load->helper(array('sesion' , 'url'));

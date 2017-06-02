@@ -40,6 +40,25 @@ $(document).on('ready' , function(){
             }
         });
     });
+    $('#user_input').on('blur' , function(event){
+        var $this = $(this);
+        $.ajax({
+            url: base_url + "acceso/registro/check_user",
+            data:"user=" + $(this).val(),
+            type: 'POST',
+            dataType:'json',
+            success:function(data){
+                console.log(data);
+                if(data.status === "OK"){
+                    $this.closest(".control-group").addClass("has-success");
+                    $this.closest(".control-group").removeClass("has-error");
+                }else{
+                    $this.closest(".control-group").addClass("has-error");
+                    $this.closest(".control-group").removeClass("has-success");
+                }
+            }
+        });
+    });
     $("#nacimiento_user").datetimepicker({
         useCurrent:false,
         locale:'es',

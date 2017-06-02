@@ -193,6 +193,9 @@ body > #content_main .images-header img + img{
 }
 .multiselect {
     text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 #datos_usuarios .panel-heading h3{
     margin: 1px;
@@ -229,6 +232,12 @@ body > #content_main .images-header img + img{
 
 #nav_bar_div .nav li:not(.always_view){
   display: none;
+}
+.help-block{
+    display: none;
+}
+.has-error .help-block{
+    display: block;
 }
 @media (max-width: 768px) {
     #header_images img{

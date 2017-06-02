@@ -10,6 +10,7 @@ if (!defined('BASEPATH'))
                 <label class="control-label" for="user_input">*Nickname</label>
                 <div class="controls">
                     <input name="user" id="user_input" class="form-control" type="text" placeholder="usuario" />
+                    <span class="help-block">El usuario ya existe, ingresa otro por favor.</span>
                 </div>
             </div>
             <div class="control-group">

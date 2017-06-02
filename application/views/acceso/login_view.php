@@ -49,7 +49,7 @@ if (!defined('BASEPATH'))
                         <div class="form-group">
                             <label class="control-label col-lg-2" for="user_input">Email registrado</label>
                             <div class="col-lg-7">
-                                <input class="form-control" name="email" type="text" placeholder="usuario@xxx.com" id="">
+                                <input class="form-control" name="email" type="text" placeholder="usuario@correo.com" id="">
                             </div>
                         </div>
                     </div>

@@ -176,6 +176,16 @@ class Registro extends CI_Controller {
         }
     }
 
+    public function check_user(){
+        $user = $this->input->post('user');
+        $this->load->model('usuarios_model');
+        if($this->usuarios_model->check_user($user)){
+            echo json_encode(array('status' => 'OK'));
+        }else{
+            echo json_encode(array('status' => 'EXIST'));
+        }
+    }
+
 }
 
 ?>
