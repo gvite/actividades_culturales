@@ -6,6 +6,7 @@ $(document).on('ready', function () {
     });
     $("#valida_folio_form").on('submit', function (event) {
         event.preventDefault();
+        $("#numero_caja").prop("disabled" , false);
         $.ajax({
             url: $(this).attr('action'),
             data: $(this).serialize(),
@@ -82,8 +83,10 @@ $(document).on('ready', function () {
     $('.beca').on('click' , function(){
         if($(this).is(':checked')){
             $('#porcentaje_content').show();
+            $("#numero_caja").val("BECA");
         }else{
             $('#porcentaje_content').hide();
+            $("#numero_caja").val("");
         }
     });
     $('#ingresa_aportacion').on('click' , function(){
@@ -96,8 +99,12 @@ $(document).on('ready', function () {
     $('#ingresa_beca').on('click' , function(){
         if($(this).is(':checked')){
             $('#aportacion_beca_content').removeClass('hidden');
+            $("#numero_caja").val("BECA");
+            $("#numero_caja").prop("disabled" , true);
         }else{
             $('#aportacion_beca_content').addClass('hidden');
+            $("#numero_caja").val("");
+            $("#numero_caja").prop("disabled" , false);
         }
     });
 });

@@ -2,7 +2,7 @@
     <div class="col-md-10">
         <div class="row">
             <div>
-                <form class="form-signin form-horizontal" id="search_alumno_form" method="POST" action="<?php echo base_url(); ?>admin/inscribir/busca_alumno.jsp">
+                <form class="form-signin form-horizontal" id="search_alumno_form" method="POST" action="<?php echo base_url(); ?>admin/inscribir/busca_alumno">
                     <div class="control-group col-xs-2">
                         <label class="control-label" for="cta_input">Nombre del alumno</label>
                     </div>

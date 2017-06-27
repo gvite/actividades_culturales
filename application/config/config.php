@@ -57,7 +57,7 @@ $config['uri_protocol']	= 'AUTO';
 | http://codeigniter.com/user_guide/general/urls.html
 */
 
-$config['url_suffix'] = '.jsp';
+$config['url_suffix'] = '';
 
 /*
 |--------------------------------------------------------------------------

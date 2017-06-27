@@ -78,7 +78,7 @@
                     <!-- El logotipo y el icono que despliega el menú se agrupan
                para mostrarlos mejor en los dispositivos móviles -->
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="<?php echo base_url() ?>inicio.jsp">Extensi&oacute;n Universitaria - FES Arag&oacute;n <strong id="hora_sistema"><span class="hora"><?php echo date('H');?></span>:<span class="minutos"><?php echo date('i');?></span>:<span class="segundos"><?php echo date('s');?></span></strong></a>
+                        <a class="navbar-brand" href="<?php echo base_url() ?>inicio">Extensi&oacute;n Universitaria - FES Arag&oacute;n <strong id="hora_sistema"><span class="hora"><?php echo date('H');?></span>:<span class="minutos"><?php echo date('i');?></span>:<span class="segundos"><?php echo date('s');?></span></strong></a>
                     </div>
                     <!-- Agrupar los enlaces de navegación, los formularios y cualquier
                          otro elemento que se pueda ocultar al minimizar la barra -->

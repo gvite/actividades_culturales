@@ -22,7 +22,7 @@ $(document).on('ready', function () {
     $("#get_registros").on('click' , function(event){
         event.preventDefault();
         $.ajax({
-            url: base_url + 'admin/reportes/get_registros_reportes.jsp',
+            url: base_url + 'admin/reportes/get_registros_reportes',
             data: $('#reporte2_form').serialize(),
             type: 'POST',
             dataType: 'json',

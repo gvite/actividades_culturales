@@ -5,14 +5,14 @@ if (!defined('BASEPATH'))
 <div class="row">
     <div class="col-md-12">
         <ul class="nav nav-tabs" id="sub_menu_pasos">
-            <li class="active"><a href="<?php echo base_url() ?>admin/reportes/carrera.jsp" data-name="reporte_1">Reporte 1</a></li>
-            <li><a href="<?php echo base_url() ?>admin/reportes/presupuesto1.jsp" data-name="presupuesto_1">Reporte 2</a></li>
-            <li><a href="<?php echo base_url() ?>admin/reportes/presupuesto2.jsp" data-name="presupuesto_2">Reporte 3</a></li>
+            <li class="active"><a href="<?php echo base_url() ?>admin/reportes/carrera" data-name="reporte_1">Reporte 1</a></li>
+            <li><a href="<?php echo base_url() ?>admin/reportes/presupuesto1" data-name="presupuesto_1">Reporte 2</a></li>
+            <li><a href="<?php echo base_url() ?>admin/reportes/presupuesto2" data-name="presupuesto_2">Reporte 3</a></li>
         </ul>
     </div>
 </div>
 <div class="row">
-    <form action="<?php echo base_url(); ?>admin/reportes/genera_carrera.jsp" class="form-horizontal" id="reporte1_form">
+    <form action="<?php echo base_url(); ?>admin/reportes/genera_carrera" class="form-horizontal" id="reporte1_form">
         <div class="form-group">
             <label class="control-label col-sm-2" for="tipo_alumno">Tipo Alumno</label>
             <div class="col-sm-4">

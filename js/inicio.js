@@ -34,6 +34,37 @@ $(document).on('ready', function() {
         });
         $('#requisitos_inscripcion .alert').height(mayorAltura + 40);
     });
+    setTimeout(function(){
+        if($("#sliders_modal").data("items") > 0){
+            $("#sliders_modal").modal("show");
+        }else{
+            $("#sliders_modal_btn").addClass("disabled");        
+        }
+    },500);
+    $("#sliders_modal_btn").on("click" , function(event){
+        event.preventDefault();
+        if($("#sliders_modal").data("items") > 0){
+            $("#sliders_modal").modal("show");
+        }
+    })
+    var width = $( window ).width();
+    var height = $( window ).height();
+    if(width>800){
+        $(".swiper-container .swiper-slide img").attr("width","400px");
+    }else{
+        $(".swiper-container .swiper-slide img").attr("width","320px");
+    }
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 1,
+        centeredSlides: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        width: width,
+        zoom:true,
+        zoomMax: 2,
+        height: height,
+        autoplayDisableOnInteraction: false
+    });
 });
 $(document)
 function logout_events() {

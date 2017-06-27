@@ -13,13 +13,7 @@ if (!defined('BASEPATH'))
                 if ($baucher['folio_caja'] !== null) {
                     echo $baucher['folio_caja'];
                 } else {
-                    if ($baucher['status'] == 1) {
-                        ?>
-                        <button class="btn btn-primary" href="#ingresa_folio_dialog" data-toggle="modal">Ingresar</button>
-                        <?php
-                    }else{
-                        echo '---';
-                    }
+                    echo '---';
                 }
                 ?>
             </span>
@@ -31,13 +25,7 @@ if (!defined('BASEPATH'))
                 if ($baucher['fecha_caja'] !== null) {
                     echo exchange_date($baucher['fecha_caja']);
                 } else {
-                    if ($baucher['status'] == 1) {
-                        ?>
-                        <button class="btn btn-primary" href="#ingresa_fecha_dialog" data-toggle="modal">Ingresar</button>
-                        <?php
-                    }else{
-                        echo '---';
-                    }
+                    echo '---';
                 }
                 ?>
             </span>
@@ -142,14 +130,14 @@ if ($baucher['status'] == 0 || get_type() == 1) {
                             <div class="form-group">
                                 <label class="control-label col-lg-4" for="numero_caja">No. Recibo</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" name="numero_caja" type="text" placeholder="Caja" id="numero_caja">
+                                    <input class="form-control" name="numero_caja" type="text" value="<?php echo ($baucher['folio_caja'] !== null) ? $baucher["folio_caja"]:""?>" placeholder="Caja" id="numero_caja" <?php echo ($baucher['folio_caja'] == "BECA")? "disabled":""?>>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-lg-4" for="fecha_caja">Fecha de Recibo</label>
                                 <div class="controls col-lg-8">
                                     <div class="input-group date fecha_input" id="nacimiento_user" data-date-format="DD-MM-YYYY">
-                                        <input name="fecha_caja" class="form-control" id="fecha_caja" type="text" placeholder="dd-mm-yyyy" />
+                                        <input name="fecha_caja" class="form-control" id="fecha_caja" value="<?php echo ($baucher['fecha_caja'] !== null) ? exchange_date($baucher['fecha_caja']):"" ?>" type="text" placeholder="dd-mm-yyyy" />
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                                         </span>
                                     </div>
@@ -168,13 +156,13 @@ if ($baucher['status'] == 0 || get_type() == 1) {
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="bbeca" value="1" id="ingresa_beca"> Ingresar Beca
+                                    <input type="checkbox" name="bbeca" value="1" id="ingresa_beca" <?php echo ($baucher['beca']>0) ? "checked":""?>> Ingresar Beca
                                 </label>
                             </div>
-                            <div class="form-group hidden" id="aportacion_beca_content">
+                            <div class="form-group <?php echo ($baucher['beca']>0) ? "":"hidden"?>" id="aportacion_beca_content">
                                 <label class="control-label col-lg-4" for="beca">Beca</label>
                                 <div class="col-lg-8">
-                                    <input class="form-control" name="beca" type="text" placeholder="Beca" id="beca" value="">
+                                    <input class="form-control" name="beca" type="text" placeholder="Beca" id="beca" value="<?php echo $baucher['beca']?>">
                                 </div>
                             </div>
                         </div>

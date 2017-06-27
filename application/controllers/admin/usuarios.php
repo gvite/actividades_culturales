@@ -71,7 +71,7 @@ class Usuarios extends CI_Controller {
     public function update(){
         $this->load->library('form_validation');
         $this->form_validation->set_rules("id", "Ocurrio un error, recarga la pagina", "xss|required");
-        $this->form_validation->set_rules("usuario", "Usuario", "xss|required|callback_valida_user_update[" . $this->input->post('id') . "]");
+        $this->form_validation->set_rules("usuario", "Usuario", "xss|required");
         $this->form_validation->set_rules("pass", "Contrase&ntilde;a", "xss|required|callback_valida_pass[" . $this->input->post('repass') . "]");
         $this->form_validation->set_rules("repass", "Repite contrase&ntilde;a", "xss|required");
         $this->form_validation->set_rules("name_user", "Nombre", "xss|required");
@@ -79,7 +79,7 @@ class Usuarios extends CI_Controller {
         $this->form_validation->set_rules("materno_user", "Apellido Materno", "xss");
         $this->form_validation->set_rules("correo_user", "E-Mail", "xss|required|valid_email|callback_valida_email_update[" . $this->input->post('id') . "]");
         $this->form_validation->set_rules("nacimiento_user", "Fecha de Nacimiento", "xss|required|callback_valida_fecha");
-        $this->form_validation->set_rules("type_user", "Tipo de usuario", "xss|required|is_natural_no_zero");
+        //$this->form_validation->set_rules("type_user", "Tipo de usuario", "xss|required|is_natural_no_zero");
         $this->form_validation->set_message("required", "Introduce %s");
         $this->form_validation->set_message("valid_email", "Introduce un correo v&aacute;lido");
         $this->form_validation->set_message("is_natural_no_zero", "Introduce un tipo de usuario v&aacute;lido");
@@ -96,7 +96,7 @@ class Usuarios extends CI_Controller {
                 'email' => $this->input->post('correo_user'),
                 'nacimiento' => exchange_date($this->input->post('nacimiento_user')),
                 'status' => 1,
-                'tipo_usuario_id' => $this->input->post('type_user')
+                //'tipo_usuario_id' => $this->input->post('type_user')
             );
             if($this->input->post('pass') !== 'd41d8cd98f00b204e9800998ecf8427e'){
                 $data['pass'] = $this->input->post('pass');
@@ -217,6 +217,19 @@ class Usuarios extends CI_Controller {
             }else{
                 echo json_encode(array('status' => 'MSG', 'type' => 'error', 'message' => 'El Registro no se pudo realizar, intentelo mas tarde.'));
             }
+        }
+    }
+    public function get(){
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules("id", "usuario", "xss|required");
+        $this->form_validation->set_message("required", "Ocurrio un error. Recarga la página.");
+        if ($this->form_validation->run() === FALSE) {
+            $errors = validation_errors();
+            echo json_encode(array('status' => 'MSG', 'type' => 'warning', "message" => $errors));
+        } else {
+            $this->load->model('usuarios_model');
+            $data = $this->usuarios_model->get_with_type_user($this->input->post('id'));
+            echo json_encode(array('status' => 'OK','user' => $data));
         }
     }
 }

@@ -27,7 +27,7 @@ if (!defined('BASEPATH'))
                     </div>
                     <div class="modal-footer">
                         <a href="<?php echo base_url();?>acceso/login/recuperar_contra_form" id="recuperar_contrasenia" class="btn-link">Recuperar Contrase&ntilde;a</a>
-                        <button type="button" data-dismiss="modal" class="btn">Cancelar</button>
+                        
                         <button type="submit" class="btn btn-primary">Entrar</button>
                     </div>
                 </form>
@@ -49,7 +49,7 @@ if (!defined('BASEPATH'))
                         <div class="form-group">
                             <label class="control-label col-lg-2" for="user_input">Email registrado</label>
                             <div class="col-lg-7">
-                                <input class="form-control" name="email" type="text" placeholder="usuario@xxx.com" id="">
+                                <input class="form-control" name="email" type="text" placeholder="usuario@correo.com" id="">
                             </div>
                         </div>
                     </div>

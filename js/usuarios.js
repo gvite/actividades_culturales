@@ -1,35 +1,7 @@
 $(document).on('ready' , function(){
-    $('#btn_add_user').on('click' , function(){
+    /*$('#btn_add_user').on('click' , function(){
         $('input').val('');
         $('#add_user_modal').modal('show');
-    });
-    $('#table_usuarios').on('click','.event-button' , function(){
-        var action = $(this).data('action');
-        var id = $(this).closest('tr').data('id');
-        var $this = $(this);
-        $.ajax({
-            url: base_url + 'admin/usuarios/' + action,
-            type: 'POST',
-            data: {id: id},
-            dataType: 'json',
-            success: function(data){
-                switch(action){
-                    case 'delete':
-                        $this.addClass('hide');
-                        $this.siblings('.return-btn').removeClass('hide');
-                        $this.closest('tr').removeClass('success');
-                        $this.closest('tr').addClass('danger');
-                        break;
-                    case 'return_user':
-                        $this.addClass('hide');
-                        $this.siblings('.delete-btn').removeClass('hide');
-                        $this.closest('tr').removeClass('danger');
-                        $this.closest('tr').addClass('success');
-                        break;
-                }
-                alerts(data.type , data.message);
-            }
-        });
     });
     $(".date").datetimepicker({
         useCurrent:false,
@@ -80,19 +52,7 @@ $(document).on('ready' , function(){
             }
         });
     });
-    $('#table_usuarios').on('click','.edit-button' , function(){
-        var $tr = $(this).closest('tr'); 
-        $('input').val('');
-        $('#edit_user_form #id_input_edit').val($tr.data('id'));
-        $('#edit_user_form #usuario_input').val($tr.data('nickname'));
-        $('#edit_user_form #name_user').val($tr.data('nombre'));
-        $('#edit_user_form #paterno_user').val($tr.data('paterno'));
-        $('#edit_user_form #materno_user').val($tr.data('materno'));
-        $('#edit_user_form #correo_user').val($tr.data('email'));
-        $('#edit_user_form #nacimiento_user_input').val($tr.data('nacimiento'));
-        $('#edit_user_form #type_user').val($tr.data('tipo'));
-        $('#edit_user_modal').modal('show');
-    });
+    
     $("#edit_user_form").on('submit' , function(event){
         event.preventDefault();
         $('#pass_input_edit').val($.md5($('#password_usuario_input_edit').val()));
@@ -127,6 +87,54 @@ $(document).on('ready' , function(){
                     $('#edit_user_modal').modal('hide');
                 };
                 alerts(data.type , data.message);
+            }
+        });
+    });*/
+    $("#table_usuarios").DataTable();
+    $('#table_usuarios').on('click','.event-button' , function(){
+        var action = $(this).data('action');
+        var id = $(this).closest('tr').data('id');
+        var $this = $(this);
+        $.ajax({
+            url: base_url + 'admin/usuarios/' + action,
+            type: 'POST',
+            data: {id: id},
+            dataType: 'json',
+            success: function(data){
+                switch(action){
+                    case 'delete':
+                        $this.addClass('hide');
+                        $this.siblings('.return-btn').removeClass('hide');
+                        $this.closest('tr').removeClass('success');
+                        $this.closest('tr').addClass('danger');
+                        break;
+                    case 'return_user':
+                        $this.addClass('hide');
+                        $this.siblings('.delete-btn').removeClass('hide');
+                        $this.closest('tr').removeClass('danger');
+                        $this.closest('tr').addClass('success');
+                        break;
+                }
+                alerts(data.type , data.message);
+            }
+        });
+    });
+    $('#table_usuarios').on('click','.edit-button' , function(){
+        var id = $(this).closest('tr').data('id');
+        var $this = $(this);
+        $.ajax({
+            url: base_url + 'admin/usuarios/get',
+            type: 'POST',
+            data: {id: id},
+            dataType: 'json',
+            success: function(data){
+                $("#user_modal #usuario_input").val(data.user.nickname);
+                $("#user_modal #name_user").val(data.user.nombre);
+                $("#user_modal #paterno_user").val(data.user.paterno);
+                $("#user_modal #materno_user").val(data.user.materno);
+                $("#user_modal #correo_user").val(data.user.email);
+                $("#user_modal #tipo_usuario").text(data.user.tipo_usuario);
+                $('#user_modal').modal('show');
             }
         });
     });
