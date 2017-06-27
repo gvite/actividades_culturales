@@ -11,6 +11,13 @@ class Sliders extends CI_Controller {
 
     public function index() {
         $this->load->helper(array('url', 'sesion'));
+        $this->load->model('semestres_model');
+        $data['semestre_actual'] = $this->semestres_model->get_actual();
+        if ($data['semestre_actual']) {
+            $data['puede_inscribir'] = $this->semestres_model->puede_insc($data['semestre_actual']['id']);
+        } else {
+            $data['puede_inscribir'] = false;
+        }
         $this->load->model('sliders_model');
         $data['active'] = 'sliders';
         $data['js'] = 'js/sliders.js';
