@@ -19,6 +19,7 @@
         <link type="text/css" href="<?php echo base_url(); ?>css/jquery-ui-timepicker-addon.css" rel="stylesheet" media="screen"/>
         <link type="text/css" href="<?php echo base_url(); ?>css/jquery.dataTables.min.css" rel="stylesheet" media="screen"/>
         <link type="text/css" href="<?php echo base_url(); ?>css/jquery.dataTables_themeroller.min.css" rel="stylesheet" media="screen"/>
+        <link type="text/css" href="<?php echo base_url(); ?>css/swiper.min.css" rel="stylesheet" media="screen"/>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/jquery.ui.touch-punch.js"></script>
@@ -35,6 +36,7 @@
         <script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/fullcalendar.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/jquery.qtip.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/jquery.countDown.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/swiper.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/comun.js"></script>
         <?php
         if (isset($js)) {
@@ -93,6 +95,10 @@
                 <div id="nav_bar_div" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <?php echo $this->load->view("main/menu_view");?>
+                        <?php if($active === 'inicio'){?>
+                            <li class="always_view"><a id="sliders_modal_btn" href="#sliders_modal" class="btn btn-link">Avisos <span class="glyphicon glyphicon-bullhorn"></span></a></li>
+                        <?php }?>
+
                     <?php if (!get_id()) { ?>
                             <li class="always_view"><a id="logout_link" href="#form_login_modal" data-toggle="modal" class="btn btn-link">Entrar <span class="glyphicon glyphicon-log-in"></span></a></li>
                             <li class="always_view"><a class="btn btn-link" id="registro_link" href="<?php echo base_url() ?>acceso/registro">Registrar <span class="glyphicon glyphicon-edit"></span></a></li>

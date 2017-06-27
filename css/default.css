@@ -332,3 +332,16 @@ body > #content_main .images-header img + img{
 .bs-callout.bs-callout-primary.col-md-6{
     margin-top:20px;
 }
+.swiper-container .swiper-slide{
+    text-align: center;
+    color: #FFF;
+}
+#sliders_modal .close{
+    color: #fff;
+    opacity: 1;
+    font-size: 60px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+}

@@ -157,3 +157,23 @@ if (get_type_user() != 1 && $talleres !== false) {
         </div><!-- /.modal-dialog -->
     </div>
 </div>
+<div class="modal fade" id="sliders_modal" data-items="<?php echo ($sliders) ? count($sliders):0;?>">
+    <button class="close" data-dismiss="modal" type="button">&times;</button>
+    <div class="swiper-container col-md-12">
+        <div class="swiper-wrapper">
+            <?php if($sliders){
+                foreach($sliders as $slider){
+                    ?>
+                    <div class="swiper-slide">
+                        <img alt="<?php echo $slider['titulo'];?>" width="400px" src="<?php echo base_url();?>/uploads/sliders/<?php echo $slider['img']?>" />
+                    </div>
+                    <?php
+                }
+            }
+            ?>
+        </div>
+        <!-- Add Arrows -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+    </div>
+</div>

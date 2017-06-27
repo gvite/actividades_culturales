@@ -13,6 +13,7 @@ class Inicio extends CI_Controller {
         $this->load->helper(array('url', 'sesion'));
         $this->load->model('talleres_model');
         $this->load->model('semestres_model');
+        $this->load->model('sliders_model');
         $semestre_actual = $this->semestres_model->get_actual();
         $tiempo_res = strtotime($semestre_actual['ini_insc']) - mktime();
         if ($tiempo_res > 0) {
@@ -71,6 +72,7 @@ class Inicio extends CI_Controller {
         } else {
             $data['talleres'] = $talleres;
         }
+        $data['sliders'] = $this->sliders_model->get_all_show();
         $this->load->view('main/inicio_view', $data);
         if (!get_id()) {
             $this->load->view('acceso/login_view', $data);
