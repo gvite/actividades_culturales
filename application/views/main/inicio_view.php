@@ -193,7 +193,7 @@ if (get_type_user() != 1 && $talleres !== false) {
             ?>
         </div>
         <!-- Add Arrows -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev">&nbsp</div>
+            <div class="swiper-button-next">&nbsp</div>
     </div>
 </div>

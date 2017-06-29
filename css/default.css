@@ -330,6 +330,16 @@ body > #content_main .images-header img + img{
     right: 50px;
     z-index: 1000;
     background-color: #112853;
+    padding: 10px 10px 0px 10px;
+    opacity: .9;
+}
+.swiper-button-prev, .swiper-button-next{
+    background-color: #112853;
+    padding: 35px 17px;
+    opacity: .85;
+}
+.swiper-button-prev.swiper-button-disabled, .swiper-button-next.swiper-button-disabled{
+    background-color: transparent;
 }
 @media (max-width: 768px) {
     #header_images img{
