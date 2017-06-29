@@ -50,7 +50,7 @@ $(document).on('ready', function() {
     var width = $( window ).width();
     var height = $( window ).height();
     if(width>800){
-        $(".swiper-container .swiper-slide img").attr("width","400px");
+        $(".swiper-container .swiper-slide img").attr("height",height + "px");
     }else{
         $(".swiper-container .swiper-slide img").attr("width","320px");
     }

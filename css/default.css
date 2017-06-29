@@ -239,21 +239,6 @@ body > #content_main .images-header img + img{
 .has-error .help-block{
     display: block;
 }
-@media (max-width: 768px) {
-    #header_images img{
-        width: 100%;
-        height: 100%;
-    }
-    #navbar_main .navbar-brand > span{
-        display: none;   
-    }
-    #nav_bar_div .nav li:not(.always_view){
-        display: block;
-    }
-    #content_main #main_menu{
-        display: none;
-    }
-}
 
 /***********/
 .bs-callout {
@@ -339,9 +324,34 @@ body > #content_main .images-header img + img{
 #sliders_modal .close{
     color: #fff;
     opacity: 1;
-    font-size: 60px;
+    font-size: 100px;
     position: fixed;
-    top: 0;
-    right: 0;
+    top: 20px;
+    right: 50px;
     z-index: 1000;
+    background-color: #112853;
+}
+@media (max-width: 768px) {
+    #header_images img{
+        width: 100%;
+        height: 100%;
+    }
+    #navbar_main .navbar-brand > span{
+        display: none;   
+    }
+    #nav_bar_div .nav li:not(.always_view){
+        display: block;
+    }
+    #content_main #main_menu{
+        display: none;
+    }
+    #sliders_modal .close{
+        color: #fff;
+        opacity: 1;
+        font-size: 60px;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1000;
+    }
 }
