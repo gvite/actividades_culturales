@@ -25,17 +25,16 @@
                 <li class="<?php echo ($active === 'sliders') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/sliders" data-name="sliders"><span class="glyphicon glyphicon-bullhorn"></span> Avisos</a></li>
                 <!--<li class="<?php echo ($active === 'usuarios') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/usuarios" data-name="reportes"><span class="glyphicon glyphicon-file"></span> Usuarios</a></li>-->
                 <?php
-                if(get_type_user() == 1){
+                
                 ?>
                     <!--<li class="<?php echo ($active === 'usuarios') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/usuarios" data-name="usuarios"><span class="glyphicon glyphicon-user"></span>Usuarios</a></li>-->
                 <?php
-                    if (isset($puede_inscribir) && $puede_inscribir) {
+                    
                         ?>
                         <li class="<?php echo ($active === 'inscripcion') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>alumnos/inscripcion" data-name="inscripcion"><span class="glyphicon glyphicon-pencil"></span> Inscripci&oacute;n Prueba<br /></a></li>
                         <li class="<?php echo ($active === 'limpiar') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/limpiar" data-name="inscripcion"><span class="glyphicon glyphicon-pencil"></span> Limpiar Inscripci&oacute;n<br /></a></li>
                     <?php
-                    }
-                }
+                    
                 break;
             case 2:
                 if (isset($puede_inscribir) && $puede_inscribir) {

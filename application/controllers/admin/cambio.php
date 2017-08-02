@@ -147,6 +147,11 @@ class Cambio extends CI_Controller {
             }
         }
     }
+    public function user(){
+        $type_user = $this->input->post("type_user");
+        set_type_user($type_user);
+        echo json_encode(array('status' => 'OK'));
+    }
 }
 
 ?>

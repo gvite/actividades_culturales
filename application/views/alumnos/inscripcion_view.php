@@ -2,6 +2,41 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 ?>
+<?php
+if(get_type() == 1){
+    ?>
+    <div class="row">
+        <div class="col-md-3">
+            <select name="type_user" id="type_user_select" class="form-control">
+                <option value="0" <?php echo (get_type_user() == 1)?"selected":"";?>>Selecciona</option>
+                <option value="2" <?php echo (get_type_user() == 2)?"selected":"";?>>Alumno</option>
+                <option value="3" <?php echo (get_type_user() == 3)?"selected":"";?>>Ex-Alumno</option>
+                <option value="4" <?php echo (get_type_user() == 4)?"selected":"";?>>Trabajador</option>
+                <option value="5" <?php echo (get_type_user() == 5)?"selected":"";?>>Externo</option>
+            </select>
+        </div>
+    </div>
+    <script>
+        $(document).on("ready" , function(){
+            $("#type_user_select").on("change", function(){
+                var $this = $(this);
+                $.ajax({
+                    url: base_url + 'admin/cambio/user/',
+                    data: 'type_user=' + $this.val(),
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.status === "OK") {
+                            window.location.reload();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    <?php
+}
+?>
 <div class="row">
     <div class="col-md-5">
         <div class="panel panel-primary" id="materias">
