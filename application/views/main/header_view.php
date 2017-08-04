@@ -4,6 +4,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Sitio de Inscripciones para los talleres del departamento de Actividades Culturales de la FES-Arag&oacute;n.">
+        <meta name="keywords" content="fes,aragon,fes aragon,actividades culturales,unam,talleres,piano,pintura,danza">
         <title>Actividades Culturales</title>
         <link rel="icon" type="image/png" href="<?php echo base_url(); ?>images/favicon.png" />
         <link type="text/css" href="<?php echo base_url(); ?>css/bootstrap.css" rel="stylesheet" media="screen"/>

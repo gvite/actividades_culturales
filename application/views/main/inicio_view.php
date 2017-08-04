@@ -18,33 +18,17 @@ if ($tiempo !== false) {
     <div class="col-md-12">
         <?php
         if (is_array($talleres)) {
-            $count = 0;
             foreach ($talleres as $taller) {
-                if ($count == 0) {
-                    ?>
-                    <div class="row">
-                        <?php
-                    }
-                    ?>
-                    <div class="col-md-3">
-                        <div class="panel panel-info panel-talleres">
-                            <div class="panel-heading" style="background-image: url(images/talleres/<?php echo $taller['id'] . '_image' ?>.jpg)"><h3 style="background-image: url(images/titulo_trasnparencia.png)"><?php echo $taller['taller'] ?></h3></div>
-                            <div class="panel-body">
-                                <a href="admin/talleres/get_info/<?php echo $taller['id'] ?>" class="btn btn-link">M&aacute;s informaci&oacute;n..</a>
-                            </div>
+            ?>
+                <div class="col-md-3">
+                    <div class="panel panel-info panel-talleres">
+                        <div class="panel-heading" style="background-image: url(images/talleres/<?php echo $taller['id'] . '_image' ?>.jpg)"><h3 style="background-image: url(images/titulo_trasnparencia.png)"><?php echo $taller['taller'] ?></h3></div>
+                        <div class="panel-body">
+                            <a href="admin/talleres/get_info/<?php echo $taller['id'] ?>" class="btn btn-link">M&aacute;s informaci&oacute;n..</a>
                         </div>
                     </div>
-                    <?php
-                    $count++;
-                    if ($count == 4) {
-                        $count = 0;
-                        ?>
-                    </div>
-                    <?php
-                }
-            }
-            if ($count > 0 && $count < 4) {
-                echo '</div>';
+                </div>
+            <?php 
             }
         }else{
             ?>

@@ -65,6 +65,13 @@ $(document).on('ready', function() {
         height: height,
         autoplayDisableOnInteraction: false
     });
+    var heightMax = 0;
+    $(".panel-talleres").each(function(){
+        if($(this).height() > heightMax){
+            heightMax = $(this).height();
+        }
+    });
+    $(".panel-talleres").height(heightMax);
 });
 $(document)
 function logout_events() {
