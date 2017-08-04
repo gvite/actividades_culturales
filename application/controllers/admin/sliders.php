@@ -41,9 +41,7 @@ class Sliders extends CI_Controller {
                 $validextensions = array("jpeg", "jpg", "png");
                 $temporary = explode(".", $_FILES["file"]["name"]);
                 $file_extension = end($temporary);
-                if ((($_FILES["file"]["type"] == "image/png") || ($_FILES["file"]["type"] == "image/jpg") || ($_FILES["file"]["type"] == "image/jpeg")
-                ) && ($_FILES["file"]["size"] < 10000000)//Approx. 100kb files can be uploaded.
-                && in_array($file_extension, $validextensions)) {
+                if (in_array($file_extension, $validextensions)) {
                     if ($_FILES["file"]["error"] > 0){
                         echo json_encode(array("status" => "MSG","type" => "error" , "message" => "No hay imagen"));
                     }else{
@@ -65,7 +63,7 @@ class Sliders extends CI_Controller {
                         }
                     }
                 }else{
-                    echo json_encode(array("status" => "MSG","type" => "warning" , "message" => "Invalid size"));
+                    echo json_encode(array("status" => "MSG","type" => "warning" , "message" => "Sólo los siguientes formatos son permitidos: png, jpg, jpeg"));
                 }
             }else{
                 echo json_encode(array("status" => "MSG","type" => "warning" , "message" => "No hay imagen"));
@@ -99,11 +97,9 @@ class Sliders extends CI_Controller {
                 $validextensions = array("jpeg", "jpg", "png");
                 $temporary = explode(".", $_FILES["file"]["name"]);
                 $file_extension = end($temporary);
-                if ((($_FILES["file"]["type"] == "image/png") || ($_FILES["file"]["type"] == "image/jpg") || ($_FILES["file"]["type"] == "image/jpeg")
-                ) && ($_FILES["file"]["size"] < 10000000)//Approx. 100kb files can be uploaded.
-                && in_array($file_extension, $validextensions)) {
+                if (in_array($file_extension, $validextensions)) {
                     if ($_FILES["file"]["error"] > 0){
-                        echo json_encode(array("status" => "MSG","type" => "error" , "message" => "No hay imagen"));
+                        echo json_encode(array("status" => "MSG","type" => "error" , "message" => "No hay imagen", "error" => $_FILES["file"]["error"]));
                         exit;
                     }else{
                         $sourcePath = $_FILES['file']['tmp_name']; // Storing source path of the file in a variable
@@ -112,7 +108,7 @@ class Sliders extends CI_Controller {
                         move_uploaded_file($sourcePath,$targetPath) ; // Moving Uploaded file
                     }
                 }else{
-                    echo json_encode(array("status" => "MSG","type" => "warning" , "message" => "Formato o tamaño no autorizado"));
+                    echo json_encode(array("status" => "MSG","type" => "warning" , "message" => "Formato no autorizado"));
                     exit;
                 }
             }

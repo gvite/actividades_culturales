@@ -8,3 +8,5 @@ Options FollowSymLinks
 <IfModule !mod_rewrite.c>
     ErrorDocument 404 /actividades_culturales/index.php
 </IfModule>
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
