@@ -8,7 +8,7 @@ $(document).on('ready' , function(){
             dataType: 'json',
             success: function(data) {
                 if (data.status === "OK") {
-                    window.location.href = base_url;
+                    window.location.href = window.location.href;
                 } else {
                     alerts(data.type, data.message);
                     $('#password_input').val('');
