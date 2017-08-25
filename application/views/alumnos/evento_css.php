@@ -1,10 +1,13 @@
 h3,h4,h5{
-    text-align: center;
+    text-align: right;
+    margin-bottom:0px;
+    margin-top:10px; 
+    margin-right:50px;
 }
-
-#encabezado .image{
-    width: 100px;
+h3{
+    font-size: 16.5px;
 }
-#encabezado code{
-    width: 300px;
+.body{
+    margin-top: 30px;
+    margin-left: 210px;
 }

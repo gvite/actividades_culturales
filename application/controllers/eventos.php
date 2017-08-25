@@ -99,7 +99,7 @@ class Eventos extends CI_Controller {
         }
     }
     public function pdf($id){
-
+        $this->load->helper("date");
         $data["evento"] = $this->asistentes_model->get_data_by_user($id , get_id());
         $content = $this->load->view('alumnos/evento_view', $data, true);
         $css = $this->load->view('alumnos/evento_css', $data, true);
@@ -114,7 +114,7 @@ class Eventos extends CI_Controller {
         
         $mpdf->WriteHTML($content, 2);
 
-        $mpdf->Image('images/logo_pdf.jpg',150,28,22,21,'jpg','',true, true);
+        $mpdf->Image('images/logo_pdf.jpg',70,24,22,21,'jpg','',true, true);
         $mpdf->Image('images/eventos/ticket.png',10,10,230,140,'png','',true, true);
         $mpdf->Image('images/eventos/odiseo-y-los-mesoneros-aragon.jpg',14,14,50,90,'jpg','',true, true);
         $mpdf->Image('uploads/qr/' . $data["evento"]["asistente_id"] . ".png",145,69,35,35,'png','',true, true);
