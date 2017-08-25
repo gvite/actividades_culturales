@@ -105,11 +105,20 @@ class Eventos extends CI_Controller {
         $css = $this->load->view('alumnos/evento_css', $data, true);
         $this->load->library('mpdf');
         $mpdf = new mPDF();
-        $header = '<img src="images/logo_pdf.jpg" style="padding-left:20px;" />';
+        //$header = '<img src="images/logo_pdf.jpg" style="padding-left:20px;" />';
+        
         $mpdf->SetProtection(array('copy' , 'print'));
-        $mpdf->SetHTMLHeader($header);
+        //$mpdf->Image('images/eventos/odiseo-y-los-mesoneros-aragon-degrade.png',0,0,210,297,'png','',true, false);
+        //$mpdf->SetHTMLHeader($header);
         $mpdf->WriteHTML($css, 1);
+        
         $mpdf->WriteHTML($content, 2);
+
+        $mpdf->Image('images/logo_pdf.jpg',150,28,22,21,'jpg','',true, true);
+        $mpdf->Image('images/eventos/ticket.png',10,10,230,140,'png','',true, true);
+        $mpdf->Image('images/eventos/odiseo-y-los-mesoneros-aragon.jpg',14,14,50,90,'jpg','',true, true);
+        $mpdf->Image('uploads/qr/' . $data["evento"]["asistente_id"] . ".png",145,69,35,35,'png','',true, true);
+        $mpdf->showImageErrors = true;
         $mpdf->Output();
     }
 
