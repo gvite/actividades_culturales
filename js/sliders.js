@@ -8,6 +8,7 @@ $(document).on("ready", function () {
         $("#slider_form #orden_input").val("");
         $("#slider_form #visible_input").prop(false);
         $("#slider_form #id_input").val("");
+        $("#slider_form #link_input").val("");
     });
     $(".table .btn-edit").on("click" , function(){
         var id = $(this).closest("tr").data("id");
@@ -22,6 +23,7 @@ $(document).on("ready", function () {
                     $("#slider_form #orden_input").val(data.slider.orden);
                     $("#slider_form #visible_input").prop("checked",((data.slider.status == 1)?true:false));
                     $("#slider_form #id_input").val(data.slider.id);
+                    $("#slider_form #link_input").val(data.slider.link);
                     $("#add_sliders_modal").modal("show");
 
                 }else{

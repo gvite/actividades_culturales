@@ -11,6 +11,7 @@
                     <th class="text-center">Imagen</th>
                     <th class="text-center">Titulo</th>
                     <th class="text-center">Orden</th>
+                    <th class="text-center">Link</th>
                     <th class="text-center">Acciones</th>
                 </tr>
             </thead>
@@ -23,8 +24,9 @@
                                 <td class="text-center"><img width="50px" src="<?php echo base_url()."uploads/sliders/".$slider["img"]?>"></td>
                                 <td class="text-center"><?php echo $slider["titulo"]?></td>
                                 <td class="text-center"><?php echo $slider["orden"]?></td>
+                                <td class="text-center"><?php echo $slider["link"]?></td>
                                 <td class="text-center"><button class="btn btn-default btn-edit">Editar</button><!--<button class="btn btn-danger btn-delete">Eliminar</button>--></td>
-                            </tr>        
+                            </tr>
                             <?php
                         }
                     }else{
@@ -53,6 +55,12 @@
                         <label class="control-label" for="titulo_input">Título</label>
                         <div class="controls">
                             <input name="titulo" class="form-control" id="titulo_input" type="text" placeholder="Título" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="link_input">Link</label>
+                        <div class="controls">
+                            <input name="link" class="form-control" id="link_input" type="text" placeholder="Link" />
                         </div>
                     </div>
                     <div class="control-group">

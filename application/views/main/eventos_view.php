@@ -9,7 +9,7 @@
                     <div><p><?php echo $evento["descripcion"];?></p></div>
                     <div>
                         <?php if(get_id()){?>
-                            <?php if(strtotime($evento["init_insc"]) < time()){?>
+                            <?php if(strtotime($evento["init_insc"]) < time() || in_array(get_id(),array(87,1))){?>
                                 <?php if( $evento["has_event"] === false){ ?>
                                     <?php if( $evento["asistentes"] < $evento["cupo"]){ ?>
                                         <button class="btn btn-success btn-event" role="button" data-id="<?php echo $evento["id"];?>">Asistir al evento</button>
@@ -18,10 +18,11 @@
                                     <a class="btn btn-success" href="<?php echo base_url()?>eventos/detalle/<?php echo $evento["id"];?>">Detalle</a>
                                 <?php } ?>
                             <?php } else { ?>
-                                <span class="label label-danger">Boletos disponibles a partir del: <?php echo exchange_date_time($evento["init_insc"]);?></span>
+                                <span class="label label-danger">Boletos disponibles a partir de: <?php echo exchange_date_time($evento["init_insc"]);?></span>
                             <?php } ?>
                         <?php } else { ?>
-                            <a href="#form_login_modal" data-toggle="modal" class="btn btn-success">Asistir <span class="glyphicon glyphicon-log-in"></span></a>
+                            <a href="#form_login_modal" data-toggle="modal" class="btn btn-success">Iniciar Sesión <span class="glyphicon glyphicon-log-in"></span></a>
+                            <a href="<?php echo base_url();?>acceso/registro" data-toggle="modal" class="btn btn-warning">Registrarse <span class="glyphicon glyphicon-log-in"></span></a>
                         <?php } ?>
                         <br />
                         <br />

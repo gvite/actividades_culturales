@@ -54,7 +54,8 @@ class Sliders extends CI_Controller {
                             "orden" => $this->input->post("orden"),
                             "img" => $newName,
                             "status" => ($this->input->post("visible")) ? 1:0,
-                            "alt" => $this->input->post("titulo")
+                            "alt" => $this->input->post("titulo"),
+                            "link" => $this->input->post("link")
                         );
                         if($this->sliders_model->insert($data)){
                             echo json_encode(array("status" => "OK"));

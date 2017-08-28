@@ -169,7 +169,13 @@ if (get_type_user() != 1 && $talleres !== false) {
                 foreach($sliders as $slider){
                     ?>
                     <div class="swiper-slide">
+                        <?php if($slider["link"]){?>
+                        <a href="<?php echo base_url() . $slider["link"];?>">
+                        <?php } ?>
                         <img alt="<?php echo $slider['titulo'];?>" src="<?php echo base_url();?>/uploads/sliders/<?php echo $slider['img']?>" />
+                        <?php if($slider["link"]){?>
+                        </a>
+                        <?php } ?>
                     </div>
                     <?php
                 }
