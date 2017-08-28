@@ -117,7 +117,8 @@ class Sliders extends CI_Controller {
                 "titulo" => $this->input->post("titulo"),
                 "orden" => $this->input->post("orden"),
                 "status" => ($this->input->post("visible")) ? 1:0,
-                "alt" => $this->input->post("titulo")
+                "alt" => $this->input->post("titulo"),
+                "link" => $this->input->post("link")
             );
             if($newName){
                 $data["img"] = $newName;

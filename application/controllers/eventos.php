@@ -61,16 +61,16 @@ class Eventos extends CI_Controller {
                     $data = array("usuario_id" => get_id(),"evento_id" => $evento_id,"folio" => $count + 1);
                     $id = $this->asistentes_model->insert($data);
                     if($id){
-                        $this->load->library("cJWT");
+                        $this->load->library("Cjwt");
                         $time = time();
                         $token = array(
                             'iat' => $time, // Tiempo que inició el token
-                            'data' => [ // información del usuario
+                            'data' => array( // información del usuario
                                 'id' => $id,
                                 'folio' => $data["folio"]
-                            ]
+                            )
                         );
-                        $cJWT = new cJWT();
+                        $cJWT = new Cjwt();
                         $jwt = $cJWT->encode($token, JWT_KEY);
                         include(APPPATH . "/third_party/phpqrcode/qrlib.php");
                         QRcode::png($jwt , str_replace("\\", "/", FCPATH) . "uploads/qr/$id.png");
@@ -121,14 +121,14 @@ class Eventos extends CI_Controller {
             $mpdf->WriteHTML($content, 2);
 
             //copia del alumno
-            $mpdf->Image('images/logo_pdf.jpg',165,40,22,22,'jpg','',true, true);
+            $mpdf->Image('images/logo_pdf_e.jpg',165,40,22,22,'jpg','',true, true);
             $mpdf->Image('images/logo_unam.png',68,40,22,22,'png','',true, true);
             $mpdf->Image('images/eventos/ticket.png',15,25,230,140,'png','',true, true);
             $mpdf->Image('images/eventos/' . $data["evento"]["img"],18.5,29,47,90.5,'jpg','',true, true);
             $mpdf->Image('uploads/qr/' . $data["evento"]["asistente_id"] . ".png",151.4,84.2,35,35,'png','',true, true);
 
             //copia del personal
-            $mpdf->Image('images/logo_pdf.jpg',165,176.5,22,22,'jpg','',true, true);
+            $mpdf->Image('images/logo_pdf_e.jpg',165,176.5,22,22,'jpg','',true, true);
             $mpdf->Image('images/logo_unam.png',68,176.5,22,22,'png','',true, true);
             $mpdf->Image('images/eventos/ticket.png',15,162,230,140,'png','',true, true);
             $mpdf->Image('images/eventos/' . $data["evento"]["img"],18.5,166,47,90.5,'jpg','',true, true);
