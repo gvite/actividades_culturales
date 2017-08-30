@@ -110,6 +110,32 @@ class Eventos extends CI_Controller {
             show_404();
         }
     }
+    public function alumnos($id){
+        $data["evento"] = $this->eventos_model->get($id);
+        if($data["evento"]){
+            $data["asistentes"] = $this->asistentes_model->get_by_event($id);
+            $this->load->helper("date");
+            $data['active'] = "eventos";
+            $this->load->helper(array('sesion' , 'url'));
+            $data['js'][] = 'js/plugins/jquery.dataTables.min.js';
+            $data['js'][] = 'js/evento_alumnos.js';
+            $this->load->view('main/header_view', $data);
+            $this->load->view('main/evento_alumnos_view', $data);
+            $this->load->view('main/footer_view', '');
+        }else{
+            show_404();
+        }
+    }
+    public function asistencia(){
+        $asistencia = $this->input->post("asistencia");
+        $status = $this->input->post("status");
+        $data = array("asistencia" => ($status === 'true') ? 1 : 0) ;
+        if($this->asistentes_model->update($asistencia ,$data)){
+            echo json_encode(array("status" => "OK" , "data" => $data));
+        }else{
+            echo json_encode(array("status" => "MSG" , "message" => "Error al actualizar" , "type" => "danger"));
+        }
+    }
     public function pdf($id){
         $this->load->helper("date");
         $data["evento"] = $this->asistentes_model->get_data_by_user($id , get_id());

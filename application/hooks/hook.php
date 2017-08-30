@@ -46,6 +46,7 @@ class Hook {
             switch(get_type()){
                 case 1:
                     $urls_acceso[] = 'eventos';
+                    $urls_acceso[] = 'asistencia';
                     $urls_acceso[] = 'admin/*';
                     $urls_acceso[] = 'alumnos/*';
                     switch(get_type_user()){
@@ -55,6 +56,9 @@ class Hook {
                     }
                     break;
                 case 2:
+                    $urls_denegados[] = 'eventos/alumnos';
+                    $urls_denegados[] = 'eventos/alumnos/*';
+                    $urls_denegados[] = 'eventos/asistencia';
                     $urls_acceso[] = 'eventos';
                     $urls_acceso[] = 'alumnos/*';
                     $urls_acceso[] = 'admin/talleres/get_info/';

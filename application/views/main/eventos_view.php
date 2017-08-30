@@ -8,7 +8,10 @@
                     <strong><?php echo $evento["fecha"];?></strong>
                     <div><p><?php echo $evento["descripcion"];?></p></div>
                     <div>
-                        <?php if(strtotime($evento["init_insc"]) < time() || in_array(get_id(),array(87,1))){?>
+                        <?php if(get_type_user() == 1){?>
+                            <a class="btn btn-success" href="<?php echo base_url()?>eventos/alumnos/<?php echo $evento["id"];?>">Alumnos</a>
+                        <?php } ?>
+                        <?php if(strtotime($evento["init_insc"]) < time() || in_array(get_id(),array(87,3384,3588,2798))){?>
                             <?php if(get_id()){?>
                                 <?php if( $evento["has_event"] === false){ ?>
                                     <?php if( $evento["asistentes"] < $evento["cupo"]){ ?>
