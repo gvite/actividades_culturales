@@ -15,6 +15,13 @@ class Eventos extends CI_Controller {
         $this->load->helper("date");
         $data['active'] = "eventos";
         $this->load->helper(array('sesion' , 'url'));
+        $this->load->model('semestres_model');
+        $data['semestre_actual'] = $this->semestres_model->get_actual();
+        if ($data['semestre_actual']) {
+            $data['puede_inscribir'] = $this->semestres_model->puede_insc($data['semestre_actual']['id']);
+        } else {
+            $data['puede_inscribir'] = false;
+        }
         if(get_type_user()){
             $data['js'][] = 'js/eventos.js';
             if(get_type_user() == 1){
