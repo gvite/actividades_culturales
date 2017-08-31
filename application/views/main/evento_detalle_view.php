@@ -30,6 +30,8 @@
         </tr>
     </tbody>
 </table>
+<?php if($evento["imprimir"] == 0){?>
 <div style="text-align:center">
-    <a href="<?php echo base_url()?>eventos/pdf/<?php echo $evento["id"];?>" target="_blank" class="btn btn-success">Imprimir</a>
+    <a href="<?php echo base_url()?>eventos/pdf/<?php echo $evento["id"];?>" target="_blank" class="btn btn-success btn-print">Imprimir</a>
 </div>
+<?php } ?>
