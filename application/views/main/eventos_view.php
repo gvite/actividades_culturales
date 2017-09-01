@@ -13,17 +13,24 @@
                             <a class="btn btn-success" href="<?php echo base_url()?>eventos/alumnos/<?php echo $evento["id"];?>">Alumnos</a>
                         <?php } ?>
                         <?php if(strtotime($evento["init_insc"]) < time() || in_array(get_id(),array(87,3384,3588,2798,3479))){?>
-                            <?php if(get_id()){?>
-                                <?php if( $evento["has_event"] === false){ ?>
-                                    <?php if( $evento["asistentes"] < $evento["cupo"]){ ?>
-                                        <button class="btn btn-success btn-event pull-right" role="button" data-id="<?php echo $evento["id"];?>">OBTENER BOLETOS PARA EL EVENTO</button>
+                            <?php if( $evento["asistentes"] < $evento["cupo"]){ ?>
+                                <?php if(get_id()){?>
+                                    <?php if( $evento["has_event"] === false){ ?>
+                                        
+                                            <button class="btn btn-success btn-event pull-right" role="button" data-id="<?php echo $evento["id"];?>">OBTENER BOLETOS PARA EL EVENTO</button>
+                                        
+                                            
+                                    <?php } else { ?>
+                                        <a class="btn btn-success" href="<?php echo base_url()?>eventos/detalle/<?php echo $evento["id"];?>">Detalle</a>
                                     <?php } ?>
                                 <?php } else { ?>
-                                    <a class="btn btn-success" href="<?php echo base_url()?>eventos/detalle/<?php echo $evento["id"];?>">Detalle</a>
+                                    <a href="#form_login_modal" data-toggle="modal" class="btn btn-success">Iniciar Sesión <span class="glyphicon glyphicon-log-in"></span></a>
+                                    <a href="<?php echo base_url();?>acceso/registro" data-toggle="modal" class="btn btn-warning">Registrarse <span class="glyphicon glyphicon-log-in"></span></a>    
                                 <?php } ?>
-                            <?php } else { ?>
-                                <a href="#form_login_modal" data-toggle="modal" class="btn btn-success">Iniciar Sesión <span class="glyphicon glyphicon-log-in"></span></a>
-                                <a href="<?php echo base_url();?>acceso/registro" data-toggle="modal" class="btn btn-warning">Registrarse <span class="glyphicon glyphicon-log-in"></span></a>    
+                            <?php }else{ ?>
+                                <div class="alert alert-danger">
+                                    <strong>Boletos Agotados</strong>
+                                </div>
                             <?php } ?>
                         <?php } else { ?>
                             <span class="label label-danger">Boletos disponibles a partir de: <?php echo exchange_date_time($evento["init_insc"]);?></span>
