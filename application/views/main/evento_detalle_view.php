@@ -30,6 +30,7 @@
         </tr>
     </tbody>
 </table>
+<p class="lead">*SE CANCELARÁ EL ACCESO A TODO BOLETO QUE SE ENCUENTRE DUPLICADO</p>
 <?php if($evento["imprimir"] == 0){?>
 <div style="text-align:center">
     <a href="<?php echo base_url()?>eventos/pdf/<?php echo $evento["id"];?>" target="_blank" class="btn btn-success btn-print">Imprimir</a>

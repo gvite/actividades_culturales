@@ -32,6 +32,8 @@
             </tbody>
         </table>
     </div>
+    <br /><br /><br /><br />
+    <h5>*SE CANCELARÁ EL ACCESO A TODO BOLETO QUE SE ENCUENTRE DUPLICADO</h5>
 </div>
 <div class="line">&nbsp;</div>
 <h3>BOLETO ELECTRÓNICO (PERSONAL DEL EVENTO)</h3>
@@ -68,4 +70,6 @@
             </tbody>
         </table>
     </div>
+    <br /><br /><br /><br />
+    <h5>*SE CANCELARÁ EL ACCESO A TODO BOLETO QUE SE ENCUENTRE DUPLICADO</h5>
 </div>
