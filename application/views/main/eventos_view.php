@@ -4,6 +4,7 @@
             <div class="thumbnail thumbnail-events">
                 <img src="images/eventos/<?php echo $evento["thumbnail"];?>" />
                 <div class="caption">
+                    <h3>*UN BOLETO POR ALUMNO</h3>
                     <h3><?php echo $evento["nombre"];?></h3>
                     <strong><?php echo $evento["fecha"];?></strong>
                     <div><p><?php echo $evento["descripcion"];?></p></div>
