@@ -37,7 +37,7 @@ class Asistentes_model extends CI_Model {
     }
 
     public function get_with_user($id){
-        $this->db->select("a.asistencia,a.fecha_ingreso,u.nombre as name,u.paterno as firstname,u.materno as surname");
+        $this->db->select("a.folio,a.asistencia,a.fecha_ingreso,u.id as user_id,u.nombre as name,u.paterno as firstname,u.materno as surname,u.tipo_usuario_id");
         $this->db->join("usuarios as u" , "u.id=a.usuario_id");
         $this->db->where('a.id' , $id);
         $this->db->limit(1);
