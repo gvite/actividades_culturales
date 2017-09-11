@@ -36,6 +36,15 @@ class Asistentes_model extends CI_Model {
         return ($result->num_rows() > 0) ? $result->row_array() : false ; 
     }
 
+    public function get_with_user($id){
+        $this->db->select("a.asistencia,a.fecha_ingreso,u.nombre as name,u.paterno as firstname,u.materno as surname");
+        $this->db->join("usuarios as u" , "u.id=a.usuario_id");
+        $this->db->where('a.id' , $id);
+        $this->db->limit(1);
+        $result = $this->db->get('asistentes as a');
+        return ($result->num_rows() > 0) ? $result->row_array() : false ; 
+    }
+
     public function insert($data) {
         return ($this->db->insert('asistentes' , $data)) ? $this->db->insert_id() : false;
     }
