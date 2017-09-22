@@ -6,6 +6,7 @@
         ?>
         <li class="<?php echo ($active === 'inicio') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>inicio" data-name="inicio"><span class="glyphicon glyphicon-home"></span> Inicio</a></li>
         <li class="<?php echo ($active === 'eventos') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>eventos" data-name="eventos"><span class="glyphicon glyphicon-briefcase"></span> Eventos</a></li>
+        <li class="<?php echo ($active === 'talento') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>talento" data-name="talento"><span class="glyphicon glyphicon-briefcase"></span> Talento Aragones</a></li>
         <?php
         if (isset($semestre_actual) && $semestre_actual) {
             ?>

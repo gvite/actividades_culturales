@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://192.168.3.44/actividades_culturales/';
+$config['base_url']	= 'http://localhost/actividades_culturales/';
 
 /*
 |--------------------------------------------------------------------------
