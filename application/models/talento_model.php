@@ -31,6 +31,12 @@ class Talento_model extends CI_Model {
         $result = $this->db->get('talento as t');
         return ($result->num_rows() > 0) ? $result->row_array() : false;
     }
+    public function get_all_wdata(){
+        $this->db->select('t.*,c.carrera');
+        $this->db->join('carreras as c' , 'c.id=t.carrera_id');
+        $result = $this->db->get('talento as t');
+        return ($result->num_rows() > 0) ? $result->result_array() : false;
+    }
 }
 
 ?>

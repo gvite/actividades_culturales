@@ -43,7 +43,8 @@ class Hook {
                 1 => 'horarios',
                 2 => 'acceso/login/logout',
                 3 => 'acceso/cambia_contra',
-                4 => 'perfil'
+                4 => 'perfil',
+                5 => 'talento'
             );
             $urls_denegados = array();
             switch(get_type()){
