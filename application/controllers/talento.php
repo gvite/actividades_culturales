@@ -39,8 +39,9 @@ class Talento extends CI_Controller {
         $this->form_validation->set_rules("carrera", "Carrera", "xss|required");
         $this->form_validation->set_rules("semestre", "Semestre", "xss|required");
         $this->form_validation->set_rules("banda", "Banda", "xss|required");
-        $this->form_validation->set_rules("integrantes", "Integrantes", "xss|required");
+        $this->form_validation->set_rules("integrantes", "Integrantes", "xss|required|integer");
         $this->form_validation->set_message("required", "Introduce %s");
+        $this->form_validation->set_message("integer", "%s debe ser un número");
         $this->form_validation->set_message("exact_length", "El %s debe de ser de 9 digitos");
 
         $this->load->helper("date");
