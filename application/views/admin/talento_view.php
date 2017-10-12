@@ -21,7 +21,10 @@
                     <td><?php echo $alumno["carrera"];?></td>
                     <td><?php echo $alumno["banda"];?></td>
                     <td><?php echo $alumno["no_integrantes"];?></td>
-                    <th><a href="<?php echo base_url();?>talento/pdf/<?php echo $alumno["id"];?>" target="_blank">PDF</a></th>
+                    <th>
+                        <a href="<?php echo base_url();?>admin/talento/edit/<?php echo $alumno["id"];?>">Editar</a>
+                        <a href="<?php echo base_url();?>talento/pdf/<?php echo $alumno["id"];?>" target="_blank">PDF</a>
+                    </th>
                 </tr>
             <?php } ?>
         <?php }else{ ?>
