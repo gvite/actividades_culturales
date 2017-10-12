@@ -68,6 +68,18 @@ if (!defined('BASEPATH'))
                 </div>
             </div>
             <div class="control-group">
+                <label class="control-label" for="email">*Email</label>
+                <div class="controls">
+                    <input type="text" value="<?php echo (isset($talento)) ? $talento["email"] : "";?>" id="email" class="form-control" name="email" placeholder="Correo Electrónico" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="telefono">Teléfono</label>
+                <div class="controls">
+                    <input type="text" value="<?php echo (isset($talento)) ? $talento["telefono"] : "";?>" id="telefono" class="form-control" name="telefono" placeholder="Teléfono" />
+                </div>
+            </div>
+            <div class="control-group">
                 <button type="submit" class="btn btn-primary ">Guardar</button>
             </div>
         </form>

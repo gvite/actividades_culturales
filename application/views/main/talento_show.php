@@ -21,6 +21,14 @@
             <td><?php echo $talento['no_integrantes']; ?></td>
         </tr>
         <tr>
+            <td>Email</td>
+            <td><?php echo $talento['email']; ?></td>
+        </tr>
+        <tr>
+            <td>Teléfono</td>
+            <td><?php echo $talento['telefono']; ?></td>
+        </tr>
+        <tr>
             <td></td>
             <td><a href="<?php echo base_url();?>talento/pdf/<?php echo $talento['id']?>" class="btn btn-success">Imprimir</a></td>
         </tr>

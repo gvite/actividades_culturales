@@ -40,8 +40,11 @@ class Talento extends CI_Controller {
         $this->form_validation->set_rules("semestre", "Semestre", "xss|required");
         $this->form_validation->set_rules("banda", "Banda", "xss|required");
         $this->form_validation->set_rules("integrantes", "Integrantes", "xss|required|integer");
+        $this->form_validation->set_rules("email", "Email", "xss|email|required");
+        $this->form_validation->set_rules("telefono", "Teléfono", "xss");
         $this->form_validation->set_message("required", "Introduce %s");
         $this->form_validation->set_message("integer", "%s debe ser un número");
+        $this->form_validation->set_message("email", "Ingresa un email válido");
         $this->form_validation->set_message("exact_length", "El %s debe de ser de 9 digitos");
 
         $this->load->helper("date");
@@ -61,6 +64,8 @@ class Talento extends CI_Controller {
             'semestre' => $this->input->post('semestre'),
             'banda' => $this->input->post('banda'),
             'no_integrantes' => $this->input->post('integrantes'),
+            'email' => $this->input->post('email'),
+            'telefono' => $this->input->post('telefono'),
             'fecha' => date('Y-m-d H:i:s')
         );
         if ($this->form_validation->run() === FALSE) {

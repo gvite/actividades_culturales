@@ -5,6 +5,8 @@
             <th>Folio</th>
             <th>Alumno</th>
             <th>Número de Cuenta</th>
+            <th>Email</th>
+            <th>Teléfono</th>
             <th>Carrera</td>
             <th>Banda</th>
             <th>Integrantes</th>
@@ -18,6 +20,8 @@
                     <td><?php echo $alumno["id"];?></td>
                     <td><?php echo $alumno["nombre"];?></td>
                     <td><?php echo $alumno["no_cta"];?></td>
+                    <td><?php echo $alumno["email"];?></td>
+                    <td><?php echo $alumno["telefono"];?></td>
                     <td><?php echo $alumno["carrera"];?></td>
                     <td><?php echo $alumno["banda"];?></td>
                     <td><?php echo $alumno["no_integrantes"];?></td>
