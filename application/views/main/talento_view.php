@@ -12,89 +12,147 @@ if (!defined('BASEPATH'))
     </div>
 <?php } ?>
 <div class="row">
-    <div class="col-md-6">
-        <div class="alert alert-info" role="alert">
-        NOTA: El registro de datos lo efectuará solamente un integrante (el integrante que es alumno de la FES Aragón)
-        </div>
-        
-    </div>
-    <div class="col-md-6">
-        <div class="alert alert-info" role="alert">
-        NOTA: Asegurate de que puedes imprimir antes de hacer el registro.<br><br>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-8 col-md-offset-2">
         <form class="form-signin form-horizontal" id="registro_form" action="<?php echo base_url(); ?>talento/insert" method="POST">
             <h3>Formato de inscripción</h3>
             <div class="control-group">
-                <label class="control-label" for="name_user">*Nombre completo</label>
-                <div class="controls">
-                    <input type="text" name="nombre" class="form-control" id="name_user" placeholder="Nombre" value="<?php echo (isset($talento)) ? $talento["nombre"] : "";?>" />
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="num_cuenta">*No. Cuenta</label>
-                <div class="controls">
-                    <input type="text" id="num_cuenta" class="form-control" name="num_cta" value="<?php echo (isset($talento)) ? $talento["no_cta"] : "";?>" placeholder="Número de Cuenta" />
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="carrera_select">*Carrera</label>
-                <div class="control">
-                    <select name="carrera" id="carrera_select" class="form-control">
-                        <option value="">¿De que carrera eres?</option>        
-                        <?php
-                        if (is_array($carreras)) {
-                            foreach ($carreras as $carrera) {
-                                ?>
-                                <option value="<?php echo $carrera['id'] ?>" <?php echo (isset($talento) && $talento["carrera_id"] == $carrera["id"]) ? "selected" : "";?>><?php echo $carrera['carrera'] ?></option>
-                                <?php
-                            }
-                        }
-                        ?>
-                    </select>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="semestre_select">*Semestre</label>
-                <div class="control">
-                    <select name="semestre" id="semestre_select" class="form-control">
-                        <option value="">¿De que semestre eres?</option>
-                        <?php for($i = 1 ; $i <= 12; $i++){ ?>
-                            <option value="<?php echo $i;?>" <?php echo (isset($talento) && $talento["semestre"] == $i) ? "selected" : "";?>><?php echo $i;?>º</option>
-                        <?php } ?>
-                    </select>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="banda">*Banda</label>
+                <label class="control-label" for="banda">*Grupo</label>
                 <div class="controls">
                     <input type="text" value="<?php echo (isset($talento)) ? $talento["banda"] : "";?>" id="banda" class="form-control" name="banda" placeholder="Nombre de la banda músical" />
                 </div>
             </div>
+
             <div class="control-group">
-                <label class="control-label" for="integrantes">*Integrantes</label>
+                <label class="control-label" for="banda">*Descripción o semblanza del grupo</label>
                 <div class="controls">
-                    <input type="text" value="<?php echo (isset($talento)) ? $talento["no_integrantes"] : "";?>" id="integrantes" class="form-control" name="integrantes" placeholder="Número de integrantes" />
+                    <textarea value="<?php echo (isset($talento)) ? $talento["descripcion"] : "";?>" id="descripcion" class="form-control" name="descripcion" placeholder=""></textarea>
                 </div>
             </div>
+            <h3>Integrantes <a href="#agregar_integrante_modal" data-toggle="modal" class="btn btn-success">Agregar <span class="glyphicon glyphicon-log-in"></span></a></h3>
+            
+            <table class="table table-integrantes">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>Instrumento</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+            <h3>Canciones <a href="#agregar_canciones_modal" data-toggle="modal" class="btn btn-success">Agregar <span class="glyphicon glyphicon-log-in"></span></a></h3>
+            
+            <table class="table table-canciones">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Autor</th>
+                        <th>Links</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
             <div class="control-group">
-                <label class="control-label" for="email">*Email</label>
-                <div class="controls">
-                    <input type="text" value="<?php echo (isset($talento)) ? $talento["email"] : "";?>" id="email" class="form-control" name="email" placeholder="Correo Electrónico" />
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="telefono">Teléfono</label>
-                <div class="controls">
-                    <input type="text" value="<?php echo (isset($talento)) ? $talento["telefono"] : "";?>" id="telefono" class="form-control" name="telefono" placeholder="Teléfono" />
-                </div>
-            </div>
-            <div class="control-group">
-                <button type="submit" class="btn btn-primary ">Registrar</button>
+                <button type="submit" class="btn btn-primary">Registrar</button>
             </div>
         </form>
     </div>
+</div>
+<div class="modal fade active" id="agregar_integrante_modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form class="form-signin form-horizontal" id="agregar_integrante" action="/">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Integrantes</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="control-group">
+                        <label class="control-label" for="nombreintegrante">*Nombre</label>
+                        <div class="controls">
+                            <input type="text" value="" id="nombreintegrante" class="form-control" name="" placeholder="Nombre del Integrante" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="edadintegrante">*Edad</label>
+                        <div class="controls">
+                            <input type="text" value="" id="edadintegrante" class="form-control" name="" placeholder="Edad del Integrante" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="instrumentointegrante">*Instrumento</label>
+                        <div class="controls">
+                            <input type="text" value="" id="instrumentointegrante" class="form-control" name="" placeholder="Instrumento que toca el integrante" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary ">Agregar</button>
+                </div>
+                
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade active" id="agregar_canciones_modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form class="form-signin form-horizontal" id="agregar_cancion" action="/">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Canción</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="control-group">
+                        <label class="control-label" for="nombrecancion">*Nombre</label>
+                        <div class="controls">
+                            <input type="text" value="" id="nombrecancion" class="form-control" name="" placeholder="Nombre del Integrante" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="autorcancion">*Autor</label>
+                        <div class="controls">
+                            <input type="text" value="" id="autorcancion" class="form-control" name="" placeholder="Edad del Integrante" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="ytcancion">Link YouTube</label>
+                        <div class="controls">
+                            <input type="text" value="" id="ytcancion" class="form-control" name="" placeholder="YouTube" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="sccancion">Link SoundCloud</label>
+                        <div class="controls">
+                            <input type="text" value="" id="sccancion" class="form-control" name="" placeholder="SoundCloud" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="fbcancion">Link Facebook</label>
+                        <div class="controls">
+                            <input type="text" value="" id="fbcancion" class="form-control" name="" placeholder="Facebook" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="twcancion">Link Twitter</label>
+                        <div class="controls">
+                            <input type="text" value="" id="twcancion" class="form-control" name="" placeholder="Twitter" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary ">Agregar</button>
+                </div>
+                
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div>

@@ -22,21 +22,13 @@ class Talento extends CI_Controller {
         }
         if (!get_id()) {
             $data['js'][] = 'js/acceso.js';
-            $data['js'][] = 'js/registro_modal_alumnos.js';
-        }else{
-            $data['js'][] = 'js/talento.js';
         }
         $this->load->model('carreras_model');
         $this->load->view('main/header_view', $data);
         $data['carreras'] = $this->carreras_model->get_all();
+        $this->load->view('main/talento_view', $data);
         if (!get_id()) {
-            $this->load->model('carreras_model');
-            $data['carreras'] = $this->carreras_model->get_all();
-            $this->load->view('main/talento_login_view', $data);
             $this->load->view('acceso/login_view', $data);
-            $this->load->view('modals/registro_alumnos');
-        }else{
-            $this->load->view('main/talento_view', $data);
         }
         $this->load->view('main/footer_view', '');
     }

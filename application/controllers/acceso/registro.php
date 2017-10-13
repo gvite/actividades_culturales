@@ -42,13 +42,14 @@ class Registro extends CI_Controller {
         $this->form_validation->set_message("required", "Introduce %s");
         $this->form_validation->set_message("valid_email", "Introduce un correo v&aacute;lido");
         $this->form_validation->set_message("alpha_dash", "%s: sólo se permite caracteres alfanuemericos.");
-        $this->form_validation->set_message("is_natural_no_zero", "Introduce un tipo de usuario v&aacute;lido");
+        $this->form_validation->set_message("is_natural_no_zero", "Introduce un %s v&aacute;lido");
         $tipo = $this->input->post('type_user');
         if ($tipo == 2 || $tipo == 3) {
             $this->form_validation->set_rules("num_cuenta", "N&uacute;mero de cuenta", "xss|required|exact_length[9]|callback_valida_nocta");
             $this->form_validation->set_rules("facultad", "Facultad", "xss|required");
             $this->form_validation->set_rules("carrera", "Carrera", "xss|required");
             $this->form_validation->set_rules("ingreso_egreso", "Tipo de usuario", "xss|required");
+            $this->form_validation->set_rules("semestre", "Semestre", "xss|required|is_natural_no_zero");
             $this->form_validation->set_message("exact_length", "El n&uacute;mero de cuenta debe tener una longitud de 9");
         } else if ($tipo == 4) {
             $this->form_validation->set_rules("facultad_t", "Facultad", "xss|required");
@@ -74,7 +75,10 @@ class Registro extends CI_Controller {
                 'email' => $this->input->post('correo_user'),
                 'nacimiento' => exchange_date($this->input->post('nacimiento_user')),
                 'status' => 1,
-                'tipo_usuario_id' => $tipo
+                'tipo_usuario_id' => $tipo,
+                'telefono_fijo' => $this->input->post('telefono_fijo'),
+                'celular' => $this->input->post('celular'),
+                'fecha_reg' => date("Y-m-d H:i:s")
             );
             $this->load->model('usuarios_model');
             $id = $this->usuarios_model->insert($data);
@@ -88,6 +92,7 @@ class Registro extends CI_Controller {
                     $data2['ingreso_egreso'] = $this->input->post('ingreso_egreso');
                     $data2['carrera_id'] = $this->input->post('carrera');
                     $data2['facultad_id'] = $this->input->post('facultad');
+                    $data2['semestre'] = $this->input->post('semestre');
                     $this->load->model('datos_alumnos_ex_model');
                     $id_datos = $this->datos_alumnos_ex_model->insert($data2);
                 } else if ($tipo == 4) {
