@@ -9,9 +9,11 @@ class Talento extends CI_Controller {
         parent::__construct();
     }
 
-    public function index() {
+    public function registro($event_id) {
         $this->load->helper("date");
-        $data['active'] = "talento";
+        $data['hide_menu'] = true;
+        $data['active'] = true;
+        $data["evento_id"] = $event_id;
         $this->load->helper(array('sesion' , 'url'));
         $this->load->model('semestres_model');
         $data['semestre_actual'] = $this->semestres_model->get_actual();
@@ -36,80 +38,104 @@ class Talento extends CI_Controller {
             $this->load->view('acceso/login_view', $data);
             $this->load->view('modals/registro_alumnos');
         }else{
+            $this->load->model("banda_model");
+            $this->load->model("integrantes_banda_model");
+            $this->load->model("canciones_banda_model");
+            $data["banda"] = $this->banda_model->get_by_user(get_id());
+            if($data["banda"]){
+                $data["banda"]["integrantes"] = $this->integrantes_banda_model->get_by_band($data["banda"]["id"]);
+                $data["banda"]["canciones"] = $this->canciones_banda_model->get_by_band($data["banda"]["id"]);
+            }
             $this->load->view('main/talento_view', $data);
         }
         $this->load->view('main/footer_view', '');
     }
     public function insert(){
         $this->load->library('form_validation');
-        $this->form_validation->set_rules("nombre", "Nombre", "xss|required");
-        $this->form_validation->set_rules("num_cta", "N&uacute;mero de Cuenta", "xss|required|exact_length[9]|callback_valida_nocta");
-        $this->form_validation->set_rules("carrera", "Carrera", "xss|required");
-        $this->form_validation->set_rules("semestre", "Semestre", "xss|required");
-        $this->form_validation->set_rules("banda", "Banda", "xss|required");
-        $this->form_validation->set_rules("integrantes", "Integrantes", "xss|required|integer");
-        $this->form_validation->set_rules("email", "Email", "xss|email|required");
-        $this->form_validation->set_rules("telefono", "Teléfono", "xss");
+        $this->form_validation->set_rules("banda", "Nombre de la Banda", "xss|required");
+        $this->form_validation->set_rules("genero", "Genero de la Banda", "xss|required");
+        $this->form_validation->set_rules("descripcion", "Descripción de la Banda", "xss|required");
+        //$this->form_validation->set_rules("integrantes[0][nombre]", "Nombre de integrante", "xss|required");
+        //$this->form_validation->set_rules("integrantes[0][edad]", "Edad de integrante", "xss|required|integer");
+        //$this->form_validation->set_rules("integrantes[0][instrumento]", "Instrumento de integrante", "xss|required");
+
         $this->form_validation->set_message("required", "Introduce %s");
         $this->form_validation->set_message("integer", "%s debe ser un número");
         $this->form_validation->set_message("email", "Ingresa un email válido");
         $this->form_validation->set_message("exact_length", "El %s debe de ser de 9 digitos");
-
-        $this->load->helper("date");
-        $data['active'] = "talento";
-        $this->load->helper(array('sesion' , 'url'));
-        $this->load->model('semestres_model');
-        $data['semestre_actual'] = $this->semestres_model->get_actual();
-        if ($data['semestre_actual']) {
-            $data['puede_inscribir'] = $this->semestres_model->puede_insc($data['semestre_actual']['id']);
-        } else {
-            $data['puede_inscribir'] = false;
-        }
-        $data['talento'] = array(
-            'nombre' => $this->input->post('nombre'),
-            'no_cta' => $this->input->post('num_cta'),
-            'carrera_id' => $this->input->post('carrera'),
-            'semestre' => $this->input->post('semestre'),
-            'banda' => $this->input->post('banda'),
-            'no_integrantes' => $this->input->post('integrantes'),
-            'email' => $this->input->post('email'),
-            'telefono' => $this->input->post('telefono'),
-            'fecha' => date('Y-m-d H:i:s')
-        );
         if ($this->form_validation->run() === FALSE) {
-            $data['errors'] = validation_errors();
-            $this->load->model('carreras_model');
-            $this->load->view('main/header_view', $data);
-            $data['carreras'] = $this->carreras_model->get_all();
-            $this->load->view('main/talento_view', $data);
-            $this->load->view('main/footer_view', '');
+            echo json_encode(array("status" => "MSG" , "type"=>"warning" , "message" => validation_errors()));
         } else {  
-            $this->load->model('talento_model');
-            $data['talento']['id'] = $this->talento_model->insert($data['talento']);
-            if($data['talento']['id']){
-                $this->load->view('main/header_view', $data);
-                $this->load->view('main/talento_show', $data);
-                $this->load->view('main/footer_view', '');
+            $this->load->model('banda_model');
+            $this->load->model('integrantes_banda_model');
+            $this->load->model('canciones_banda_model');
+            $this->load->model('evento_banda_model');
+            $this->load->model('talento_canciones_model');
+            $evento_id = $this->input->post("evento_id");
+            $banda = array(
+                "nombre" => $this->input->post("banda"),
+                "genero" => $this->input->post("genero"),
+                "descripcion" => $this->input->post("descripcion"),
+                "encargado_id" => get_id()
+            ); 
+            $banda_id = $this->input->post("banda_id");
+            if($banda_id){
+                if($this->banda_model->update($banda_id, $banda)){
+                    $banda["id"] = $banda_id;
+                }
             }else{
-                show_404();
+                $banda['id'] = $this->banda_model->insert($banda);
+            }
+            if($banda['id']){
+                $eb = $this->evento_banda_model->get_by_evento_banda($evento_id,$banda["id"]);
+                if($eb === false){
+                    $eb = array("evento_id" => $evento_id,"banda_id" => $banda["id"]);
+                    $eb["id"] = $this->evento_banda_model->insert($eb);
+                }
+                $integrantes = $this->input->post("integrantes");
+                if($banda_id){
+                    $this->talento_canciones_model->delete_by_band($banda["id"]);
+                    $this->integrantes_banda_model->delete_by_band($banda["id"]);
+                    $this->canciones_banda_model->delete_by_band($banda["id"]);
+                }
+                foreach($integrantes as $integrante){
+                    $integrante["banda_id"] = $banda["id"];
+                    $this->integrantes_banda_model->insert($integrante);
+                }
+                $canciones = $this->input->post("canciones");
+                foreach($canciones as $cancion){
+                    $cancion["banda_id"] = $banda["id"];
+                    $cancion["id"] = $this->canciones_banda_model->insert($cancion);
+                    $tc = array(
+                        'evento_banda_id' => $eb["id"],
+                        'cancion_banda_id' => $cancion["id"]
+                    );
+                    $this->talento_canciones_model->insert($tc);
+                }
+                echo json_encode(array("status" => "OK" , "evento_id" => $evento_id , "banda_id" => $banda["id"]));
+            }else{
+                echo json_encode(array("status" => "MSG" , "type"=>"warning" , "message" =>"No se guardo Correctamente"));
             }
         }
     }
-    public function valida_nocta($no_cuenta){
-        $this->load->model('talento_model');
-        if($this->talento_model->check_cta($no_cuenta)){
-            return true;
-        }else{
-            $this->form_validation->set_message('valida_nocta', 'El número de cuenta que proporcionaste ya existe, intenta poner uno nuevo.');
-            return false;
-        }
-    }
-    public function pdf($id){
+    public function pdf($evento_id , $banda_id){
         $this->load->helper("date");
-        $this->load->model('talento_model');
-        $talento = $this->talento_model->get_wdata($id);
-        if($talento){
-            $content = $this->load->view('alumnos/talento_view', $talento, true);
+        $this->load->model('banda_model');
+        $this->load->model('integrantes_banda_model');
+        $this->load->model('canciones_banda_model');
+        $this->load->model('evento_banda_model');
+        $this->load->model('talento_canciones_model');
+        $this->load->model('usuarios_model');
+        $this->load->model('datos_alumnos_ex_model');
+        $eb = $this->evento_banda_model->get_by_evento_banda($evento_id,$banda_id);
+        if($eb){
+            $data["banda"] = $this->banda_model->get_by_id($banda_id);
+            $data["banda"]["integrantes"] = $this->integrantes_banda_model->get_by_band($banda_id);
+            $data["banda"]["canciones"] = $this->canciones_banda_model->get_by_band($banda_id);
+            $data["alumno"] = $this->usuarios_model->get($data["banda"]["encargado_id"]);
+            $data["alumno"]["datos"] = $this->datos_alumnos_ex_model->get_all_by_user($data["banda"]["encargado_id"]);
+
+            $content = $this->load->view('alumnos/talento_view', $data, true);
             $css = $this->load->view('alumnos/talento_css', $talento, true);
             $this->load->library('mpdf');
             $mpdf = new mPDF();

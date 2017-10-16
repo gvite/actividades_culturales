@@ -39,6 +39,7 @@
 */
 
 $route['default_controller'] = "inicio";
+$route['talento'] = "eventos";
 $route['404_override'] = '';
 
 

@@ -3,43 +3,89 @@
     <h4>FES - ARAG&Oacute;N</h4>
     <h5>UNIDAD DE EXTENSI&Oacute;N UNIVERSITARIA</h5>
     <h5>DEPARTAMENTO DE ACTIVIDADES CULTURALES</h5>
-    <h5>SOLICITUD PARA PARTICIPAR EN EL EVENTO TALENTO ARAGONÉS</h5>
-    
+    <h6>Programa Talento Aragonés</h6>
+    <h6>Concurso de Bandas</h6>
+    <h6>(Primera fase)</h6>
+    <h5><strong>FICHA DE INSCRIPCIÓN</strong></h5>
 </div>
+
 <div>
+
     <table class="table">
-        <thead>
-            
+        <thead>     
         </thead>
         <tbody>
             <tr>
-                <td>Folio</td>
-                <td><?php echo $id; ?></td>
+                <td>NOMBRE GRUPO</td>
+                <td colspan="2"><?php echo $banda["nombre"]; ?></td>
             </tr>
             <tr>
-                <td>Alumno</td>
-                <td><?php echo $nombre; ?></td>
+                <td colspan="3">REPRESENTANTE DEL GRUPO</td>
             </tr>
             <tr>
-                <td>Número de cuenta</td>
-                <td><?php echo $no_cta; ?></td>
+                <td>NOMBRE DE LA PERSONA QUE REPRESENTA AL GRUPO</td>
+                <td colspan="2"><?php echo $alumno["nombre"]; ?> <?php echo $alumno["paterno"]; ?> <?php echo $alumno["materno"]; ?></td>
             </tr>
             <tr>
-                <td>Carrera</td>
-                <td><?php echo $carrera; ?></td>
+                <td>TELÉFONO FIJO</td>
+                <td colspan="2"><?php echo $alumno["telefono_fijo"]; ?></td>
             </tr>
             <tr>
-                <td>Semestre</td>
-                <td><?php echo $semestre; ?>º</td>
+                <td>CELULAR</td>
+                <td colspan="2"><?php echo $alumno["celular"]; ?></td>
             </tr>
             <tr>
-                <td>Banda</td>
-                <td><?php echo $banda; ?></td>
+                <td>CORREO ELECTRÓNICO</td>
+                <td colspan="2"><?php echo $alumno["email"]; ?></td>
             </tr>
             <tr>
-                <td>Integrantes</td>
-                <td><?php echo $no_integrantes; ?></td>
+                <td>CARRERA</td>
+                <td colspan="2"><?php echo $alumno["datos"]["carrera"]; ?></td>
             </tr>
+            <tr>
+                <td>SEMESTRE</td>
+                <td colspan="2"><?php echo $alumno["datos"]["semestre"]; ?></td>
+            </tr>
+            <tr>
+                <td>NÚMERO DE CUENTA</td>
+                <td colspan="2"><?php echo $alumno["datos"]["no_cuenta"]; ?></td>
+            </tr>
+            <tr>
+                <td colspan="3">DESCRIPCIÓN O SEMBLANZA DEL GRUPO: <br />
+                <?php echo $banda["descripcion"]; ?></td>
+            </tr>
+            <tr>
+                <td>NÚMERO DE INTEGRANTES</td>
+                <td colspan="2"><?php echo count($banda["integrantes"]); ?></td>
+            </tr>
+            <tr>
+                <td colspan="3">DATOS DE LAS PERSONAS QUE INTEGRAN AL GRUPO</td>
+            </tr>
+            <tr>
+                <td>NOMBRE</td>
+                <td>EDAD</td>
+                <td>INSTRUMENTO</td>
+            </tr>
+            <?php foreach($banda["integrantes"] as $integrante){ ?>
+                <tr>
+                    <td><?php echo $integrante["nombre"];?></td>
+                    <td><?php echo $integrante["edad"];?></td>
+                    <td><?php echo $integrante["instrumento"];?></td>
+                </tr>
+            <?php } ?>
+            <tr>
+                <td colspan="3">Canciones</td>
+            </tr>
+            <tr>
+                <td>NOMBRE</td>
+                <td colspan="2">AUTOR</td>
+            </tr>
+            <?php foreach($banda["canciones"] as $cancion){ ?>
+                <tr>
+                    <td><?php echo $cancion["nombre"];?></td>
+                    <td colspan="2"><?php echo $cancion["autor"];?></td>
+                </tr>
+            <?php } ?>
         </tbody>
     </table>
 </div>

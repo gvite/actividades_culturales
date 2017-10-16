@@ -17,6 +17,7 @@ class Eventos_model extends CI_Model {
 
     public function get_next_all() {
         $this->db->where("fecha >" , date("Y-m-d H:i:s"));
+        $this->db->or_where("fecha is NULL");
         $this->db->order_by("fecha");
         $result = $this->db->get('eventos');
         return ($result->num_rows() > 0 ) ? $result->result_array() : array();
@@ -27,6 +28,7 @@ class Eventos_model extends CI_Model {
         $this->db->join("evento_tipo_usuario as etu" , "etu.evento_id=ev.id");
         $this->db->where("etu.tipo_usuario_id" , $type_user);
         $this->db->where("ev.fecha >" ,  date("Y-m-d H:i:s"));
+        $this->db->or_where("ev.fecha is NULL");
         $this->db->order_by("ev.fecha");
         $result = $this->db->get('eventos as ev');
         return ($result->num_rows() > 0 ) ? $result->result_array() : array();
