@@ -5,6 +5,9 @@ if (!defined('BASEPATH'))
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <form class="form-signin form-horizontal" id="registro_form" action="<?php echo base_url(); ?>acceso/registro/insert">
+            <?php if($return_url){?>
+            <input type="hidden" name="return_url" value="<?php echo $return_url;?>">
+            <?php }?>
             <h3>Datos de acceso</h3>
             <div class="control-group">
                 <label class="control-label" for="user_input">*Nickname</label>
@@ -48,6 +51,18 @@ if (!defined('BASEPATH'))
                 <label class="control-label" for="correo_user">*E-Mail</label>
                 <div class="controls">
                     <input type="text" name="correo_user" id="correo_user" placeholder="user@example.com" class="input-xlarge form-control" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="telefono_fijo">Teléfono Fijo</label>
+                <div class="controls">
+                    <input type="text" name="telefono_fijo" class="form-control" id="telefono_fijo" placeholder="" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="celular">*Celular</label>
+                <div class="controls">
+                    <input type="text" name="celular" class="form-control" id="celular" placeholder="" />
                 </div>
             </div>
             <div class="control-group">
@@ -117,6 +132,12 @@ if (!defined('BASEPATH'))
                         <input type="text" id="ingreso_egreso" name="ingreso_egreso" class="input-small form-control" />
                     </div>
                 </div>
+                <div class="control-group">
+                    <label id="label_semestre" class="control-label" for="semestre">*Semestre</label>
+                    <div class="controls">
+                        <input type="text" id="label_semestre" name="semestre" class="input-small form-control" />
+                    </div>
+                </div>
             </div>
             <div id="datos_trabajador" class="datos_usuario_tipo">
                 <div class="control-group">
@@ -160,12 +181,6 @@ if (!defined('BASEPATH'))
                     <label class="control-label" for="direccion">*Direcci&oacute;n</label>
                     <div class="controls">
                         <input type="text" id="direccion" name="direccion" placeholder="Direcci&oacute;n" class="input-xxlarge form-control" />
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="telefono">*Tel&eacute;fono</label>
-                    <div class="controls">
-                        <input type="text" id="telefono" name="telefono" value="" class="form-control" />
                     </div>
                 </div>
                 <div class="control-group">

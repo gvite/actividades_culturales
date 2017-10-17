@@ -31,7 +31,7 @@
                                 <?php } else { ?>
                                     <?php if( $evento["asistentes"] < $evento["cupo"] || $evento["cupo"] == -1){ ?>
                                         <a href="#form_login_modal" data-toggle="modal" class="btn btn-success">Iniciar Sesión <span class="glyphicon glyphicon-log-in"></span></a>
-                                        <a href="<?php echo base_url();?>acceso/registro" data-toggle="modal" class="btn btn-warning">Registrarse <span class="glyphicon glyphicon-log-in"></span></a>
+                                        <a href="<?php echo base_url();?>acceso/registro/?return-url=<?php echo base_url();?>eventos" data-toggle="modal" class="btn btn-warning">Registrarse <span class="glyphicon glyphicon-log-in"></span></a>
                                     <?php }else{ ?>
                                         <div class="alert alert-danger">
                                             <strong>Boletos Agotados</strong>

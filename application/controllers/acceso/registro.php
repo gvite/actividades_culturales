@@ -19,6 +19,7 @@ class Registro extends CI_Controller {
         $data['no_menu'] = true;
         $data['active'] = "";
         $data['hide_menu'] = true;
+        $data["return_url"] = $this->input->get("return-url");
         $this->load->view('main/header_view', $data);
         $data['carreras'] = $this->carreras_model->get_all();
         $data['facultades'] = $this->facultades_model->get_all();
@@ -36,6 +37,9 @@ class Registro extends CI_Controller {
         $this->form_validation->set_rules("name_user", "Nombre", "xss|required");
         $this->form_validation->set_rules("paterno_user", "Apellido Paterno", "xss|required");
         $this->form_validation->set_rules("materno_user", "Apellido Materno", "xss");
+        $this->form_validation->set_rules("correo_user", "E-Mail", "xss|required|valid_email|callback_valida_email");
+        $this->form_validation->set_rules("telefono_fijo", "Teléfono Fijo", "xss");
+        $this->form_validation->set_rules("celular", "Teléfono Fijo", "xss|required");
         $this->form_validation->set_rules("correo_user", "E-Mail", "xss|required|valid_email|callback_valida_email");
         $this->form_validation->set_rules("nacimiento_user", "Fecha de Nacimiento", "xss|required|callback_valida_fecha");
         $this->form_validation->set_rules("type_user", "Tipo de usuario", "xss|required|is_natural_no_zero");
@@ -58,7 +62,6 @@ class Registro extends CI_Controller {
             $this->form_validation->set_rules("area", "Area", "xss|required");
         } else if ($tipo == 5) {
             $this->form_validation->set_rules("direccion", "Direcci&oacute;n", "xss|required");
-            $this->form_validation->set_rules("telefono", "Tel&eacute;fono", "xss|required");
             $this->form_validation->set_rules("ocupacion", "Ocupaci&oacute;n", "xss|required");
         }
         if ($this->form_validation->run() === FALSE) {
@@ -104,7 +107,6 @@ class Registro extends CI_Controller {
                     $id_datos = $this->datos_trabajador_model->insert($data2);
                 } else if ($tipo == 5) {
                     $data2['direccion'] = $this->input->post('direccion');
-                    $data2['telefono'] = $this->input->post('telefono');
                     $data2['ocupacion_id'] = $this->input->post('ocupacion');
                     $this->load->model('datos_externo_model');
                     $id_datos = $this->datos_externo_model->insert($data2);
@@ -120,7 +122,7 @@ class Registro extends CI_Controller {
                     }
                     set_name($data['nombre']);
                     set_id($id);
-                    echo json_encode(array('status' => 'MSG', 'type' => 'success', 'message' => 'El Registro se realiz&oacute; con &eacute;xito'));
+                    echo json_encode(array('status' => 'MSG', 'type' => 'success', 'message' => 'El Registro se realiz&oacute; con &eacute;xito' , "return_url" => $this->input->post("return_url")));
                 }else{
                     echo json_encode(array('status' => 'MSG', 'type' => 'error', 'message' => 'El Registro no se pudo realizar, intentelo mas tarde.'));
                 }

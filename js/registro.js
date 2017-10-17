@@ -32,7 +32,13 @@ $(document).on('ready' , function(){
                 if(data.status === "MSG"){
                     if(data.type === 'success'){
                         $('#registro_exito').modal('show');
-                        setTimeout('actualiza_pagina()' , 1000);
+                        setTimeout(function(){
+                            if(data.return_url){
+                                window.location.href = data.return_url;
+                            }else{
+                                window.location.href = base_url + 'inicio';
+                            }
+                        }, 1000);
                     }else{
                         alerts(data.type , data.message);
                     }
