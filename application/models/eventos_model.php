@@ -60,6 +60,12 @@ class Eventos_model extends CI_Model {
         return ($this->db->insert('eventos' , $data)) ? $this->db->insert_id() : false;
     }
 
+    public function get_by_offering(){
+        $this->db->where('categoria_evento_id' , 2);
+        $result = $this->db->get('eventos');
+        return ($result->num_rows() > 0) ? $result->result_array() : array() ;
+    }
+
 }
 
 ?>
