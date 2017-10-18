@@ -14,6 +14,8 @@ class Hook {
             'acceso/eventos/*', 
             'talento',
             'talento/*',
+            'ofrendas',
+            'ofrendas/*',
             'horarios' , 
             'horarios/get_talleres_by_semestre/*', 
             'acceso/registro/insert' , 

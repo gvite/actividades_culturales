@@ -16,7 +16,7 @@
                                     <?php if( $evento["has_event"] === false){ ?>
                                         <?php if( $evento["asistentes"] < $evento["cupo"] || $evento["cupo"] == -1){ ?>
                                             <?php if($evento["url"]){?>
-                                                <a class="btn btn-success pull-right" href="<?php echo base_url() . $evento["url"];?>" role="button">Inscribir</a>
+                                                <a class="btn btn-success pull-right" href="<?php echo base_url() . $evento["url"];?>" role="button"><?php echo $evento["texto_url"];?></a>
                                             <?php }else{?>
                                             <button class="btn btn-success btn-event pull-right" role="button" data-id="<?php echo $evento["id"];?>">OBTENER BOLETOS PARA EL EVENTO</button>
                                             <?php }?>
