@@ -41,6 +41,9 @@ class Ofrendas extends CI_Controller {
         $data['js'] = 'js/ofrendas.js';
         $this->load->view('main/header_view', $data);
         $data["ofrendas"] = $this->ofrendas_model->get_by_event($evento_id);
+        foreach($data["ofrendas"] as $key => $ofrenda){
+            $data["ofrendas"][$key]["votos"] = $this->ofrendas_model->get_votos($ofrenda["id"]);
+        }
         $data["evento_id"] = $evento_id;
         $this->load->view("admin/ofrendas/list_by_event",$data);
         $this->load->view('main/footer_view', '');
@@ -144,5 +147,22 @@ class Ofrendas extends CI_Controller {
                 echo json_encode(array("status" => "MSG","type" => "error" , "message" => "Error al guardar en base de datos"));
             }
         }
+    }
+    public function votos($ofrenda_id){
+        $this->load->helper("date");
+        $data['active'] = "ofrendas";
+        $this->load->helper(array('sesion' , 'url'));
+        $this->load->model('semestres_model');
+        $this->load->model("ofrendas_model");
+        $data['semestre_actual'] = $this->semestres_model->get_actual();
+        if ($data['semestre_actual']) {
+            $data['puede_inscribir'] = $this->semestres_model->puede_insc($data['semestre_actual']['id']);
+        } else {
+            $data['puede_inscribir'] = false;
+        }
+        $this->load->view('main/header_view', $data);
+        $data["votos"] = $this->ofrendas_model->get_votos_with_users($ofrenda_id);
+        $this->load->view("admin/ofrendas/votos",$data);
+        $this->load->view('main/footer_view', '');
     }
 }

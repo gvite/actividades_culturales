@@ -12,6 +12,7 @@ if (!defined('BASEPATH'))
         <tr>
             <th>Imagen</th>
             <th>Ofrenda</th>
+            <th>Votos</th>
             <th>Descripción</th>
             <th>Acciones</th>
         </tr>
@@ -21,8 +22,12 @@ if (!defined('BASEPATH'))
         <tr data-id="<?php echo $ofrenda['id'];?>">
             <td><a href="<?php echo base_url() . "uploads/ofrendas/" .$ofrenda["img"]?>" target="_blank"><img width="50px" src="<?php echo base_url() . "uploads/ofrendas/" .$ofrenda["img"]?>" /></a></td>
             <td><?php echo $ofrenda["nombre"]?></td>
+            <td><?php echo $ofrenda["votos"]?></td>
             <td><?php echo $ofrenda["descripcion"]?></td>
-            <td><button class="btn btn-default btn-edit">Editar</button></td>
+            <td>
+                <button class="btn btn-default btn-edit">Editar</button>
+                <a href="<?php echo base_url()?>admin/ofrendas/votos/<?php echo $ofrenda["id"];?>" class="btn btn-default btn-votos">Votos</button>
+            </td>
         </tr>
         <?php } ?>
     </tbody>

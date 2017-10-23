@@ -347,6 +347,19 @@ body > #content_main .images-header img + img{
 .thumbnail-events{
     padding-bottom: 20px;
 }
+.ofrendas-content .thumbnail img{
+    cursor: pointer;
+}
+.ofrendas-content .thumbnail.active{
+    background-color: #10264B;
+    color: #FFF;
+}
+.ofrendas-content .thumbnail.active h3{
+    color: #FFF;
+}
+#ofrendas_img_modal .modal-body img{
+    width: 100%;
+}
 @media (max-width: 768px) {
     #header_images img{
         width: 100%;

@@ -27,6 +27,32 @@ class Ofrendas_model extends CI_Model {
         $result = $this->db->get('ofrendas');
         return ($result->num_rows() > 0) ? $result->result_array() : array() ;
     }
+    public function get_votos($ofrenda_id){
+        $this->db->select("id");
+        $this->db->where('ofrenda_id' , $ofrenda_id);
+        $result = $this->db->get('votos_ofrendas');
+        return $result->num_rows();
+    }
+    public function status_voto($evento_id,$user_id){
+        $this->db->select("vo.*");
+        $this->db->join("votos_ofrendas as vo" , "vo.ofrenda_id=o.id");
+        $this->db->where("o.evento_id" , $evento_id);
+        $this->db->where("vo.usuario_id" , $user_id);
+        $this->db->limit(1);
+        $result = $this->db->get('ofrendas as o');
+        return ($result->num_rows() > 0) ? $result->row_array() : false;
+    }
+    public function votar($data){
+        return ($this->db->insert('votos_ofrendas' , $data)) ? $this->db->insert_id() : false;
+    }
+    public function get_votos_with_users($ofrenda_id){
+        $this->db->select("u.*,vo.fecha as fecha_voto");
+        $this->db->join("usuarios as u" , "vo.usuario_id=u.id");
+        $this->db->where("vo.ofrenda_id" , $ofrenda_id);
+        $result = $this->db->get('votos_ofrendas as vo');
+        return ($result->num_rows() > 0) ? $result->result_array() : false;
+
+    }
 }
 
 ?>

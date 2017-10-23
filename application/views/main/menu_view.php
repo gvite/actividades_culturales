@@ -15,7 +15,8 @@
         switch (get_type()) {
             case 1:
                 ?>
-            <li class="<?php echo ($active === 'actividades') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/talleres" data-name="actividades"><span class="glyphicon glyphicon-book"></span> Registro de actividades</a></li>
+                <li class="<?php echo ($active === 'ofrendas') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/ofrendas" data-name="ofrendas"><span class="glyphicon glyphicon-book"></span> Ofrendas</a></li>
+                <li class="<?php echo ($active === 'actividades') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/talleres" data-name="actividades"><span class="glyphicon glyphicon-book"></span> Registro de actividades</a></li>
                 <?php if (isset($puede_inscribir) && !$puede_inscribir) { ?>
                 <li class="<?php echo ($active === 'inscribir') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/inscribir" data-name="inscribir"><span class="glyphicon glyphicon-pencil"></span> Inscripci&oacute;n</a></li>
                 <?php } ?>

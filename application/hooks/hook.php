@@ -14,8 +14,6 @@ class Hook {
             'acceso/eventos/*', 
             'talento',
             'talento/*',
-            'ofrendas',
-            'ofrendas/*',
             'horarios' , 
             'horarios/get_talleres_by_semestre/*', 
             'acceso/registro/insert' , 
@@ -53,6 +51,7 @@ class Hook {
                 case 1:
                     $urls_acceso[] = 'eventos';
                     $urls_acceso[] = 'asistencia';
+                    $urls_acceso[] = 'ofrendas';
                     $urls_acceso[] = 'admin/*';
                     $urls_acceso[] = 'alumnos/*';
                     switch(get_type_user()){
@@ -65,7 +64,9 @@ class Hook {
                     $urls_denegados[] = 'eventos/alumnos';
                     $urls_denegados[] = 'eventos/alumnos/*';
                     $urls_denegados[] = 'eventos/asistencia';
+                    $urls_denegados[] = 'admin/*';
                     $urls_acceso[] = 'eventos';
+                    $urls_acceso[] = 'ofrendas';
                     $urls_acceso[] = 'alumnos/*';
                     $urls_acceso[] = 'admin/talleres/get_info/';
                     $urls_acceso[] = 'admin/taller_semestre_horario/get_by_semestre/';
