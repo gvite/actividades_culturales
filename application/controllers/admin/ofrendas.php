@@ -63,8 +63,10 @@ class Ofrendas extends CI_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_rules("nombre", "Título", "xss|required");
         $this->form_validation->set_rules("descripcion", "Descripción", "xss");
+        $this->form_validation->set_rules("numero", "Número", "xss|required|is_natural_no_zero");
         $this->form_validation->set_rules("evento_id", "Error con Evento", "xss|requred");
         $this->form_validation->set_message("required", "Introduce %s");
+        $this->form_validation->set_message("is_natural_no_zero", "%s debe ser numérico");
         if ($this->form_validation->run() === FALSE) {
             $errors = validation_errors();
             echo json_encode(array('status' => 'MSG', 'type' => 'warning', "message" => $errors));
@@ -85,6 +87,7 @@ class Ofrendas extends CI_Controller {
                         $data = array(
                             "nombre" => $this->input->post("nombre"),
                             "descripcion" => $this->input->post("descripcion"),
+                            "numero" => $this->input->post("numero"),
                             "evento_id" => $this->input->post("evento_id"),
                             "img" => $newName
                         );
@@ -108,6 +111,8 @@ class Ofrendas extends CI_Controller {
         $this->form_validation->set_rules("nombre", "Título", "xss|required");
         $this->form_validation->set_rules("descripcion", "Descripción", "xss");
         $this->form_validation->set_rules("evento_id", "Error con Evento", "xss|requred");
+        $this->form_validation->set_rules("numero", "Número", "xss|required|is_natural_no_zero");
+        $this->form_validation->set_message("is_natural_no_zero", "%s debe ser numérico");
         $this->form_validation->set_message("required", "Introduce %s");
         if ($this->form_validation->run() === FALSE) {
             $errors = validation_errors();
@@ -136,7 +141,8 @@ class Ofrendas extends CI_Controller {
             }
             $data = array(
                 "nombre" => $this->input->post("nombre"),
-                "descripcion" => $this->input->post("descripcion")
+                "descripcion" => $this->input->post("descripcion"),
+                "numero" => $this->input->post("numero")
             );
             if($newName){
                 $data["img"] = $newName;

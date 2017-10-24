@@ -55,7 +55,7 @@ class Ofrendas extends CI_Controller {
             if($evento){
                 $statusVoto = $this->ofrendas_model->status_voto($ofrenda["evento_id"],get_id());
                 if($statusVoto){
-                    echo json_encode(array("status" => "MSG" , "type"=>"warning","message" => "Ya tienes registrado un voto. Gracias por participar"));
+                    echo json_encode(array("status" => "MSG" , "type"=>"warning","message" => "Ya se registró tu voto. Gracias por participar"));
                 }else{
                     if($this->ofrendas_model->votar(array("ofrenda_id" => $ofrenda["id"],"usuario_id" => get_id(),"fecha" => date("Y-m-d H:i:s")))){
                         echo json_encode(array("status" => "MSG" , "type"=>"success","message" => "Tu voto a sido registrado"));

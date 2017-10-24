@@ -10,6 +10,7 @@ if (!defined('BASEPATH'))
 <table class="table">
     <thead>
         <tr>
+            <th>Número</th>
             <th>Imagen</th>
             <th>Ofrenda</th>
             <th>Votos</th>
@@ -20,6 +21,7 @@ if (!defined('BASEPATH'))
     <tbody>
         <?php foreach($ofrendas as $ofrenda){?>
         <tr data-id="<?php echo $ofrenda['id'];?>">
+            <td><?php echo $ofrenda["numero"]?></td>
             <td><a href="<?php echo base_url() . "uploads/ofrendas/" .$ofrenda["img"]?>" target="_blank"><img width="50px" src="<?php echo base_url() . "uploads/ofrendas/" .$ofrenda["img"]?>" /></a></td>
             <td><?php echo $ofrenda["nombre"]?></td>
             <td><?php echo $ofrenda["votos"]?></td>
@@ -47,6 +49,12 @@ if (!defined('BASEPATH'))
                         <label class="control-label" for="titulo_input">Título</label>
                         <div class="controls">
                             <input name="nombre" class="form-control" id="titulo_input" type="text" placeholder="Título" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="numero_input">Número</label>
+                        <div class="controls">
+                            <input name="numero" class="form-control" id="numero_input" type="text" placeholder="Número" />
                         </div>
                     </div>
                     <div class="control-group">

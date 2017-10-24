@@ -1,5 +1,6 @@
 $(document).on("ready" , function(){
     $(".ofrendas-content .thumbnail img").on("click" , function(){
+        $("#ofrendas_img_modal .modal-body").html("");
         var img = $('<img>'); //Equivalent: $(document.createElement('img'))
         img.attr('src', $(this).attr("src"));
         img.appendTo('#ofrendas_img_modal .modal-body');
@@ -10,14 +11,23 @@ $(document).on("ready" , function(){
         $("#ofrendas_img_modal .modal-footer .btn-votar").data("id",$thum.data("id"));
         $("#ofrendas_img_modal").modal("show");
     });
-    var height = 0;
-    $(".ofrendas-content .thumbnail h3").each(function(){
+    var height = 387;
+    $(".ofrendas-content .thumbnail").each(function(){
         //console.log($(this));
         if(height < $(this).height()){
             height = $(this).height();
         }
     });
-    $(".ofrendas-content .thumbnail h3").height(height);
+    $("#findBtn").on("click" , function(){
+        if($("#input_find").val() != ""){
+            $(".ofrendas-content .col-md-3").hide();
+            $(".ofrendas-content .ofrenda-item-" + $("#input_find").val()).show();
+        }
+    });
+    $("#findBtnAll").on("click" , function(){
+        $(".ofrendas-content .col-md-3").show();
+    });
+    $(".ofrendas-content .thumbnail").height(height);
     $(".btn-votar").on("click" , function(){
         var id = $(this).data("id");
         $.ajax({
