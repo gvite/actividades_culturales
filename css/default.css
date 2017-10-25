@@ -361,7 +361,7 @@ body > #content_main .images-header img + img{
     color: #FFF;
 }
 #ofrendas_img_modal .modal-body img{
-    width: 100%;
+    width: 50%;
 }
 @media (max-width: 768px) {
     #header_images img{

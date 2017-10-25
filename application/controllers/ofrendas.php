@@ -37,7 +37,7 @@ class Ofrendas extends CI_Controller {
         foreach($data["ofrendas"] as $key => $ofrenda){
             $data["ofrendas"][$key]["votos"] = $this->ofrendas_model->get_votos($ofrenda["id"]);
         }
-        shuffle($data["ofrendas"]);
+        //shuffle($data["ofrendas"]);
         $this->load->view('main/ofrendas_view', $data);
         $this->load->view('modals/ofrenda_img');
         if(!get_type_user()){
@@ -58,7 +58,7 @@ class Ofrendas extends CI_Controller {
                     echo json_encode(array("status" => "MSG" , "type"=>"warning","message" => "Ya se registró tu voto. Gracias por participar"));
                 }else{
                     if($this->ofrendas_model->votar(array("ofrenda_id" => $ofrenda["id"],"usuario_id" => get_id(),"fecha" => date("Y-m-d H:i:s")))){
-                        echo json_encode(array("status" => "MSG" , "type"=>"success","message" => "Tu voto a sido registrado"));
+                        echo json_encode(array("status" => "MSG" , "type"=>"success","message" => "Tu voto ha sido registrado"));
                     }else{  
                         echo json_encode(array("status" => "MSG" , "type"=>"error","message" => "No se puede votar"));        
                     }
