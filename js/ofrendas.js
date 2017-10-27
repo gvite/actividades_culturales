@@ -25,6 +25,15 @@ $(document).on("ready" , function(){
             }
         });
     });
+    $("#table_ofrendas").DataTable({
+        'searching':false,
+        "columnDefs": [
+            { "orderable": false, "targets": 1 },
+            { "orderable": false, "targets": 2 },
+            { "orderable": false, "targets": 4 },
+            { "orderable": false, "targets": 5 }
+          ]
+    });
     $("#offering_form").on("submit" , function(event){
         event.preventDefault();
         $.ajax({

@@ -38,11 +38,14 @@ class Ofrendas extends CI_Controller {
         } else {
             $data['puede_inscribir'] = false;
         }
-        $data['js'] = 'js/ofrendas.js';
+        $data['js'][] = 'js/plugins/jquery.dataTables.min.js';
+        $data['js'][] = 'js/ofrendas.js';
         $this->load->view('main/header_view', $data);
         $data["ofrendas"] = $this->ofrendas_model->get_by_event($evento_id);
+        $data["total_votos"] = 0;
         foreach($data["ofrendas"] as $key => $ofrenda){
             $data["ofrendas"][$key]["votos"] = $this->ofrendas_model->get_votos($ofrenda["id"]);
+            $data["total_votos"] += $data["ofrendas"][$key]["votos"];
         }
         $data["evento_id"] = $evento_id;
         $this->load->view("admin/ofrendas/list_by_event",$data);

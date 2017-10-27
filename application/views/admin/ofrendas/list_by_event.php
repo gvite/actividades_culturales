@@ -5,9 +5,12 @@ if (!defined('BASEPATH'))
 <div class="row">
     <div class="col-md-12">
         <a href="#add_offering_modal" id="btn_add_offering_modal" data-toggle="modal" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus-sign">&nbsp;</span> Agregar</a>
+        <div class="pull-right total-votos">
+        Total de Votos: <?php echo $total_votos;?>
+        </div>
     </div>
 </div>
-<table class="table">
+<table class="table" id="table_ofrendas">
     <thead>
         <tr>
             <th>Número</th>

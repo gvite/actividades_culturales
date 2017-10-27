@@ -13,7 +13,9 @@ if (!defined('BASEPATH'))
         <?php foreach($eventos as $evento){?>
         <tr>
             <td><?php echo $evento["nombre"]?></td>
-            <td><a class="btn btn-success" href="<?php echo base_url()?>admin/ofrendas/lista/<?php echo $evento["id"]?>">+</a></td>
+            <td>
+                <a class="btn btn-success" href="<?php echo base_url()?>admin/ofrendas/lista/<?php echo $evento["id"]?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
+            </td>
         </tr>
         <?php } ?>
     </tbody>
