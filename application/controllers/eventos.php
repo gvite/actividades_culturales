@@ -65,7 +65,12 @@ class Eventos extends CI_Controller {
             if($insc === false){
                 $count = $this->asistentes_model->count($evento_id);
                 if($count < $event["cupo"]){
-                    $data = array("usuario_id" => get_id(),"evento_id" => $evento_id,"folio" => $count + 1);
+                    $data = array(
+                        "usuario_id" => get_id(),
+                        "evento_id" => $evento_id,
+                        "folio" => $count + 1,
+                        "fecha_inscripcion" => date("Y-m-d H:i:s")
+                    );
                     $id = $this->asistentes_model->insert($data);
                     if($id){
                         $this->load->library("Cjwt");

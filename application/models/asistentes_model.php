@@ -55,11 +55,12 @@ class Asistentes_model extends CI_Model {
     }
     
     public function get_data_by_user($event_id, $user_id){
-        $this->db->select("ev.*,a.folio,a.id as asistente_id,a.imprimir,u.nombre as usuario_nombre,u.paterno as usuario_paterno,u.materno as usuario_materno, s.nombre as sala, l.nombre as lugar");
+        $this->db->select("ev.*,a.folio,a.id as asistente_id,a.imprimir,u.nombre as usuario_nombre,u.paterno as usuario_paterno,u.materno as usuario_materno, s.nombre as sala, l.nombre as lugar, tu.usuario");
         $this->db->join("eventos as ev", "a.evento_id=ev.id");
         $this->db->join("usuarios as u" , "u.id=a.usuario_id");
         $this->db->join("salas as s" , "s.id=ev.sala_id");
         $this->db->join("lugares as l" , "l.id=s.lugar_id");
+        $this->db->join("tipo_usuario as tu" , "tu.id=u.tipo_usuario_id");
         $this->db->where("a.usuario_id" , $user_id);
         $this->db->where("ev.id" , $event_id);
         $this->db->limit(1);

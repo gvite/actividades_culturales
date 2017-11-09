@@ -10,7 +10,7 @@
         <table>
             <tbody>
                 <tr>
-                    <td>Alumno:</td>
+                    <td><?php echo $evento["usuario"];?>:</td>
                     <td class="td-col-6"><?php echo $evento["usuario_nombre"];?> <?php echo $evento["usuario_paterno"];?> <?php echo $evento["usuario_materno"];?></td>
                 </tr>
                 <tr>
@@ -32,7 +32,8 @@
             </tbody>
         </table>
     </div>
-    <br /><br /><br /><br />
+    <br /><br />
+    <h5>*PRESENTAR ESTA CORTESÍA 20 MINUTOS ANTES DEL EVENTO</h5>
     <h5>*SE CANCELARÁ EL ACCESO A TODO BOLETO QUE SE ENCUENTRE DUPLICADO</h5>
 </div>
 <div class="line">&nbsp;</div>
@@ -48,7 +49,7 @@
         <table>
             <tbody>
                 <tr>
-                    <td>Alumno:</td>
+                    <td><?php echo $evento["usuario"];?>:</td>
                     <td class="td-col-6"><?php echo $evento["usuario_nombre"];?> <?php echo $evento["usuario_paterno"];?> <?php echo $evento["usuario_materno"];?></td>
                 </tr>
                 <tr>
@@ -70,6 +71,7 @@
             </tbody>
         </table>
     </div>
-    <br /><br /><br /><br />
+    <br /><br />
+    <h5>*PRESENTAR ESTA CORTESÍA 20 MINUTOS ANTES DEL EVENTO</h5>
     <h5>*SE CANCELARÁ EL ACCESO A TODO BOLETO QUE SE ENCUENTRE DUPLICADO</h5>
 </div>
