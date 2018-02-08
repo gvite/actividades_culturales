@@ -32,7 +32,7 @@
             </tbody>
         </table>
     </div>
-    <br /><br />
+    <br /><br /><br />
     <h5>*PRESENTAR ESTA CORTESÍA 20 MINUTOS ANTES DEL EVENTO</h5>
     <h5>*SE CANCELARÁ EL ACCESO A TODO BOLETO QUE SE ENCUENTRE DUPLICADO</h5>
 </div>
@@ -71,7 +71,7 @@
             </tbody>
         </table>
     </div>
-    <br /><br />
+    <br /><br /><br />
     <h5>*PRESENTAR ESTA CORTESÍA 20 MINUTOS ANTES DEL EVENTO</h5>
     <h5>*SE CANCELARÁ EL ACCESO A TODO BOLETO QUE SE ENCUENTRE DUPLICADO</h5>
 </div>
