@@ -105,7 +105,7 @@
                 <div id="nav_bar_div" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <?php echo $this->load->view("main/menu_view");?>
-                        <?php if($active === 'inicio'){?>
+                        <?php if(isset($active) && $active === 'inicio'){?>
                             <li class="always_view"><a id="sliders_modal_btn" href="#sliders_modal" class="btn btn-link">Avisos <span class="glyphicon glyphicon-bullhorn"></span></a></li>
                         <?php }?>
 
@@ -116,8 +116,8 @@
                             <li class="always_view">
                                 <a id="user_link" class="btn btn-link btn-small dropdown-toggle" data-toggle="dropdown" href="#" ><?php echo get_name(); ?> <span class="glyphicon glyphicon-user"><span class="caret"></span></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="<?php echo base_url() ?>acceso/cambia_contra">Cambiar Contrase&ntilde;a</a></li>
-                                    <li><a href="<?php echo base_url() ?>perfil">Perfil</a></li>
+                                    <li class="always_view"><a href="<?php echo base_url() ?>acceso/cambia_contra">Cambiar Contrase&ntilde;a</a></li>
+                                    <li class="always_view"><a href="<?php echo base_url() ?>perfil">Perfil</a></li>
                                 </ul>
                             </li>
                             <li class="always_view"><a id="logout_link" href="<?php echo base_url() ?>acceso/login/logout" class="btn btn-link btn-small">Salir <span class="glyphicon glyphicon-log-out"></span></a></li>
