@@ -24,6 +24,7 @@ class Talleres_semestre_model extends CI_Model {
         $this->db->join('profesores AS p' , 'ts.profesor_id = p.id');
         $this->db->join('salones AS sa' , 'ts.salon_id = sa.id');
         $this->db->where('ts.semestre_id' , $id);
+        $this->db->where('t.status' , 1);
         $this->db->order_by('t.taller');
         $result = $this->db->get('taller_semestre as ts');
         return ($result->num_rows() > 0) ? $result->result_array() : false;
@@ -34,6 +35,7 @@ class Talleres_semestre_model extends CI_Model {
         $this->db->join('profesores AS p' , 'ts.profesor_id = p.id');
         $this->db->join('salones AS sa' , 'ts.salon_id = sa.id');
         $this->db->where('ts.semestre_id' , $id);
+        $this->db->where('t.status' , 1);
         switch($type_user){
             case 1: case 2:
                 $this->db->where('ts.puede_alumno' , 1);
@@ -58,6 +60,7 @@ class Talleres_semestre_model extends CI_Model {
         $this->db->join('profesores AS p' , 'ts.profesor_id = p.id');
         $this->db->join('salones AS sa' , 'ts.salon_id = sa.id');
         $this->db->where('ts.semestre_id' , $id);
+        $this->db->where('t.status' , 1);
         $this->db->order_by('t.taller');
         $this->db->group_by('t.id');
         $result = $this->db->get('taller_semestre as ts');
@@ -84,6 +87,7 @@ class Talleres_semestre_model extends CI_Model {
         $this->db->join('salones AS s' , 'ts.salon_id = s.id');
         $this->db->join('semestres AS sm' , 'ts.semestre_id = sm.id');
         $this->db->where('ts.id' , $id);
+        $this->db->where('t.status' , 1);
         $this->db->limit(1);
         $result = $this->db->get('taller_semestre AS ts');
         return ($result->num_rows() > 0) ? $result->row_array() : false;
@@ -95,6 +99,7 @@ class Talleres_semestre_model extends CI_Model {
         $this->db->join('salones AS s' , 'ts.salon_id = s.id');
         $this->db->join('semestres AS sm' , 'ts.semestre_id = sm.id');
         $this->db->where('ts.id' , $id);
+        $this->db->where('t.status' , 1);
         switch($type_user){
             case 1: case 2:
                 $this->db->where('ts.puede_alumno' , 1);
