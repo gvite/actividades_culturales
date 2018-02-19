@@ -183,4 +183,46 @@ class Eventos extends CI_Controller {
         }
     }
 
+    public function pdf_admin($id, $user_id){
+        $this->load->helper("date");
+        $data["evento"] = $this->asistentes_model->get_data_by_user($id , $user_id);
+        if($data["evento"]){
+            if($this->asistentes_model->update($data["evento"]["asistente_id"],array("imprimir" => 1))){
+                $content = $this->load->view('alumnos/evento_view', $data, true);
+                $css = $this->load->view('alumnos/evento_css', $data, true);
+                $this->load->library('mpdf');
+                $mpdf = new mPDF();
+                //$header = '<img src="images/logo_pdf.jpg" style="padding-left:20px;" />';
+                
+                $mpdf->SetProtection(array('copy' , 'print'));
+                //$mpdf->Image('images/eventos/odiseo-y-los-mesoneros-aragon-degrade.png',0,0,210,297,'png','',true, false);
+                //$mpdf->SetHTMLHeader($header);
+                $mpdf->WriteHTML($css, 1);
+                
+                $mpdf->WriteHTML($content, 2);
+
+                //copia del alumno
+                $mpdf->Image('images/logo_pdf_e.jpg',165,40,22,22,'jpg','',true, true);
+                $mpdf->Image('images/logo_unam.png',68,40,22,22,'png','',true, true);
+                $mpdf->Image('images/eventos/ticket.png',15,25,230,140,'png','',true, true);
+                $mpdf->Image('images/eventos/' . $data["evento"]["img"],18.5,29,47,90.5,'jpg','',true, true);
+                $mpdf->Image('uploads/qr/' . $data["evento"]["asistente_id"] . ".png",151.4,84.2,35,35,'png','',true, true);
+
+                //copia del personal
+                $mpdf->Image('images/logo_pdf_e.jpg',165,176.5,22,22,'jpg','',true, true);
+                $mpdf->Image('images/logo_unam.png',68,176.5,22,22,'png','',true, true);
+                $mpdf->Image('images/eventos/ticket.png',15,162,230,140,'png','',true, true);
+                $mpdf->Image('images/eventos/' . $data["evento"]["img"],18.5,166,47,90.5,'jpg','',true, true);
+                $mpdf->Image('uploads/qr/' . $data["evento"]["asistente_id"] . ".png",151,221.3,35,35,'png','',true, true);
+                
+                $mpdf->SetTitle($data["evento"]["nombre"]);
+                $mpdf->Output($data["evento"]["nombre"] . ".pdf","I");
+            }else{
+                show_404();
+            }
+        }else{
+            show_404();
+        }
+    }
+
 }

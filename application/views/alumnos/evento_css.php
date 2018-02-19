@@ -17,7 +17,7 @@ h3{
     margin-top: 60px;
 }
 .td-col-6{
-    width: 200px;
+    width: 250px;
 }
 .line{
     border-bottom: 2px dashed #000000;
