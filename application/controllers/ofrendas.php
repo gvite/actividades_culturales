@@ -8,9 +8,15 @@ class Ofrendas extends CI_Controller {
     public function __construct() {
         parent::__construct();
     }
-    public function index($evento_id){
-        
-        echo $evento_id;
+    public function index(){
+        $this->load->model("municipios");
+        $municipios = $this->municipios->get_all();
+        foreach($municipios as $municipio){
+            echo 'City::Create([<br/>';
+            echo "  'name' => '" . $municipio['municipio']. "',<br/>";
+            echo "  'state_id' => " . $municipio['estado_id'] . "<br/>";
+            echo "]);<br/>";
+        }
     }
     public function casilla($evento_id){
         $this->load->helper("date");
