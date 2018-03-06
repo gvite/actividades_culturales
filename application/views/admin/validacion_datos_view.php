@@ -156,10 +156,10 @@ if ($baucher['status'] == 0 || get_type() == 1) {
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="bbeca" value="1" id="ingresa_beca" <?php echo ($baucher['beca']>0) ? "checked":""?>> Ingresar Beca
+                                    <input type="checkbox" name="bbeca" value="1" id="ingresa_beca" <?php echo ($baucher['folio_caja'] == "BECA") ? "checked":""?>> Ingresar Beca
                                 </label>
                             </div>
-                            <div class="form-group <?php echo ($baucher['beca']>0) ? "":"hidden"?>" id="aportacion_beca_content">
+                            <div class="form-group <?php echo ($baucher['folio_caja'] == "BECA") ? "":"hidden"?>" id="aportacion_beca_content">
                                 <label class="control-label col-lg-4" for="beca">Beca</label>
                                 <div class="col-lg-8">
                                     <input class="form-control" name="beca" type="text" placeholder="Beca" id="beca" value="<?php echo $baucher['beca']?>">
