@@ -46,8 +46,12 @@ class Ofrendas_model extends CI_Model {
         return ($this->db->insert('votos_ofrendas' , $data)) ? $this->db->insert_id() : false;
     }
     public function get_votos_with_users($ofrenda_id){
-        $this->db->select("u.*,vo.fecha as fecha_voto");
+        $this->db->select("u.*,dae.no_cuenta,c.carrera,tu.usuario as tipo_usuario, dt.no_trabajador, dt.area,vo.fecha as fecha_voto");
         $this->db->join("usuarios as u" , "vo.usuario_id=u.id");
+        $this->db->join("tipo_usuario as tu" , "tu.id=u.tipo_usuario_id");
+        $this->db->join("datos_alumnos_ex as dae" , "dae.usuario_id=u.id","LEFT");
+        $this->db->join("datos_trabajador as dt" , "dt.usuario_id=u.id","LEFT");
+        $this->db->join("carreras as c" , "dae.carrera_id=c.id","LEFT");
         $this->db->where("vo.ofrenda_id" , $ofrenda_id);
         $result = $this->db->get('votos_ofrendas as vo');
         return ($result->num_rows() > 0) ? $result->result_array() : false;
