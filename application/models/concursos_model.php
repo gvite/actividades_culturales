@@ -21,6 +21,12 @@ class Concursos_model extends CI_Model {
         $result = $this->db->get('concursos');
         return ($result->num_rows() > 0) ? $result->row_array() : false ;
     }
+    public function get_by_slug($slug){
+        $this->db->where('slug' , $slug);
+        $this->db->limit(1);
+        $result = $this->db->get('concursos');
+        return ($result->num_rows() > 0) ? $result->row_array() : false ;
+    }
 
 }
 

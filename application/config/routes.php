@@ -40,6 +40,7 @@
 
 $route['default_controller'] = "inicio";
 $route['talento'] = "eventos";
+$route['concursos/(:any)'] = "concursos/get/$1";
 $route['404_override'] = '';
 
 

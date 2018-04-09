@@ -10,6 +10,7 @@ class Hook {
             'inicio' , 
             'eventos',
             'concursos',
+            'concursos/*',
             'acceso/login/*' , 
             'acceso/registro' ,
             'acceso/eventos/*', 
