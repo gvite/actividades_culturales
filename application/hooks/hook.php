@@ -9,6 +9,7 @@ class Hook {
         $lista = array('', 
             'inicio' , 
             'eventos',
+            'concursos',
             'acceso/login/*' , 
             'acceso/registro' ,
             'acceso/eventos/*', 
