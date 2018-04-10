@@ -129,6 +129,35 @@ class Concursos extends CI_Controller {
         }
     }
 
+    public function get_pdf($concurso_id){
+        $this->load->helper("date");
+        $this->load->model("participantes_model");
+        $concurso_usuario = $this->participantes_model->get_by_concurso_usuario($concurso_id, get_id());
+        $data = array();
+        if($concurso_usuario){
+            $content = $this->load->view('alumnos/concurso_responsiva_' . $concurso_id . '_view', $data, true);
+            $css = $this->load->view('alumnos/concurso_responsiva_css', $data, true);
+            $this->load->library('mpdf');
+            $mpdf = new mPDF();
+            //$header = '<img src="images/logo_pdf.jpg" style="padding-left:20px;" />';
+            
+            $mpdf->SetProtection(array('copy' , 'print'));
+            //$mpdf->Image('images/eventos/odiseo-y-los-mesoneros-aragon-degrade.png',0,0,210,297,'png','',true, false);
+            //$mpdf->SetHTMLHeader($header);
+            $mpdf->WriteHTML($css, 1);
+            
+            $mpdf->WriteHTML($content, 2);
+
+            //copia del alumno
+            $mpdf->Image('images/logo_pdf_e.jpg',165,20,22,22,'jpg','',true, true);
+            $mpdf->Image('images/logo_unam.png',30,20,22,22,'png','',true, true);
+            $mpdf->SetTitle($data["evento"]["nombre"]);
+            $mpdf->Output($data["evento"]["nombre"] . ".pdf","I");
+        }else{
+            show_404();
+        }
+    }
+
 }
 
 ?>

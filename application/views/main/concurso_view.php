@@ -22,7 +22,8 @@ if (!defined('BASEPATH'))
                         <?php } ?>
                     <?php } else { ?>
                         <?php if( $concurso["participantes"] < $concurso["cupo"] || $concurso["cupo"] == -1){ ?>
-                            <a href="<?php echo base_url();?>alumnos/confirmar/?return_url=<?php echo base_url()?>concursos/registro/<?php echo $concurso["id"];?>" class="btn btn-success">Registro <span class="glyphicon glyphicon-edit"></span></a>
+                            <a href="#form_login_modal" data-toggle="modal" class="btn btn-success">Iniciar Sesión <span class="glyphicon glyphicon-log-in"></span></a>
+                            <a href="<?php echo base_url();?>acceso/registro/?return-url=<?php echo base_url();?>eventos" data-toggle="modal" class="btn btn-warning">Registrarse <span class="glyphicon glyphicon-log-in"></span></a>
                         <?php }else{ ?>
                             <div class="alert alert-danger">
                                 <strong>Registro agotado</strong>
