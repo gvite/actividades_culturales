@@ -12,7 +12,7 @@ class Concursos_model extends CI_Model {
 
     public function get_all() {
         $result = $this->db->get('concursos');
-        return ($result->num_rows() > 0 ) ? $result->result_array() : false;
+        return ($result->num_rows() > 0 ) ? $result->result_array() : array();
     }
     
     public function get($id){

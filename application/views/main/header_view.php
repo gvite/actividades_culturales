@@ -30,6 +30,21 @@
         <link type="text/css" href="<?php echo base_url(); ?>css/jquery.dataTables_themeroller.min.css" rel="stylesheet" media="screen"/>
         <link type="text/css" href="<?php echo base_url(); ?>css/swiper.min.css" rel="stylesheet" media="screen"/>
         <link type="text/css" href="<?php echo base_url(); ?>css/font-awesome.min.css" rel="stylesheet" media="screen"/>
+        <?php
+        if (isset($css)) {
+            if (is_array($css)) {
+                foreach ($css as $c) {
+                    ?>
+                    <link type="text/css" href="<?php echo base_url() . $c; ?>" rel="stylesheet" media="screen"/>
+                    <?php
+                }
+            } else {
+                ?>
+                <link type="text/css" href="<?php echo base_url() . $css; ?>" rel="stylesheet" media="screen"/>
+                <?php
+            }
+        }
+        ?>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>js/plugins/jquery.ui.touch-punch.js"></script>

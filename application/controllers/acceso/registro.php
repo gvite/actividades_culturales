@@ -43,6 +43,9 @@ class Registro extends CI_Controller {
         $this->form_validation->set_rules("correo_user", "E-Mail", "xss|required|valid_email|callback_valida_email");
         $this->form_validation->set_rules("nacimiento_user", "Fecha de Nacimiento", "xss|required|callback_valida_fecha");
         $this->form_validation->set_rules("type_user", "Tipo de usuario", "xss|required|is_natural_no_zero");
+        $this->form_validation->set_rules("direccion", "Dirección", "xss");
+        $this->form_validation->set_rules("clinica", "Dirección", "xss");
+        $this->form_validation->set_rules("num_clinica", "Número de clínica", "xss");
         $this->form_validation->set_message("required", "Introduce %s");
         $this->form_validation->set_message("valid_email", "Introduce un correo v&aacute;lido");
         $this->form_validation->set_message("alpha_dash", "%s: sólo se permite caracteres alfanuemericos.");
@@ -81,7 +84,10 @@ class Registro extends CI_Controller {
                 'tipo_usuario_id' => $tipo,
                 'telefono_fijo' => $this->input->post('telefono_fijo'),
                 'celular' => $this->input->post('celular'),
-                'fecha_reg' => date("Y-m-d H:i:s")
+                'fecha_reg' => date("Y-m-d H:i:s"),
+                'clinica' => $this->input->post("clinica"),
+                'num_clinica' => $this->input->post("num_clinica"),
+                'direccion' => $this->input->post("direccion")
             );
             $this->load->model('usuarios_model');
             $id = $this->usuarios_model->insert($data);

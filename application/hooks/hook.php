@@ -46,7 +46,8 @@ class Hook {
                 2 => 'acceso/login/logout',
                 3 => 'acceso/cambia_contra',
                 4 => 'perfil',
-                5 => 'talento'
+                5 => 'talento',
+                6 => 'concursos'
             );
             $urls_denegados = array();
             switch(get_type()){

@@ -76,6 +76,24 @@ if (!defined('BASEPATH'))
                 </div>
             </div>
             <div class="control-group">
+                <label class="control-label" for="clinica">Clínica de servicio médico</label>
+                <div class="controls">
+                    <input type="text" name="clinica" class="form-control" id="clinica" placeholder="" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="num_clinica">Número de Clínica</label>
+                <div class="controls">
+                    <input type="text" name="num_clinica" class="form-control" id="num_clinica" placeholder="" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="direccion">Domicilio</label>
+                <div class="controls">
+                    <input type="text" name="direccion" class="form-control" id="direccion" placeholder="" />
+                </div>
+            </div>
+            <div class="control-group">
                 <label class="control-label" for="type_user">*Tipo de Usuario</label>
                 <div class="controls">
                     <select name="type_user" id="type_user" class="form-control">
