@@ -41,6 +41,7 @@
 $route['default_controller'] = "inicio";
 $route['talento'] = "eventos";
 $route['concursos/registro/(:any)'] = "concursos/registro/$1";
+$route['concursos/get-pdf/(:any)'] = "concursos/get_pdf/$1";
 $route['concursos/(:any)'] = "concursos/get/$1";
 $route['404_override'] = '';
 

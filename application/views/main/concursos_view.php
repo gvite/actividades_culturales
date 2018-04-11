@@ -11,23 +11,12 @@ if (!defined('BASEPATH'))
                 <h3><?php echo $concurso['nombre'];?></h3>
                 <strong><?php echo $concurso["fecha"];?></strong>
                 <div>
+                <a href="<?php echo base_url();?>concursos/<?php echo $concurso["slug"];?>" class="btn btn-success">Información <span class="glyphicon glyphicon-log-in"></span></a>
                     <?php if(strtotime($concurso["fecha_inscripcion"]) < time() /*|| in_array(get_id(),array(87,3384,3588,2798,3479))*/){?>
-                        <?php if(get_id()){?>
-                            <?php if( $concurso["participantes"] < $concurso["cupo"] || $concurso["cupo"] == -1){ ?>
-                                <a href="<?php echo base_url();?>concursos/<?php echo $concurso["slug"];?>" class="btn btn-success">Ver <span class="glyphicon glyphicon-log-in"></span></a>
-                            <?php }else{ ?>
-                                <div class="alert alert-danger">
-                                    <strong>Pre registro agotado</strong>
-                                </div>
-                            <?php } ?>
-                        <?php } else { ?>
-                            <?php if( $concurso["participantes"] < $concurso["cupo"] || $concurso["cupo"] == -1){ ?>
-                                <a href="<?php echo base_url();?>concursos/<?php echo $concurso["slug"];?>" class="btn btn-success">Ver <span class="glyphicon glyphicon-log-in"></span></a>
-                            <?php }else{ ?>
-                                <div class="alert alert-danger">
-                                    <strong>Pre registro agotado</strong>
-                                </div>
-                            <?php } ?>
+                        <?php if( !($concurso["participantes"] < $concurso["cupo"] || $concurso["cupo"] == -1)){ ?>
+                            <div class="alert alert-danger">
+                                <strong>Pre registro agotado</strong>
+                            </div>
                         <?php } ?>
                     <?php } else { ?>
                         <span class="label label-warning">Disponible a partir de: <?php echo exchange_date_time($concurso["fecha_inscripcion"]);?></span>
