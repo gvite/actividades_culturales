@@ -39,6 +39,16 @@ if (!defined('BASEPATH'))
                     <input type="text" name="num_clinica" class="form-control" value="<?php echo $usuario["num_clinica"]?>" id="num_clinica" placeholder="" />
                 </div>
             </div>
+            <div class="control-group">
+                <label class="control-label" for="sexo">*Sexo</label>
+                <div class="controls">
+                    <select name="sexo" id="sexo" class="form-control">
+                        <option value="">Selecciona</option>
+                        <option value="F" <?php echo ($usuario["sexo"] == "F") ? "selected" : "";?>>Femenino</option>
+                        <option value="M" <?php echo ($usuario["sexo"] == "M") ? "selected" : "";?>>Masculino</option>
+                    </select>
+                </div>
+            </div>
             <input type="hidden" name="return_url" class="form-control" value="<?php echo $return_url;?>" />
             <div class="text-center" style="margin-top: 20px;margin-bottom:20px;">
                 <button type="submit" class="btn btn-success">Continuar</button>

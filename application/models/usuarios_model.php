@@ -91,6 +91,17 @@ class Usuarios_model extends CI_Model {
         return ($result->num_rows() > 0) ? $result->result_array() : false;
     }
 
+    public function get_alumno($id) {
+        $this->db->select('u.id,u.nombre,u.paterno,u.email,u.celular, u.telefono_fijo,u.direccion,u.clinica, u.num_clinica,u.sexo,u.materno,u.status,u.nickname,da.semestre,da.no_cuenta,da.ingreso_egreso as ingreso,c.carrera,f.facultad');
+        $this->db->join('datos_alumnos_ex as da', 'da.usuario_id=u.id');
+        $this->db->join('carreras as c', 'c.id=da.carrera_id');
+        $this->db->join('facultad as f', 'f.id=da.facultad_id');
+        $this->db->where('u.tipo_usuario_id', 2);
+        $this->db->where('u.id', $id);
+        $result = $this->db->get('usuarios as u');
+        return ($result->num_rows() > 0) ? $result->row_array() : false;
+    }
+
     public function get_all_exalumnos() {
         $this->db->select('u.id,u.nombre,u.paterno,u.materno,u.status,u.nickname,da.no_cuenta,da.ingreso_egreso as egreso,c.carrera');
         $this->db->join('datos_alumnos_ex as da', 'da.usuario_id=u.id');

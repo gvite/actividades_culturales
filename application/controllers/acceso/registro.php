@@ -46,6 +46,7 @@ class Registro extends CI_Controller {
         $this->form_validation->set_rules("direccion", "Dirección", "xss");
         $this->form_validation->set_rules("clinica", "Dirección", "xss");
         $this->form_validation->set_rules("num_clinica", "Número de clínica", "xss");
+        $this->form_validation->set_rules("sexo", "Sexo", "xss|required");
         $this->form_validation->set_message("required", "Introduce %s");
         $this->form_validation->set_message("valid_email", "Introduce un correo v&aacute;lido");
         $this->form_validation->set_message("alpha_dash", "%s: sólo se permite caracteres alfanuemericos.");
@@ -87,7 +88,8 @@ class Registro extends CI_Controller {
                 'fecha_reg' => date("Y-m-d H:i:s"),
                 'clinica' => $this->input->post("clinica"),
                 'num_clinica' => $this->input->post("num_clinica"),
-                'direccion' => $this->input->post("direccion")
+                'direccion' => $this->input->post("direccion"),
+                'sexo' => $this->input->post("sexo")
             );
             $this->load->model('usuarios_model');
             $id = $this->usuarios_model->insert($data);

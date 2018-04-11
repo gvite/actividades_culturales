@@ -34,6 +34,7 @@ class Confirmar extends CI_Controller {
         $this->form_validation->set_rules("telefono_fijo", "Teléfono Fijo", "xss");
         $this->form_validation->set_rules("clinica", "Clínica", "xss|required");
         $this->form_validation->set_rules("num_clinica", "Número de clínica", "xss|required");
+        $this->form_validation->set_rules("sexo", "Sexo", "xss|required");
         $this->form_validation->set_message("required", "Introduce %s");
         $this->form_validation->set_message("valid_email", "Introduce un correo v&aacute;lido");
         $this->form_validation->set_message("is_natural_no_zero", "Introduce un %s v&aacute;lido");
@@ -46,7 +47,8 @@ class Confirmar extends CI_Controller {
                 'celular' => $this->input->post('celular'),
                 'clinica' => $this->input->post("clinica"),
                 'num_clinica' => $this->input->post("num_clinica"),
-                'direccion' => $this->input->post("direccion")
+                'direccion' => $this->input->post("direccion"),
+                'sexo' => $this->input->post("sexo")
             );
             $this->load->model('usuarios_model');
             $return_url = $this->input->post("return_url");

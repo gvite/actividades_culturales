@@ -100,7 +100,7 @@ class Concursos extends CI_Controller {
             $this->load->view('main/header_view', $data);
 
             $count = $this->participantes_model->count_by_concurso($concurso_id);
-            if($data['concurso']['cupo'] > $count){
+            if($data['concurso']['cupo'] > $count || $data['concurso']['cupo'] == -1){
                 $concurso_usuario = $this->participantes_model->get_by_concurso_usuario($concurso_id, get_id());
                 if($concurso_usuario){
                     $data["status"] = "OK";
@@ -131,10 +131,57 @@ class Concursos extends CI_Controller {
 
     public function get_pdf($concurso_id){
         $this->load->helper("date");
-        $this->load->model("participantes_model");
+        $this->load->model(array("participantes_model" , "usuarios_model","concursos_model"));
         $concurso_usuario = $this->participantes_model->get_by_concurso_usuario($concurso_id, get_id());
         $data = array();
         if($concurso_usuario){
+            $data["usuario"] = $this->usuarios_model->get_alumno(get_id());
+            $data['concurso'] = $this->concursos_model->get($concurso_id);
+            $content = $this->load->view('alumnos/concurso_inscripcion_view', $data, true);
+            $css = $this->load->view('alumnos/concurso_inscripcion_css', $data, true);
+            $this->load->library('mpdf');
+            $mpdf = new mPDF();
+            //$header = '<img src="images/logo_pdf.jpg" style="padding-left:20px;" />';
+            
+            $mpdf->SetProtection(array('copy' , 'print'));
+            //$mpdf->Image('images/eventos/odiseo-y-los-mesoneros-aragon-degrade.png',0,0,210,297,'png','',true, false);
+            //$mpdf->SetHTMLHeader($header);
+            $mpdf->WriteHTML($css, 1);
+            
+            $mpdf->WriteHTML($content, 2);
+
+            //copia del alumno
+            $mpdf->Image('images/logo_pdf_e.jpg',165,30,22,22,'jpg','',true, true);
+            $mpdf->Image('images/logo_unam.png',30,30,22,22,'png','',true, true);
+            $mpdf->SetTitle($data["concurso"]["nombre"]);
+            $mpdf->Output($data["concurso"]["slug"] . ".pdf","I");
+        }else{
+            show_404();
+        }
+    }
+
+    public function get_pdf_responsiva($concurso_id){
+        $this->load->helper("date");
+        $this->load->model(array("participantes_model" , "usuarios_model","concursos_model"));
+        $concurso_usuario = $this->participantes_model->get_by_concurso_usuario($concurso_id, get_id());
+        $data = array("meses" =>[
+            "",
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"
+        ]);
+        if($concurso_usuario){
+            $data["usuario"] = $this->usuarios_model->get_alumno(get_id());
+            $data['concurso'] = $this->concursos_model->get($concurso_id);
             $content = $this->load->view('alumnos/concurso_responsiva_' . $concurso_id . '_view', $data, true);
             $css = $this->load->view('alumnos/concurso_responsiva_css', $data, true);
             $this->load->library('mpdf');
@@ -151,8 +198,8 @@ class Concursos extends CI_Controller {
             //copia del alumno
             $mpdf->Image('images/logo_pdf_e.jpg',165,20,22,22,'jpg','',true, true);
             $mpdf->Image('images/logo_unam.png',30,20,22,22,'png','',true, true);
-            $mpdf->SetTitle($data["evento"]["nombre"]);
-            $mpdf->Output($data["evento"]["nombre"] . ".pdf","I");
+            $mpdf->SetTitle($data["concurso"]["nombre"] . " responsiva");
+            $mpdf->Output($data["concurso"]["slug"] . "_responsiva.pdf","I");
         }else{
             show_404();
         }

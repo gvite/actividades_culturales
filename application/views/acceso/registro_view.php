@@ -48,6 +48,16 @@ if (!defined('BASEPATH'))
                 </div>
             </div>
             <div class="control-group">
+                <label class="control-label" for="sexo">*Sexo</label>
+                <div class="controls">
+                    <select name="sexo" id="sexo" class="form-control">
+                        <option value="" selected>Selecciona</option>
+                        <option value="F">Femenino</option>
+                        <option value="M">Masculino</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
                 <label class="control-label" for="correo_user">*E-Mail</label>
                 <div class="controls">
                     <input type="text" name="correo_user" id="correo_user" placeholder="user@example.com" class="input-xlarge form-control" />
