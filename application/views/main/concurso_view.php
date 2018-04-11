@@ -12,6 +12,7 @@ if (!defined('BASEPATH'))
                 <h3><?php echo $concurso['nombre'];?></h3>
                 <strong>Fecha del evento: <?php echo $concurso["fecha"];?></strong>
                 <div class="row">
+                    <h4>Generar Ficha de Inscripción</h4>
                 <?php if(strtotime($concurso["fecha_inscripcion"]) < time() /*|| in_array(get_id(),array(87,3384,3588,2798,3479))*/){?>
                     <?php if(get_id()){?>
                         <?php if( $concurso["participantes"] < $concurso["cupo"] || $concurso["cupo"] == -1){ ?>
@@ -42,6 +43,7 @@ if (!defined('BASEPATH'))
         </div>
         <div class="row">
             <div class="col-md-12">
+                    <h3>Bases</h3>
                 <?php echo $concurso["format_bases"];?>
             </div>
         </div>
