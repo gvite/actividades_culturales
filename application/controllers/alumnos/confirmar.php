@@ -18,7 +18,7 @@ class Confirmar extends CI_Controller {
             $data['js'][] = 'js/confirmar.js';
             $this->load->model("usuarios_model");
             $this->load->view('main/header_view', $data);
-            $data["return_url"] = $this->input->get("return_url");
+            $data["return_url"] = $this->input->get("return-url");
             $data["usuario"] = $this->usuarios_model->get(get_id());
             $this->load->view("alumnos/confirmar_view", $data);
             $this->load->view('main/footer_view', '');
