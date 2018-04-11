@@ -164,7 +164,7 @@ class Concursos extends CI_Controller {
         $this->load->helper("date");
         $this->load->model(array("participantes_model" , "usuarios_model","concursos_model"));
         $concurso_usuario = $this->participantes_model->get_by_concurso_usuario($concurso_id, get_id());
-        $data = array("meses" =>[
+        $data = array("meses" =>array(
             "",
             "Enero",
             "Febrero",
@@ -178,7 +178,7 @@ class Concursos extends CI_Controller {
             "Octubre",
             "Noviembre",
             "Diciembre"
-        ]);
+        ));
         if($concurso_usuario){
             $data["usuario"] = $this->usuarios_model->get_alumno(get_id());
             $data['concurso'] = $this->concursos_model->get($concurso_id);
