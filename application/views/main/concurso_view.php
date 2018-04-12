@@ -42,7 +42,7 @@ if (!defined('BASEPATH'))
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 bases-content">
                     <h3>Bases</h3>
                 <?php echo $concurso["format_bases"];?>
             </div>

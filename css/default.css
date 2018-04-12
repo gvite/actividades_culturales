@@ -366,6 +366,9 @@ body > #content_main .images-header img + img{
 .total-votos{
     font-size: 25px;
 }
+.bases-content img{
+    width: 100%;
+}
 @media (max-width: 768px) {
     #header_images img{
         width: 100%;
