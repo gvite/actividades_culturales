@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
 <?php foreach($concursos as $concurso){ ?>
     <div class="col-md-4">
         <div class="thumbnail thumbnail-events">
-            <img src="images/concursos/<?php echo $concurso["thumbnail"];?>" />
+            <img src="<?php echo base_url();?>images/concursos/<?php echo $concurso["thumbnail"];?>" />
             <div class="caption">
                 <h3><?php echo $concurso['nombre'];?></h3>
                 <strong><?php echo $concurso["fecha"];?></strong>
