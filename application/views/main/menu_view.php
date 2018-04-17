@@ -6,7 +6,6 @@
         ?>
         <li class="<?php echo ($active === 'inicio') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>inicio" data-name="inicio"><span class="glyphicon glyphicon-home"></span> Inicio</a></li>
         <li class="<?php echo ($active === 'eventos') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>eventos" data-name="eventos"><span class="glyphicon glyphicon-briefcase"></span> Eventos</a></li>
-        <li class="<?php echo ($active === 'concursos') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>concursos" data-name="concursos"><span class="glyphicon glyphicon-briefcase"></span> Concursos</a></li>
         <?php
         if (isset($semestre_actual) && $semestre_actual) {
             ?>
@@ -16,6 +15,7 @@
         switch (get_type()) {
             case 1:
                 ?>
+                <li class="<?php echo ($active === 'concursos') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/concursos" data-name="concursos"><span class="glyphicon glyphicon-briefcase"></span> Concursos</a></li>
                 <li class="<?php echo ($active === 'ofrendas') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/ofrendas" data-name="ofrendas"><span class="glyphicon glyphicon-book"></span> Ofrendas</a></li>
                 <li class="<?php echo ($active === 'actividades') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>admin/talleres" data-name="actividades"><span class="glyphicon glyphicon-book"></span> Registro de actividades</a></li>
                 <?php if (isset($puede_inscribir) && !$puede_inscribir) { ?>
@@ -40,11 +40,19 @@
                     
                 break;
             case 2:
+                ?>
+                <li class="<?php echo ($active === 'concursos') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>concursos" data-name="concursos"><span class="glyphicon glyphicon-briefcase"></span> Concursos</a></li>
+                <?php
                 if (isset($puede_inscribir) && $puede_inscribir) {
                     ?>
                     <li class="<?php echo ($active === 'inscripcion') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>alumnos/inscripcion" data-name="inscripcion"><span class="glyphicon glyphicon-pencil"></span> Inscripci&oacute;n<br /><span class="glyphicon glyphicon-list-alt"></span> Comprobantes</a></li>
                 <?php
                 }
+                break;
+            default:
+                ?>
+                <li class="<?php echo ($active === 'concursos') ? 'active' : ''; ?>"><a href="<?php echo base_url() ?>concursos" data-name="concursos"><span class="glyphicon glyphicon-briefcase"></span> Concursos</a></li>
+                <?php
                 break;
         }
     }
