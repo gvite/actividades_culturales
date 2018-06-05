@@ -23,26 +23,30 @@ if (!defined('BASEPATH'))
         switch ($usuario['tipo_usuario_id']) {
             case 1: case 2:
                 ?>
+                <li>Ticket de pago y 2 copias del mismo.</li>
                 <li>Original y Copia de hoja de inscripción al taller</li>
                 <li>Copia de credencial que compruebe su status de alumno.</li> 
                 <?php
                 break;
             case 3:
                 ?>
+                <li>Ticket de pago y 2 copias del mismo.</li>
                 <li>Original y Copia de hoja de inscripción al taller</li>
                 <li>Copia de credencial que compruebe su status de exalumno.</li>
                 <?php
                 break;
             case 4:
                 ?>
+                <li>Ticket de pago y 2 copias del mismo.</li>
                 <li>Original y Copia de hoja de inscripción al taller</li>
                 <li>Copia de credencial que compruebe su status de empleado.</li>
                 <?php
                 break;
             case 5:
                 ?>
-                <li>Identificación oficial.</li>
                 <li>Ticket de pago y 2 copias del mismo.</li>
+                <li>Original y Copia Identificación oficial.</li>
+                <li>Original y Copia de hoja de inscripción al taller</li>
                 <?php
                 break;
         }

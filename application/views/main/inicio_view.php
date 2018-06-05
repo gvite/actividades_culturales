@@ -67,6 +67,7 @@ if (get_type_user() != 1 && $talleres !== false) {
                     
                 </ul>-->
                 <ul class="list-group">
+                    <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
                     <li class="list-group-item list-group-item-success">Original y Copia de hoja de inscripción al taller.</li>
                     <li class="list-group-item list-group-item-success">Copia de credencial que compruebe su status (alumno, empleado universitario o egresado).</li>
                     
@@ -92,6 +93,7 @@ if (get_type_user() != 1 && $talleres !== false) {
                     <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
                 </ul>-->
                 <ul class="list-group">
+                    <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
                     <li class="list-group-item list-group-item-success">Original y Copia de hoja de inscripción al taller.</li>
                     <li class="list-group-item list-group-item-success">Copia de credencial que compruebe su status (alumno, empleado universitario o egresado).</li>
                     
@@ -116,6 +118,7 @@ if (get_type_user() != 1 && $talleres !== false) {
                     <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
                 </ul>-->
                 <ul class="list-group">
+                    <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
                     <li class="list-group-item list-group-item-success">Original y Copia de hoja de inscripción al taller.</li>
                     <li class="list-group-item list-group-item-success">Copia de credencial que compruebe su status (alumno, empleado universitario o egresado).</li>
                     
@@ -140,9 +143,9 @@ if (get_type_user() != 1 && $talleres !== false) {
                     <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
                 </ul>-->
                 <ul class="list-group">
+                    <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo.</li>
                     <li class="list-group-item list-group-item-success">Original y Copia de hoja de inscripción al taller.</li>
                     <li class="list-group-item list-group-item-success">Identificación oficial.</li>
-                    <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo.</li>
                 </ul>
             </div>
             <?php
