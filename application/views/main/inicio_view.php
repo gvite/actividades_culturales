@@ -43,7 +43,7 @@ if (get_type_user() != 1 && $talleres !== false) {
     ?>
     <div class="row">
         <div class="col-md-12">
-            <strong>Requisitos para terminar inscripci&oacute;n:</strong>
+            <strong>Documentación adicional que deberán presentar los interesados (alumnos, exalumnos, trabajadores o externos) para concluir su inscripción en el Departamento de Actividades Culturales: </strong>
         </div>
     </div>
     <div class="row" id="requisitos_inscripcion">
@@ -67,10 +67,10 @@ if (get_type_user() != 1 && $talleres !== false) {
                     
                 </ul>-->
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
-                    <li class="list-group-item list-group-item-success">Original y Copia de hoja de inscripción al taller.</li>
-                    <li class="list-group-item list-group-item-success">Copia de credencial que compruebe su status (alumno, empleado universitario o egresado).</li>
-                    
+                    <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA y dos fotocopias de la misma.</li>
+                    <li class="list-group-item list-group-item-success">Ticket de pago y dos fotocopias del mismo.</li>
+                    <li class="list-group-item list-group-item-success">En caso de ser la primera vez que se inscribe a un Taller: 2 fotografías tamaño infantil, recientes. (a color o en blanco y negro)</li>
+                    <li class="list-group-item list-group-item-success">2 fotocopias de identificación con el que compruebe estatus de alumno</li>
                 </ul>
             </div>
             <?php
@@ -93,10 +93,10 @@ if (get_type_user() != 1 && $talleres !== false) {
                     <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
                 </ul>-->
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
-                    <li class="list-group-item list-group-item-success">Original y Copia de hoja de inscripción al taller.</li>
-                    <li class="list-group-item list-group-item-success">Copia de credencial que compruebe su status (alumno, empleado universitario o egresado).</li>
-                    
+                    <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA y dos fotocopias de la misma.</li>
+                    <li class="list-group-item list-group-item-success">Ticket de pago y dos fotocopias del mismo.</li>
+                    <li class="list-group-item list-group-item-success">En caso de ser la primera vez que se inscribe a un Taller: 2 fotografías tamaño infantil, recientes. (a color o en blanco y negro)</li>
+                    <li class="list-group-item list-group-item-success">2 fotocopias de identificación con el que compruebe estatus de trabajador universitario.</li>
                 </ul>
             </div>
             <?php
@@ -118,9 +118,10 @@ if (get_type_user() != 1 && $talleres !== false) {
                     <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
                 </ul>-->
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
-                    <li class="list-group-item list-group-item-success">Original y Copia de hoja de inscripción al taller.</li>
-                    <li class="list-group-item list-group-item-success">Copia de credencial que compruebe su status (alumno, empleado universitario o egresado).</li>
+                    <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA y dos fotocopias de la misma.</li>
+                    <li class="list-group-item list-group-item-success">Ticket de pago y dos fotocopias del mismo.</li>
+                    <li class="list-group-item list-group-item-success">En caso de ser la primera vez que se inscribe a un Taller: 2 fotografías tamaño infantil, recientes. (a color o en blanco y negro)</li>
+                    <li class="list-group-item list-group-item-success">2 fotocopias de identificación con el que compruebe estatus de egresado</li>
                     
                 </ul>
             </div>
@@ -143,9 +144,10 @@ if (get_type_user() != 1 && $talleres !== false) {
                     <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo</li>
                 </ul>-->
                 <ul class="list-group">
-                    <li class="list-group-item list-group-item-success">Ticket de pago y 2 copias del mismo.</li>
-                    <li class="list-group-item list-group-item-success">Original y Copia de hoja de inscripción al taller.</li>
-                    <li class="list-group-item list-group-item-success">Identificación oficial.</li>
+                    <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA y dos fotocopias de la misma.</li>
+                    <li class="list-group-item list-group-item-success">Ticket de pago y dos fotocopias del mismo.</li>
+                    <li class="list-group-item list-group-item-success">En caso de ser la primera vez que se inscribe a un Taller: 2 fotografías tamaño infantil, recientes. (a color o en blanco y negro)</li>
+                    <li class="list-group-item list-group-item-success">2 fotocopias de identificación ofical (INE, pasaporte, etc).</li>
                 </ul>
             </div>
             <?php

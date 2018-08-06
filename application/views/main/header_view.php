@@ -97,12 +97,8 @@
     <body cz-shortcut-listen="true">
         <div class="container-fluid" id="header_images">
             <div class="row">
-                <div class="col-md-4">
-                    <img src="<?php echo base_url() ?>images/logo.png"/>
-                </div>
-                <div class="col-md-8">
-                    <img src="<?php echo base_url() ?>images/logo1.jpg"/>
-                </div>
+                <img src="<?php echo base_url() ?>images/logo_culturales_unam.jpg"/>
+                <img src="<?php echo base_url() ?>images/logo_culturales.jpg"/>
             </div>
         </div>
         <nav class="navbar navbar-default" role="navigation" id="navbar_main">
@@ -115,7 +111,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     
-                    <a class="navbar-brand" href="<?php echo base_url() ?>inicio"><img width="32px" class="inicio-imagen" src="<?php echo base_url(); ?>images/icon_transparent.png" alt="actividades culturales" /> Extensi&oacute;n Universitaria <span>FES Arag&oacute;n </span><span id="hora_sistema"><span class="hora"><?php echo date('H');?></span>:<span class="minutos"><?php echo date('i');?></span>:<span class="segundos"><?php echo date('s');?></span></span></a>
+                    <a class="navbar-brand" href="<?php echo base_url() ?>inicio"> Extensi&oacute;n Universitaria <span>FES Arag&oacute;n </span><span id="hora_sistema"><span class="hora"><?php echo date('H');?></span>:<span class="minutos"><?php echo date('i');?></span>:<span class="segundos"><?php echo date('s');?></span></span></a>
                 </div>
                 <div id="nav_bar_div" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">

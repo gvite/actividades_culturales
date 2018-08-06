@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
 h3,h4,h5{
     text-align: center;
 }
-#encabezado{
+#encabezado .content-img{
     padding-left: 100px;
 }
 #encabezado div div{

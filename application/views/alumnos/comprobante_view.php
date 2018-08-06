@@ -3,6 +3,9 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 ?>
 <div id="encabezado">
+    <div class="content-img">
+        <img src="images/logo_pdf.jpg">
+    </div>
     <h3>UNIVERSIDAD NACIONAL AUT&Oacute;NOMA DE M&Eacute;XICO</h3>
     <h4>FES - ARAG&Oacute;N</h4>
     <h5>UNIDAD DE EXTENSI&Oacute;N UNIVERSITARIA</h5>
@@ -23,30 +26,34 @@ if (!defined('BASEPATH'))
         switch ($usuario['tipo_usuario_id']) {
             case 1: case 2:
                 ?>
-                <li>Ticket de pago y 2 copias del mismo.</li>
-                <li>Original y Copia de hoja de inscripción al taller</li>
-                <li>Copia de credencial que compruebe su status de alumno.</li> 
+                <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA y dos fotocopias de la misma.</li>
+                <li class="list-group-item list-group-item-success">Ticket de pago y dos fotocopias del mismo.</li>
+                <li class="list-group-item list-group-item-success">En caso de ser la primera vez que se inscribe a un Taller: 2 fotografías tamaño infantil, recientes. (a color o en blanco y negro)</li>
+                <li class="list-group-item list-group-item-success">2 fotocopias de identificación con el que compruebe estatus de alumno</li>
                 <?php
                 break;
             case 3:
                 ?>
-                <li>Ticket de pago y 2 copias del mismo.</li>
-                <li>Original y Copia de hoja de inscripción al taller</li>
-                <li>Copia de credencial que compruebe su status de exalumno.</li>
+                <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA y dos fotocopias de la misma.</li>
+                <li class="list-group-item list-group-item-success">Ticket de pago y dos fotocopias del mismo.</li>
+                <li class="list-group-item list-group-item-success">En caso de ser la primera vez que se inscribe a un Taller: 2 fotografías tamaño infantil, recientes. (a color o en blanco y negro)</li>
+                <li class="list-group-item list-group-item-success">2 fotocopias de identificación con el que compruebe estatus de egresado</li>
                 <?php
                 break;
             case 4:
                 ?>
-                <li>Ticket de pago y 2 copias del mismo.</li>
-                <li>Original y Copia de hoja de inscripción al taller</li>
-                <li>Copia de credencial que compruebe su status de empleado.</li>
+                <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA y dos fotocopias de la misma.</li>
+                <li class="list-group-item list-group-item-success">Ticket de pago y dos fotocopias del mismo.</li>
+                <li class="list-group-item list-group-item-success">En caso de ser la primera vez que se inscribe a un Taller: 2 fotografías tamaño infantil, recientes. (a color o en blanco y negro)</li>
+                <li class="list-group-item list-group-item-success">2 fotocopias de identificación con el que compruebe estatus de trabajador universitario.</li>
                 <?php
                 break;
             case 5:
                 ?>
-                <li>Ticket de pago y 2 copias del mismo.</li>
-                <li>Original y Copia Identificación oficial.</li>
-                <li>Original y Copia de hoja de inscripción al taller</li>
+                <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA y dos fotocopias de la misma.</li>
+                <li class="list-group-item list-group-item-success">Ticket de pago y dos fotocopias del mismo.</li>
+                <li class="list-group-item list-group-item-success">En caso de ser la primera vez que se inscribe a un Taller: 2 fotografías tamaño infantil, recientes. (a color o en blanco y negro)</li>
+                <li class="list-group-item list-group-item-success">2 fotocopias de identificación ofical (INE, pasaporte, etc).</li>
                 <?php
                 break;
         }

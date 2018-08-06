@@ -15,7 +15,7 @@ class Inicio extends CI_Controller {
         $this->load->model('semestres_model');
         $this->load->model('sliders_model');
         $semestre_actual = $this->semestres_model->get_actual();
-        $tiempo_res = strtotime($semestre_actual['ini_insc']) - mktime();
+        $tiempo_res = strtotime($semestre_actual['ini_insc']) - time();
         if ($tiempo_res > 0) {
             $tiempo_res = array(
                 'dias' => (int) ((int) $tiempo_res / 86400),
