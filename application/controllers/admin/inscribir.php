@@ -198,7 +198,7 @@ class Inscribir extends CI_Controller {
             $this->load->helper('sesion');
             $route = str_replace("\\", "/", FCPATH) . "uploads/comprobantes/" . $user_id . '/';
             $this->load->helper('url');
-            if (!file_exists($route . 'pdf_' . $baucher_id . '.pdf')) {
+            if (file_exists($route . 'pdf_' . $baucher_id . '.pdf')) {
                 unlink($route . 'pdf_' . $baucher_id . '.pdf');
             }
             $this->load->helper('date');
@@ -220,9 +220,9 @@ class Inscribir extends CI_Controller {
             $css = $this->load->view('alumnos/comprobante_css', $data, true);
             $this->load->library('mpdf');
             $mpdf = new mPDF();
-            $header = '<img src="images/logo_pdf.jpg" style="padding-top:25px;" />';
+            // $header = '<img src="images/logo_pdf.jpg" style="padding-top:25px;" />';
             $mpdf->SetProtection(array('copy' , 'print'));
-            $mpdf->SetHTMLHeader($header);
+            // $mpdf->SetHTMLHeader($header);
             $mpdf->WriteHTML($css, 1);
             $mpdf->WriteHTML($content, 2);
             if ($this->archivos->create_folder($route)) {
