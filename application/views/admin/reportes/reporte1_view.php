@@ -58,6 +58,15 @@ if (!defined('BASEPATH'))
             </div>
         </div>
         <div class="form-group">
+            <label class="control-label col-sm-2" for="alumno_completo">Alumnos Completos</label>
+            <div class="col-sm-4">
+                <select name="alumno_completo" class="form-control" id="alumno_completo" >
+                    <option value="1">Si</option>
+                    <option value="2">No</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-default">Generar</button>
             </div>

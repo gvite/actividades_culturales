@@ -7,7 +7,7 @@ class Reportes_model extends CI_Model {
     }
 
     public function get_alumnos_talleres($tipo_alumno, $carrera, $semestre) {
-        $this->db->select('t.taller, count(u.id) as num_alumnos');
+        $this->db->select('t.id, t.taller, count(u.id) as num_alumnos');
         $this->db->join('taller_semestre as ts', 'ts.taller_id=t.id');
         $this->db->join('baucher as b', 'b.taller_semestre_id=ts.id');
         $this->db->join('usuarios as u', 'u.id=b.usuario_id');
@@ -23,7 +23,32 @@ class Reportes_model extends CI_Model {
         if ($semestre != 0) {
             $this->db->where('ts.semestre_id', $semestre);
         }
+        $this->db->where('b.status', 1);
         $this->db->group_by('t.id');
+        $result = $this->db->get('talleres as t');
+        return ($result->num_rows() > 0) ? $result->result_array() : false;
+    }
+
+    public function get_alumnos_names_talleres($tipo_alumno,$taller_id, $carrera, $semestre) {
+        $this->db->select('u.*,dae.*,c.*');
+        $this->db->join('taller_semestre as ts', 'ts.taller_id=t.id');
+        $this->db->join('baucher as b', 'b.taller_semestre_id=ts.id');
+        $this->db->join('usuarios as u', 'u.id=b.usuario_id');
+        $this->db->join('datos_alumnos_ex as dae', 'dae.usuario_id=u.id' , 'left');
+        $this->db->join('carreras as c', 'dae.carrera_id=c.id' ,'left');
+        $this->db->where('t.id', $taller_id);
+        if ($tipo_alumno == 1) {
+            $this->db->where_in('u.tipo_usuario_id', array('2', '3'));
+        } else {
+            $this->db->where('u.tipo_usuario_id', $tipo_alumno);
+        }
+        if ($carrera != 0) {
+            $this->db->where('dae.carrera_id', $carrera);
+        }
+        if ($semestre != 0) {
+            $this->db->where('ts.semestre_id', $semestre);
+        }
+        $this->db->where('b.status', 1);
         $result = $this->db->get('talleres as t');
         return ($result->num_rows() > 0) ? $result->result_array() : false;
     }

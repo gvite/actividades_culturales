@@ -131,4 +131,44 @@ class Inicio extends CI_Controller {
         }
     }
 
+    public function prueba(){
+        $this->load->model('semestres_model');
+        $this->load->model('talleres_semestre_model');
+        $this->load->model('baucher_model');
+
+        $semestre_actual = $this->semestres_model->get_actual();
+        if ($semestre_actual) {
+            $talleres = $this->talleres_semestre_model->get_by_semestre_type_user($semestre_actual['id'],get_type_user());
+            echo count($talleres);
+            if (is_array($talleres)) {
+                foreach ($talleres as $taller) {
+                    $bauchers = $this->baucher_model->get_by_taller_status($taller['id'], 2 , 0);
+                    echo $taller['id'] . ":" . $taller["taller"] . ':' . count($bauchers) . "<br />";
+                    /*if (is_array($bauchers)) {
+                        $now = time();
+                        $termina_hora = 20;
+                        foreach ($bauchers as $baucher) {
+                            $date_aux = getdate(strtotime($baucher['fecha_expedicion']));
+                            if ($date_aux['wday'] > 3) {
+                                $date_termino_insc = time($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 5, $date_aux['year']);
+                            } else if ($date_aux['wday'] == 0) {
+                                $date_termino_insc = time($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 4, $date_aux['year']);
+                            } else {
+                                $date_termino_insc = time($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 3, $date_aux['year']);
+                            }
+                            $result = $now - $date_termino_insc;
+                            if ($result > 0) {
+                                if($result > 60*60*24){
+                                    $this->baucher_model->update_status($baucher['id'], 3);
+                                }else{
+                                    $this->baucher_model->update_status($baucher['id'], 2);
+                                }
+                            }
+                        }
+                    }*/
+                }
+            }
+        }
+    }
+
 }

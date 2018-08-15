@@ -172,16 +172,16 @@ class Inscripcion extends CI_Controller {
     public function check_status_taller($id_taller) {
         $bauchers = $this->baucher_model->get_by_taller_status($id_taller, 2 , 0);
         if (is_array($bauchers)) {
-            $now = mktime();
+            $now = time();
             $termina_hora = 20;
             foreach ($bauchers as $baucher) {
                 $date_aux = getdate(strtotime($baucher['fecha_expedicion']));
                 if ($date_aux['wday'] > 3) {
-                    $date_termino_insc = mktime($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 5, $date_aux['year']);
+                    $date_termino_insc = time($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 5, $date_aux['year']);
                 } else if ($date_aux['wday'] == 0) {
-                    $date_termino_insc = mktime($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 4, $date_aux['year']);
+                    $date_termino_insc = time($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 4, $date_aux['year']);
                 } else {
-                    $date_termino_insc = mktime($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 3, $date_aux['year']);
+                    $date_termino_insc = time($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 3, $date_aux['year']);
                 }
                 $result = $now - $date_termino_insc;
                 if ($result > 0) {
@@ -210,11 +210,11 @@ class Inscripcion extends CI_Controller {
             $data['baucher']['horarios'] = $this->taller_semestre_horario_model->get_by_taller_sem($data["baucher"]['ts_id']);
             $date_aux = getdate(strtotime($data['baucher']['fecha_expedicion']));
             if ($date_aux['wday'] > 3) {
-                $date_termino_insc = mktime($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 4, $date_aux['year']);
+                $date_termino_insc = time($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 4, $date_aux['year']);
             } else if ($date_aux['wday'] == 0) {
-                $date_termino_insc = mktime($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 3, $date_aux['year']);
+                $date_termino_insc = time($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 3, $date_aux['year']);
             } else {
-                $date_termino_insc = mktime($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 2, $date_aux['year']);
+                $date_termino_insc = time($termina_hora, 0, 0, $date_aux['mon'], $date_aux['mday'] + 2, $date_aux['year']);
             }
             $data['usuario'] = $this->usuarios_model->get(get_id());
             $data['usuario']['count_talleres_insc'] = get_talleres_inscritos();

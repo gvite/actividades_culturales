@@ -83,8 +83,14 @@ class Reportes extends CI_Controller {
             $tipo_alumno = $this->input->post('tipo_alumno');
             $carrera = $this->input->post('carrera');
             $semestre = $this->input->post('semestre');
+            $alumno_completo = $this->input->post('alumno_completo');
             $this->load->model('reportes_model');
             $data['talleres'] = $this->reportes_model->get_alumnos_talleres($tipo_alumno, $carrera, $semestre);
+            if($alumno_completo == 1){
+                foreach($data['talleres'] as $key => $taller){
+                    $data['talleres'][$key]['alumnos'] = $this->reportes_model->get_alumnos_names_talleres($tipo_alumno, $taller['id'], $carrera, $semestre);
+                }
+            }
             if ($carrera == 0) {
                 $data['carrera']['carrera'] = 'Todas las carreras';
             } else {
@@ -97,7 +103,11 @@ class Reportes extends CI_Controller {
             }else{
                 $data["semestre"] = false;
             }
-            $this->vista_pdf = $this->load->view('admin/reportes/reporte1_pdf', $data, true);
+            if($alumno_completo == 1){
+                $this->vista_pdf = $this->load->view('admin/reportes/reporte1a_pdf', $data, true);
+            }else{
+                $this->vista_pdf = $this->load->view('admin/reportes/reporte1_pdf', $data, true);
+            }
             $this->css_pdf = $this->load->view('admin/reportes/reporte1_css', '', true);
             $file = $this->genera_pdf('reporte1');
             if ($file !== false) {

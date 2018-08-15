@@ -8,6 +8,7 @@ class Hook {
         $CI = & get_instance();
         $lista = array('', 
             'inicio' , 
+            'inicio/prueba' , 
             'eventos',
             'concursos',
             'concursos/*',
