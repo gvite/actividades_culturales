@@ -4,6 +4,7 @@ class Reportes extends CI_Controller {
 
     private $vista_pdf = '';
     private $css_pdf = '';
+    private $csv_rows = array();
 
     public function __construct() {
         parent::__construct();
@@ -84,6 +85,7 @@ class Reportes extends CI_Controller {
             $carrera = $this->input->post('carrera');
             $semestre = $this->input->post('semestre');
             $alumno_completo = $this->input->post('alumno_completo');
+            $tipo_archivo = $this->input->post('tipo_archivo');
             $this->load->model('reportes_model');
             $data['talleres'] = $this->reportes_model->get_alumnos_talleres($tipo_alumno, $carrera, $semestre);
             if($alumno_completo == 1){
@@ -108,8 +110,45 @@ class Reportes extends CI_Controller {
             }else{
                 $this->vista_pdf = $this->load->view('admin/reportes/reporte1_pdf', $data, true);
             }
-            $this->css_pdf = $this->load->view('admin/reportes/reporte1_css', '', true);
-            $file = $this->genera_pdf('reporte1');
+            if($tipo_archivo == 2){
+                $this->css_pdf = $this->load->view('admin/reportes/reporte1_css', '', true);
+                $file = $this->genera_pdf('reporte1');
+            }else{
+                $this->csv_rows = array();
+                $this->csv_rows[] =  array("Semestre: " . strtoupper(($data["semestre"]) ? $data["semestre"]['semestre'] : "Todo"));
+                $this->csv_rows[] =  array("Carrera: " . $data["carrera"]['carrera']);
+                $this->csv_rows[] =  array("Taller","No. Alumnos");
+
+                if($alumno_completo == 1){
+                    if (is_array($data["talleres"])) {
+                        foreach ($data["talleres"] as $taller) {
+                            $this->csv_rows[] = array();
+                            $this->csv_rows[] = array("","Taller: " . utf8_decode($taller['taller']));
+                            $this->csv_rows[] = array("",utf8_decode("Número de alumnos: ") . $taller['num_alumnos']);
+                            $this->csv_rows[] = array("No", "Alumno", "No. Cta" , "Carrera");
+                            foreach ($taller['alumnos'] as $key => $alumno) {
+                                $this->csv_rows[] = array(
+                                    $key + 1,
+                                    utf8_decode($alumno['nombre'] . " " . $alumno['paterno'] . ' ' . $alumno['materno']),
+                                    $alumno['no_cuenta'],
+                                    utf8_decode($alumno['carrera'])
+                                );
+                            }
+                        }
+                    }
+                }else{
+                    if (is_array($data["talleres"])) {
+                        $total = 0;
+                        foreach ($data["talleres"] as $taller) {
+                            $this->csv_rows[] = array(utf8_decode($taller['taller']), $taller['num_alumnos']);
+                            $total += $taller['num_alumnos'];
+                        }
+                        $this->csv_rows[] = array("Total", $total);
+                    }
+                }
+
+                $file = $this->genera_csv('reporte1');
+            }
             if ($file !== false) {
                 echo json_encode(array('status' => 'OK', "file" => $file));
             } else {
@@ -257,6 +296,17 @@ class Reportes extends CI_Controller {
             ///echo json_encode(array('status' => 'MSG', 'type' => 'error', "message" => 'No se pudo crear la carpeta de usuario'));
             return false;
         }
+    }
+    public function genera_csv($folder = '', $name = ''){
+        $route = str_replace("\\", "/", FCPATH) . "uploads/reportes/" . $folder . '/';
+        $file = $name . date('d_m_y') . '.csv';
+        $FH = fopen($route . $file, 'w');
+        // fprintf($FH, chr(0xEF).chr(0xBB).chr(0xBF));
+        foreach ($this->csv_rows as $row) {
+            fputcsv($FH, $row);
+        }
+        fclose($FH);
+        return base_url() . 'uploads/reportes/' . $folder . '/' . $file;
     }
 
     public function insert_aportacion() {

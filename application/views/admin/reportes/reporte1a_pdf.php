@@ -16,9 +16,6 @@ foreach ($talleres as $taller) {
     ?>
     Taller: <?php echo $taller['taller']; ?></td>
     Número de alumnos: <?php echo $taller['num_alumnos']; ?>
-    <?php
-    $total += $taller['num_alumnos'];
-    ?>
     <table class="table">
     <thead>
         <tr>
