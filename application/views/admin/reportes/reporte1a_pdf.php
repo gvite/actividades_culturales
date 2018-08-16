@@ -14,7 +14,7 @@ if (!defined('BASEPATH'))
 $total = 0;
 foreach ($talleres as $taller) {
     ?>
-    Taller: <?php echo $taller['taller']; ?></td>
+    Taller: <?php echo $taller['taller']; ?>
     Número de alumnos: <?php echo $taller['num_alumnos']; ?>
     <table class="table">
     <thead>
@@ -42,5 +42,9 @@ foreach ($talleres as $taller) {
     </table>
 <?php 
     }
+}else{
+?>
+    No hay registros.
+<?php
 }
 ?>

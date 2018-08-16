@@ -88,7 +88,7 @@ class Reportes extends CI_Controller {
             $tipo_archivo = $this->input->post('tipo_archivo');
             $this->load->model('reportes_model');
             $data['talleres'] = $this->reportes_model->get_alumnos_talleres($tipo_alumno, $carrera, $semestre);
-            if($alumno_completo == 1){
+            if($alumno_completo == 1 && is_array($data['talleres'])){
                 foreach($data['talleres'] as $key => $taller){
                     $data['talleres'][$key]['alumnos'] = $this->reportes_model->get_alumnos_names_talleres($tipo_alumno, $taller['id'], $carrera, $semestre);
                 }
@@ -135,6 +135,9 @@ class Reportes extends CI_Controller {
                                 );
                             }
                         }
+                    }else{
+                        $this->csv_rows[] = array();
+                        $this->csv_rows[] =  array("No hay registros");
                     }
                 }else{
                     if (is_array($data["talleres"])) {
@@ -145,6 +148,8 @@ class Reportes extends CI_Controller {
                         }
                         $this->csv_rows[] = array("Total", $total);
                     }
+                    $this->csv_rows[] = array();
+                    $this->csv_rows[] =  array("No hay registros");
                 }
 
                 $file = $this->genera_csv('reporte1');
