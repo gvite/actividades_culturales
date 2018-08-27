@@ -26,34 +26,30 @@ if (!defined('BASEPATH'))
         switch ($usuario['tipo_usuario_id']) {
             case 1: case 2:
                 ?>
-                <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA y dos fotocopias de la misma.</li>
-                <li class="list-group-item list-group-item-success">Ticket de pago y dos fotocopias del mismo.</li>
-                <li class="list-group-item list-group-item-success">En caso de ser la primera vez que se inscribe a un Taller: 2 fotografías tamaño infantil, recientes. (a color o en blanco y negro)</li>
-                <li class="list-group-item list-group-item-success">2 fotocopias de identificación con el que compruebe estatus de alumno</li>
+                <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA (original y copia).</li>
+                <li class="list-group-item list-group-item-success">Ticket de pago (original y dos fotocopias).</li>
+                <li class="list-group-item list-group-item-success">Fotocopia de identificación con el que compruebe estatus de alumno</li>
                 <?php
                 break;
             case 3:
                 ?>
-                <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA y dos fotocopias de la misma.</li>
-                <li class="list-group-item list-group-item-success">Ticket de pago y dos fotocopias del mismo.</li>
-                <li class="list-group-item list-group-item-success">En caso de ser la primera vez que se inscribe a un Taller: 2 fotografías tamaño infantil, recientes. (a color o en blanco y negro)</li>
-                <li class="list-group-item list-group-item-success">2 fotocopias de identificación con el que compruebe estatus de egresado</li>
+                <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA (original y copia).</li>
+                <li class="list-group-item list-group-item-success">Ticket de pago (original y dos fotocopias).</li>
+                <li class="list-group-item list-group-item-success">Fotocopia de identificación con el que compruebe estatus de egresado</li>
                 <?php
                 break;
             case 4:
                 ?>
-                <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA y dos fotocopias de la misma.</li>
-                <li class="list-group-item list-group-item-success">Ticket de pago y dos fotocopias del mismo.</li>
-                <li class="list-group-item list-group-item-success">En caso de ser la primera vez que se inscribe a un Taller: 2 fotografías tamaño infantil, recientes. (a color o en blanco y negro)</li>
-                <li class="list-group-item list-group-item-success">2 fotocopias de identificación con el que compruebe estatus de trabajador universitario.</li>
+                <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA (original y copia).</li>
+                <li class="list-group-item list-group-item-success">Ticket de pago (original y dos fotocopias).</li>
+                <li class="list-group-item list-group-item-success">Fotocopia de identificación con el que compruebe estatus de trabajador universitario.</li>
                 <?php
                 break;
             case 5:
                 ?>
-                <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA y dos fotocopias de la misma.</li>
-                <li class="list-group-item list-group-item-success">Ticket de pago y dos fotocopias del mismo.</li>
-                <li class="list-group-item list-group-item-success">En caso de ser la primera vez que se inscribe a un Taller: 2 fotografías tamaño infantil, recientes. (a color o en blanco y negro)</li>
-                <li class="list-group-item list-group-item-success">2 fotocopias de identificación ofical (INE, pasaporte, etc).</li>
+                <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA (original y copia).</li>
+                <li class="list-group-item list-group-item-success">Ticket de pago (original y dos fotocopias).</li>
+                <li class="list-group-item list-group-item-success">Fotocopia de identificación ofical (INE, pasaporte, etc).</li>
                 <?php
                 break;
         }
