@@ -41,8 +41,20 @@ if (!defined('BASEPATH'))
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Generar</button>
+            <label class="control-label col-sm-2" for="tipo_archivo">Archivo</label>
+            <div class="col-sm-4">
+                <select name="tipo_archivo" class="form-control" id="tipo_archivo">
+                    <option value="1">Excel</option>
+                    <option value="2">PDF</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-2">
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span> Generar</button>
+            </div>
+            <div class="col-sm-5" style="display:none;" id="content_btn_download">
+                <a class="btn btn-default" download><span class="glyphicon glyphicon-download"></span> Descargar</a>
             </div>
         </div>
     </form>

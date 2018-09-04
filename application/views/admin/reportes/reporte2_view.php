@@ -40,6 +40,15 @@ if (!defined('BASEPATH'))
                 <input type="text" name="fecha_termino" id="fecha_termino" class="form-control fecha_fin" value=""/>
             </div>
         </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="tipo_archivo">Archivo</label>
+            <div class="col-sm-4">
+                <select name="tipo_archivo" class="form-control" id="tipo_archivo">
+                    <option value="1">Excel</option>
+                    <option value="2">PDF</option>
+                </select>
+            </div>
+        </div>
         <a href="#" class="btn btn-link" id="mas_opciones_a" data-display="0">Mas opciones</a>
         <div id="mas_opciones" style="display: none;">
             <div class="form-group">
@@ -66,9 +75,11 @@ if (!defined('BASEPATH'))
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Generar</button>
-                <a class="btn btn-default" href="#" id="get_registros">Registros</a>
+            <div class="col-sm-offset-2 col-sm-2">
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span> Generar</button>
+            </div>
+            <div class="col-sm-5" style="display:none;" id="content_btn_download">
+                <a class="btn btn-default" download><span class="glyphicon glyphicon-download"></span> Descargar</a>
             </div>
         </div>
     </form>
