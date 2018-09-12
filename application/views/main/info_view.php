@@ -30,7 +30,7 @@ if (!defined('BASEPATH'))
             <table class="table">
                 <thead>
                     <tr>
-                        <th colspan="4">Aportaci&oacute;n voluntaria</th>
+                        <th colspan="4"></th>
                     </tr>
                     <tr>
                         <th>Alumno</th>

@@ -120,7 +120,7 @@ if(get_type() == 1){
                                     <?php if ($taller['percent'] < 100 && $taller['num_trabajador'] < 2 && $taller['puede_mas']) { ?>
                                         <button type="button" class="btn btn-link pull-right btn-taller-insc"><span class="glyphicon glyphicon-circle-arrow-right"></span></button>
                                     <?php } ?>
-                                    <div class="costo-taller">Aportaci&oacute;n voluntaria: $<span class="costo-span"><?php echo $taller['costo'] ?></span></div>
+                                    <div class="costo-taller">$<span class="costo-span"><?php echo $taller['costo'] ?></span></div>
                                 </div>
                             </div>
                             <?php

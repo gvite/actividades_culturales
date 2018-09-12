@@ -65,7 +65,7 @@ if (!defined('BASEPATH'))
                 <th>Profesor</th>
                 <th>Sal&oacute;n</th>
                 <th>Horario</th>
-                <th>Aportaci&oacute;n<br /> voluntaria</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
