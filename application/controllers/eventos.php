@@ -9,6 +9,7 @@ class Eventos extends CI_Controller {
         parent::__construct();
         $this->load->model("eventos_model");
         $this->load->model("asistentes_model");
+        $this->load->model("usuarios_model");
     }
 
     public function index() {
@@ -33,6 +34,7 @@ class Eventos extends CI_Controller {
             $data['js'][] = 'js/acceso.js';
             $data["eventos"] = $this->eventos_model->get_next_all();
         }
+        $eventInsc = false;
         foreach($data["eventos"] as $key => $evento){
             $data["eventos"][$key]["asistentes"] = $this->asistentes_model->count($evento["id"]);
             $porcentaje = ($data["eventos"][$key]["asistentes"] * 100) / $evento["cupo"];
@@ -47,6 +49,19 @@ class Eventos extends CI_Controller {
             if(get_type_user()){
                 $insc = $this->asistentes_model->get_by_user($evento["id"] , get_id());
                 $data["eventos"][$key]["has_event"] = ($insc) ? true : false;
+                if($insc && ($evento["id"] == 6 || $evento["id"] == 7)) {
+                    $eventInsc = true;
+                    $data["eventos"][$key]["show_detalle"] = true;
+                } else if(!$insc&& ($evento["id"] == 6 || $evento["id"] == 7)){
+                    $data["eventos"][$key]["show_detalle"] = false;
+                } else {
+                    $data["eventos"][$key]["show_detalle"] = true;
+                }
+            }
+        }
+        if($eventInsc) {
+            foreach($data["eventos"] as $key => $evento){
+                $data["eventos"][$key]["has_event"] = true;
             }
         }
         $this->load->view('main/header_view', $data);
@@ -60,44 +75,68 @@ class Eventos extends CI_Controller {
     public function inscripcion(){
         $evento_id = $this->input->post("evento");
         $event = $this->eventos_model->get_by_type_user($evento_id , get_type_user());
-        if(is_array($event)){
-            $insc = $this->asistentes_model->get_by_user($evento_id , get_id());
-            if($insc === false){
-                $count = $this->asistentes_model->count($evento_id);
-                if($count < $event["cupo"]){
-                    $data = array(
-                        "usuario_id" => get_id(),
-                        "evento_id" => $evento_id,
-                        "folio" => $count + 1,
-                        "fecha_inscripcion" => date("Y-m-d H:i:s")
-                    );
-                    $id = $this->asistentes_model->insert($data);
-                    if($id){
-                        $this->load->library("Cjwt");
-                        $time = time();
-                        $token = array(
-                            'iat' => $time, // Tiempo que inició el token
-                            'data' => array( // información del usuario
-                                'id' => $id,
-                                'folio' => $data["folio"]
-                            )
+        $puedeFacultad = true;
+        if($evento_id == 6 || $evento_id == 7) {
+            if(get_type_user() == 2){
+                $alumno = $this->usuarios_model->get_alumno(get_id());
+            } else if(get_type_user() == 3) {
+                $alumno = $this->usuarios_model->get_exalumno(get_id());
+            } else if(get_type_user() == 4) {
+                $alumno = $this->usuarios_model->get_trabajador(get_id());
+            }
+            if($alumno && $alumno['facultad_id'] == 1) {
+                $puedeFacultad = true;
+            } else {
+                $puedeFacultad = false;
+            }
+        }
+        if($puedeFacultad) {
+            if(is_array($event)){
+                $insc = $this->asistentes_model->get_by_user($evento_id , get_id());
+                if( $evento_id == 6) {
+                    $insc2 = $this->asistentes_model->get_by_user(7 , get_id());
+                } else if ($evento_id == 7) {
+                    $insc2 = $this->asistentes_model->get_by_user(6 , get_id());
+                }
+                if($insc === false && $insc2 === false){
+                    $count = $this->asistentes_model->count($evento_id);
+                    if($count < $event["cupo"]){
+                        $data = array(
+                            "usuario_id" => get_id(),
+                            "evento_id" => $evento_id,
+                            "folio" => $count + 1,
+                            "fecha_inscripcion" => date("Y-m-d H:i:s")
                         );
-                        $cJWT = new Cjwt();
-                        $jwt = $cJWT->encode($token, JWT_KEY);
-                        include(APPPATH . "/third_party/phpqrcode/qrlib.php");
-                        QRcode::png($jwt , str_replace("\\", "/", FCPATH) . "uploads/qr/$id.png");
-                        echo json_encode(array("status" => "OK" , "evento_id" => $evento_id));
+                        $id = $this->asistentes_model->insert($data);
+                        if($id){
+                            $this->load->library("Cjwt");
+                            $time = time();
+                            $token = array(
+                                'iat' => $time, // Tiempo que inició el token
+                                'data' => array( // información del usuario
+                                    'id' => $id,
+                                    'folio' => $data["folio"]
+                                )
+                            );
+                            $cJWT = new Cjwt();
+                            $jwt = $cJWT->encode($token, JWT_KEY);
+                            include(APPPATH . "/third_party/phpqrcode/qrlib.php");
+                            QRcode::png($jwt , str_replace("\\", "/", FCPATH) . "uploads/qr/$id.png");
+                            echo json_encode(array("status" => "OK" , "evento_id" => $evento_id));
+                        }else{
+                            echo json_encode(array("status" => "MSG" , "type" => "warning","message" => "ocurrió un error, intentalo de nuevo."));    
+                        }
                     }else{
-                        echo json_encode(array("status" => "MSG" , "type" => "warning","message" => "ocurrió un error, intentalo de nuevo."));    
+                        echo json_encode(array("status" => "MSG" , "type" => "warning","message" => "Ya no hay cupo"));
                     }
                 }else{
-                    echo json_encode(array("status" => "MSG" , "type" => "warning","message" => "Ya no hay cupo"));
+                    echo json_encode(array("status" => "MSG" , "type" => "warning","message" => "Ya vas a asistir al evento."));    
                 }
             }else{
-                echo json_encode(array("status" => "MSG" , "type" => "warning","message" => "Ya vas a asistir al evento."));    
+                echo json_encode(array("status" => "MSG" , "type" => "warning","message" => "No se puede inscribir al evento."));
             }
-        }else{
-            echo json_encode(array("status" => "MSG" , "type" => "warning","message" => "No se puede inscribir al taller."));
+        } else {
+            echo json_encode(array("status" => "MSG" , "type" => "warning","message" => "Sólo la comunidad de la Fes Aragón se puede Inscribir al evento."));
         }
     }
 

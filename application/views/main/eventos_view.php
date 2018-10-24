@@ -25,7 +25,7 @@
                                                 <strong>Boletos Agotados</strong>
                                             </div>
                                         <?php } ?>
-                                    <?php } else { ?>
+                                    <?php } else if($evento['show_detalle']){ ?>
                                         <a class="btn btn-success" href="<?php echo base_url()?>eventos/detalle/<?php echo $evento["id"];?>">Detalle</a>
                                     <?php } ?>
                                 <?php } else { ?>
