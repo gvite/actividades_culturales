@@ -6,6 +6,7 @@
         <h5>UNIDAD DE EXTENSI&Oacute;N UNIVERSITARIA</h5>
         <h5>DEPARTAMENTO DE ACTIVIDADES CULTURALES</h5>
     </div>
+    <br>
     <div class="body">
         <table>
             <tbody>
@@ -35,6 +36,7 @@
     <br /><br /><br />
     <h5>*PRESENTAR ESTA CORTESÍA 15 MINUTOS ANTES DEL EVENTO</h5>
     <h5>*SE CANCELARÁ EL ACCESO A TODO BOLETO QUE SE ENCUENTRE DUPLICADO</h5>
+    <h5>*ESTE BOLETO SÓLO ES VÁLIDO PARA LA FECHA INDICADA EN EL MISMO</h5>
 </div>
 <div class="line">&nbsp;</div>
 <h3>BOLETO ELECTRÓNICO (PERSONAL DEL EVENTO)</h3>
@@ -45,6 +47,7 @@
         <h5>UNIDAD DE EXTENSI&Oacute;N UNIVERSITARIA</h5>
         <h5>DEPARTAMENTO DE ACTIVIDADES CULTURALES</h5>
     </div>
+    <br>
     <div class="body">
         <table>
             <tbody>
@@ -74,4 +77,5 @@
     <br /><br /><br />
     <h5>*PRESENTAR ESTA CORTESÍA 15 MINUTOS ANTES DEL EVENTO</h5>
     <h5>*SE CANCELARÁ EL ACCESO A TODO BOLETO QUE SE ENCUENTRE DUPLICADO</h5>
+    <h5>*ESTE BOLETO SÓLO ES VÁLIDO PARA LA FECHA INDICADA EN EL MISMO</h5>
 </div>

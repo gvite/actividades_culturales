@@ -1,6 +1,9 @@
 h3{
     font-size: 16.5px;
 }
+h5{
+    font-size: 8px;
+}
 .header{
     margin-left: 170px;
     text-align: center;
@@ -18,10 +21,8 @@ h3{
 }
 .td-col-6{
     width: 250px;
-    font-size: 12px;
 }
 .td-col-title{
-    font-size: 14px;
 }
 .line{
     border-bottom: 2px dashed #000000;
