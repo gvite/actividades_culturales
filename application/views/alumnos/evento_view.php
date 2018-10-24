@@ -10,30 +10,30 @@
         <table>
             <tbody>
                 <tr>
-                    <td><?php echo $evento["usuario"];?>:</td>
+                    <td class="td-col-title"><?php echo $evento["usuario"];?>:</td>
                     <td class="td-col-6"><?php echo $evento["usuario_nombre"];?> <?php echo $evento["usuario_paterno"];?> <?php echo $evento["usuario_materno"];?></td>
                 </tr>
                 <tr>
-                    <td>Evento:</td>
+                    <td class="td-col-title">Evento:</td>
                     <td class="td-col-6"><?php echo $evento["nombre"];?></td>
                 </tr>
                 <tr>
-                    <td>Lugar:</td>
+                    <td class="td-col-title">Lugar:</td>
                     <td class="td-col-6"><?php echo $evento["lugar"];?> - <?php echo $evento["sala"];?></td>
                 </tr>
                 <tr>
-                    <td>Fecha y hora:</td>
+                    <td class="td-col-title">Fecha y hora:</td>
                     <td class="td-col-6"><?php echo exchange_date_time($evento["fecha"]);?></td>
                 </tr>
                 <tr>
-                    <td>Folio:</td>
+                    <td class="td-col-title">Folio:</td>
                     <td class="td-col-6"><?php echo $evento["folio"];?></td>
                 </tr>
             </tbody>
         </table>
     </div>
     <br /><br /><br />
-    <h5>*PRESENTAR ESTA CORTESÍA 20 MINUTOS ANTES DEL EVENTO</h5>
+    <h5>*PRESENTAR ESTA CORTESÍA 15 MINUTOS ANTES DEL EVENTO</h5>
     <h5>*SE CANCELARÁ EL ACCESO A TODO BOLETO QUE SE ENCUENTRE DUPLICADO</h5>
 </div>
 <div class="line">&nbsp;</div>
@@ -49,29 +49,29 @@
         <table>
             <tbody>
                 <tr>
-                    <td><?php echo $evento["usuario"];?>:</td>
+                    <td class="td-col-title"><?php echo $evento["usuario"];?>:</td>
                     <td class="td-col-6"><?php echo $evento["usuario_nombre"];?> <?php echo $evento["usuario_paterno"];?> <?php echo $evento["usuario_materno"];?></td>
                 </tr>
                 <tr>
-                    <td>Evento:</td>
+                    <td class="td-col-title">Evento:</td>
                     <td class="td-col-6"><?php echo $evento["nombre"];?></td>
                 </tr>
                 <tr>
-                    <td>Lugar:</td>
+                    <td class="td-col-title">Lugar:</td>
                     <td class="td-col-6"><?php echo $evento["lugar"];?> - <?php echo $evento["sala"];?></td>
                 </tr>
                 <tr>
-                    <td>Fecha y hora:</td>
+                    <td class="td-col-title">Fecha y hora:</td>
                     <td class="td-col-6"><?php echo exchange_date_time($evento["fecha"]);?></td>
                 </tr>
                 <tr>
-                    <td>Folio:</td>
+                    <td class="td-col-title">Folio:</td>
                     <td class="td-col-6"><?php echo $evento["folio"];?></td>
                 </tr>   
             </tbody>
         </table>
     </div>
     <br /><br /><br />
-    <h5>*PRESENTAR ESTA CORTESÍA 20 MINUTOS ANTES DEL EVENTO</h5>
+    <h5>*PRESENTAR ESTA CORTESÍA 15 MINUTOS ANTES DEL EVENTO</h5>
     <h5>*SE CANCELARÁ EL ACCESO A TODO BOLETO QUE SE ENCUENTRE DUPLICADO</h5>
 </div>

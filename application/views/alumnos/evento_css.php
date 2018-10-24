@@ -18,6 +18,10 @@ h3{
 }
 .td-col-6{
     width: 250px;
+    font-size: 12px;
+}
+.td-col-title{
+    font-size: 14px;
 }
 .line{
     border-bottom: 2px dashed #000000;
