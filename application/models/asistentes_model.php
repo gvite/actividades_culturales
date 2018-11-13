@@ -14,6 +14,13 @@ class Asistentes_model extends CI_Model {
         $result = $this->db->get('asistentes');
         return ($result->num_rows() > 0 ) ? $result->result_array() : array();
     }
+    public function get_emails_by_event($event_id) {
+        $this->db->select("u.nombre,u.email");
+        $this->db->join("usuarios as u" , "u.id=a.usuario_id");
+        $this->db->where("a.evento_id" , $event_id);
+        $result = $this->db->get('asistentes as a');
+        return ($result->num_rows() > 0 ) ? $result->result_array() : array();
+    }
 
     public function count($event_id) {
         $this->db->select("id");
@@ -22,10 +29,17 @@ class Asistentes_model extends CI_Model {
         return $result->num_rows();
     }
     
-    public function get_by_user($event_id, $user_id) {
+    public function get_by_user($event, $user_id) {
         $this->db->select("id");
-        $this->db->where("evento_id" , $event_id);
         $this->db->where("usuario_id" , $user_id);
+        if(is_array($event)) {
+            $this->db->where("evento_id" , $event[0]);
+            for( $i = 1 ; $i < count($event); $i++){
+                $this->db->or_where("evento_id" , $event[$i]);
+            }
+        } else {
+            $this->db->where("evento_id" , $event);
+        }
         $result = $this->db->get("asistentes");
         return ($result->num_rows() > 0) ? $result->row_array() : false;
     }

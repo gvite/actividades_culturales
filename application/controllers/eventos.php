@@ -76,7 +76,7 @@ class Eventos extends CI_Controller {
         $evento_id = $this->input->post("evento");
         $event = $this->eventos_model->get_by_type_user($evento_id , get_type_user());
         $puedeFacultad = true;
-        if($evento_id == 6 || $evento_id == 7) {
+        if($evento_id >= 8 || $evento_id <= 14) {
             if(get_type_user() == 2){
                 $alumno = $this->usuarios_model->get_alumno(get_id());
             } else if(get_type_user() == 3) {
@@ -92,19 +92,20 @@ class Eventos extends CI_Controller {
         }
         if($puedeFacultad) {
             if(is_array($event)){
-                $insc = $this->asistentes_model->get_by_user($evento_id , get_id());
-                if( $evento_id == 6) {
-                    $insc2 = $this->asistentes_model->get_by_user(7 , get_id());
-                } else if ($evento_id == 7) {
-                    $insc2 = $this->asistentes_model->get_by_user(6 , get_id());
+                if( $evento_id == 8 || $evento_id == 9 || $evento_id == 10) {
+                    $insc = $this->asistentes_model->get_by_user(array(8,9,10) , get_id());
+                } else if ($evento_id == 11 || $evento_id == 12) {
+                    $insc = $this->asistentes_model->get_by_user(array(11,12) , get_id());
+                } else if ($evento_id == 13 || $evento_id == 14) {
+                    $insc = $this->asistentes_model->get_by_user(array(13,14) , get_id());
                 }
-                if($insc === false && $insc2 === false){
+                if($insc === false){
                     $count = $this->asistentes_model->count($evento_id);
                     if($count < $event["cupo"]){
                         $data = array(
                             "usuario_id" => get_id(),
                             "evento_id" => $evento_id,
-                            "folio" => $count + 1,
+                            "folio" => $count + 490,
                             "fecha_inscripcion" => date("Y-m-d H:i:s")
                         );
                         $id = $this->asistentes_model->insert($data);
@@ -180,6 +181,48 @@ class Eventos extends CI_Controller {
             echo json_encode(array("status" => "MSG" , "message" => "Error al actualizar" , "type" => "danger"));
         }
     }
+    public function email($event_id){
+        $as = $this->asistentes_model->get_emails_by_event($event_id);
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.googlemail.com'; # Not tls://
+        $config['smtp_port'] = 465;
+        $config['starttls'] = TRUE;
+        $config['smtp_user'] = 'actividades.culturales.fesa@gmail.com';
+        $config['smtp_pass'] = 'actividades2014';
+        $config['smtp_timeout'] = 5;
+        $config['newline'] = "\r\n";
+        $config['charset'] = 'utf-8';
+        $config['mailtype'] = 'html';
+        $asunto = 'Compañía Nacional de Danza';
+        $this->load->library('email', $config);
+        $exito = true;
+        $i = 0;
+        foreach($as as $a){
+            if($i > 300 && $i <= 369){
+                $data = array(
+                    'name' => $a['nombre'],
+                    'msg' => "Te recordamos que en la presentación de la Compañía Nacional de Danza deberás presentar tu boleto 15 minutos antes de la función."
+                );
+                $mensaje = $this->load->view('main/evento_email_view', $data, TRUE);
+                
+                $this->email->from("fesar_cultura@unam.mx", "");
+                $this->email->to($a['email']);
+                $this->email->subject($asunto);
+                $this->email->message($mensaje);
+                if(!$this->email->send()){
+                    $exito = false;
+                    $messageError = $this->email->print_debugger();
+                }
+            }
+            $i++;
+        }
+        if($exito) {
+            echo "Exito";
+        } else {
+            echo $messageError;
+        }
+
+    }
     public function pdf($id){
         $this->load->helper("date");
         $data["evento"] = $this->asistentes_model->get_data_by_user($id , get_id());
@@ -202,14 +245,14 @@ class Eventos extends CI_Controller {
                 $mpdf->Image('images/logo_pdf_e.jpg',165,40,22,22,'jpg','',true, true);
                 $mpdf->Image('images/logo_unam.png',68,40,22,22,'png','',true, true);
                 $mpdf->Image('images/eventos/ticket.png',15,25,230,140,'png','',true, true);
-                $mpdf->Image('images/eventos/' . $data["evento"]["img"],18.5,29,47,90.5,'jpg','',true, true);
+                $mpdf->Image('images/eventos/' . $data["evento"]["img_pdf"],18.5,29,47,90.5,'jpg','',true, true);
                 $mpdf->Image('uploads/qr/' . $data["evento"]["asistente_id"] . ".png",151.4,84.2,35,35,'png','',true, true);
 
                 //copia del personal
                 $mpdf->Image('images/logo_pdf_e.jpg',165,176.5,22,22,'jpg','',true, true);
                 $mpdf->Image('images/logo_unam.png',68,176.5,22,22,'png','',true, true);
                 $mpdf->Image('images/eventos/ticket.png',15,162,230,140,'png','',true, true);
-                $mpdf->Image('images/eventos/' . $data["evento"]["img"],18.5,166,47,90.5,'jpg','',true, true);
+                $mpdf->Image('images/eventos/' . $data["evento"]["img_pdf"],18.5,166,47,90.5,'jpg','',true, true);
                 $mpdf->Image('uploads/qr/' . $data["evento"]["asistente_id"] . ".png",151,221.3,35,35,'png','',true, true);
                 
                 $mpdf->SetTitle($data["evento"]["nombre"]);

@@ -2,15 +2,16 @@ h3{
     font-size: 16.5px;
 }
 h5{
-    font-size: 8px;
+    font-size: 9px;
 }
 .header{
     margin-left: 170px;
     text-align: center;
 }
 .body{
-    margin-top: -10px;
+    margin-top: -20px;
     margin-left: 210px;
+    height: 155px;
 }
 .ticket{
     padding-top: 15px;
@@ -21,6 +22,7 @@ h5{
 }
 .td-col-6{
     width: 250px;
+    font-size: 14px;
 }
 .td-col-title{
 }

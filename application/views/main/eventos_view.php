@@ -2,7 +2,7 @@
     <?php foreach($eventos as $evento){?>
         <div class="col-md-4">
             <div class="thumbnail thumbnail-events">
-                <img src="images/eventos/<?php echo $evento["thumbnail"];?>" />
+                <img src="<?php echo base_url()?>images/eventos/<?php echo $evento["thumbnail"];?>" />
                 <div class="caption">
                     <h3><?php echo $evento["nombre"];?></h3>
                     <strong><?php echo $evento["fecha"];?></strong>
