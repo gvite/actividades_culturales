@@ -33,10 +33,7 @@ class Asistentes_model extends CI_Model {
         $this->db->select("id");
         $this->db->where("usuario_id" , $user_id);
         if(is_array($event)) {
-            $this->db->where("evento_id" , $event[0]);
-            for( $i = 1 ; $i < count($event); $i++){
-                $this->db->or_where("evento_id" , $event[$i]);
-            }
+            $this->db->where_in("evento_id" , $event);
         } else {
             $this->db->where("evento_id" , $event);
         }
