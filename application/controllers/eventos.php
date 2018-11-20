@@ -76,7 +76,7 @@ class Eventos extends CI_Controller {
         $evento_id = $this->input->post("evento");
         $event = $this->eventos_model->get_by_type_user($evento_id , get_type_user());
         $puedeFacultad = true;
-        if($evento_id >= 8 || $evento_id <= 14) {
+        /*if($evento_id >= 8 || $evento_id <= 14) {
             if(get_type_user() == 2){
                 $alumno = $this->usuarios_model->get_alumno(get_id());
             } else if(get_type_user() == 3) {
@@ -89,16 +89,17 @@ class Eventos extends CI_Controller {
             } else {
                 $puedeFacultad = false;
             }
-        }
+        }*/
         if($puedeFacultad) {
             if(is_array($event)){
-                if( $evento_id == 8 || $evento_id == 9 || $evento_id == 10) {
+                /*if( $evento_id == 8 || $evento_id == 9 || $evento_id == 10) {
                     $insc = $this->asistentes_model->get_by_user(array(8,9,10) , get_id());
                 } else if ($evento_id == 11 || $evento_id == 12) {
                     $insc = $this->asistentes_model->get_by_user(array(11,12) , get_id());
                 } else if ($evento_id == 13 || $evento_id == 14) {
                     $insc = $this->asistentes_model->get_by_user(array(13,14) , get_id());
-                }
+                }*/
+                $insc = $this->asistentes_model->get_by_user($evento_id , get_id());
                 if($insc === false){
                     $count = $this->asistentes_model->count($evento_id);
                     if($count < $event["cupo"]){
