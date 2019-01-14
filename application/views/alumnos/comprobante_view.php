@@ -18,43 +18,48 @@ if (!defined('BASEPATH'))
     </div>
 </div>
 <div class="footer">
-    <p>El presente pago se debe realizar a m&aacute;s tardar el <strong><?php echo $date_fin['mday'] . '/' . $date_fin['mon'] . '/' . $date_fin['year'] ?></strong>. Y debe ser presentado en <strong>Extensi&oacute;n Universitaria</strong> antes de las <?php echo $termina_hora ?>:00 hrs. <strong>para que se concluya su inscripci&oacute;n.</strong><br />
-    En caso de no presentar los requisitos en el departamento de actividades culturales en la fecha indicada el sistema cancelará automaticamente la inscripción y se tendrá que realizar nuevamente el proceso de inscripción. 
-    </p>
-    <ul>
-        <?php
-        switch ($usuario['tipo_usuario_id']) {
-            case 1: case 2:
-                ?>
-                <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA (original y copia).</li>
-                <li class="list-group-item list-group-item-success">Ticket de pago (original y dos fotocopias).</li>
-                <li class="list-group-item list-group-item-success">Fotocopia de identificación con el que compruebe estatus de alumno</li>
+    <p>PARA CONCLUIR TU INSCRIPCIÓN FAVOR DE: </p>
+    <ol>
+        <li>EFECTUAR EL PAGO INDICADO EN LA PRESENTE HOJA DE INSCRIPCIÓN A MÁS TARDAR EL <strong><?php echo $date_fin['mday'] . '/' . $date_fin['mon'] . '/' . $date_fin['year'] ?></strong></li>
+        <li>DESPUÉS DE EFECTUAR EL PAGO ACUDIR AL DEPARTAMENTO DE ACTIVIDADES CULTURALES ANTES DE LAS <?php echo $termina_hora ?>:00 HRS. PRESENTANDO:</li>
+        <li>
+            <ul>
                 <?php
-                break;
-            case 3:
+                switch ($usuario['tipo_usuario_id']) {
+                    case 1: case 2:
+                        ?>
+                        <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA (original y copia).</li>
+                        <li class="list-group-item list-group-item-success">Ticket de pago (original y dos fotocopias).</li>
+                        <li class="list-group-item list-group-item-success">Fotocopia de identificación con el que compruebe estatus de alumno</li>
+                        <?php
+                        break;
+                    case 3:
+                        ?>
+                        <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA (original y copia).</li>
+                        <li class="list-group-item list-group-item-success">Ticket de pago (original y dos fotocopias).</li>
+                        <li class="list-group-item list-group-item-success">Fotocopia de identificación con el que compruebe estatus de egresado</li>
+                        <?php
+                        break;
+                    case 4:
+                        ?>
+                        <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA (original y copia).</li>
+                        <li class="list-group-item list-group-item-success">Ticket de pago (original y dos fotocopias).</li>
+                        <li class="list-group-item list-group-item-success">Fotocopia de identificación con el que compruebe estatus de trabajador universitario.</li>
+                        <?php
+                        break;
+                    case 5:
+                        ?>
+                        <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA (original y copia).</li>
+                        <li class="list-group-item list-group-item-success">Ticket de pago (original y dos fotocopias).</li>
+                        <li class="list-group-item list-group-item-success">Fotocopia de identificación ofical (INE, pasaporte, etc).</li>
+                        <?php
+                        break;
+                }
                 ?>
-                <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA (original y copia).</li>
-                <li class="list-group-item list-group-item-success">Ticket de pago (original y dos fotocopias).</li>
-                <li class="list-group-item list-group-item-success">Fotocopia de identificación con el que compruebe estatus de egresado</li>
-                <?php
-                break;
-            case 4:
-                ?>
-                <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA (original y copia).</li>
-                <li class="list-group-item list-group-item-success">Ticket de pago (original y dos fotocopias).</li>
-                <li class="list-group-item list-group-item-success">Fotocopia de identificación con el que compruebe estatus de trabajador universitario.</li>
-                <?php
-                break;
-            case 5:
-                ?>
-                <li class="list-group-item list-group-item-success">Hoja de inscripción SELLADA (original y copia).</li>
-                <li class="list-group-item list-group-item-success">Ticket de pago (original y dos fotocopias).</li>
-                <li class="list-group-item list-group-item-success">Fotocopia de identificación ofical (INE, pasaporte, etc).</li>
-                <?php
-                break;
-        }
-        ?>
-    </ul>
+            </ul>
+        </li>
+    </ol>
+    <p>IMPORTANTE: SE CANCELARÁ TU INSCRIPCIÓN EN CASO DE NO CONCLUIR EL PROCEDIMIENTO EN TIEMPO Y FORMA</p>
 </div>
 <div>
     <table class="table">
