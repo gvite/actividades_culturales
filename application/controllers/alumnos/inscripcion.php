@@ -225,7 +225,7 @@ class Inscripcion extends CI_Controller {
             $this->load->library('mpdf');
             $mpdf = new mPDF();
             $mpdf->SetProtection(array('copy' , 'print'));
-            $mpdf->SetHTMLHeader($header);
+            // $mpdf->SetHTMLHeader($header);
             $mpdf->WriteHTML($css, 1);
             $mpdf->WriteHTML($content, 2);
             if ($this->archivos->create_folder($route)) {

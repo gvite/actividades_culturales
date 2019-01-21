@@ -17,6 +17,7 @@ class Hook {
             'acceso/registro' ,
             'acceso/eventos/*', 
             'talento',
+            'talento-aragones',
             'talento/*',
             'horarios' , 
             'horarios/get_talleres_by_semestre/*', 

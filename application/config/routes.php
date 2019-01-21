@@ -40,6 +40,7 @@
 
 $route['default_controller'] = "inicio";
 $route['talento'] = "eventos";
+$route['talento-aragones'] = "talento";
 $route['concursos/registro/(:any)'] = "concursos/registro/$1";
 $route['concursos/get-pdf/(:any)'] = "concursos/get_pdf/$1";
 $route['concursos/get-pdf-responsiva/(:any)'] = "concursos/get_pdf_responsiva/$1";

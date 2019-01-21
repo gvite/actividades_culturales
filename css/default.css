@@ -411,3 +411,6 @@ body > #content_main .images-header img + img{
         z-index: 1000;
     }
 }
+.talento-aragones-content .row{
+    margin-top: 20px;
+}
