@@ -27,7 +27,7 @@ if (!defined('BASEPATH'))
     <div class="col-margin">
         <strong for="">Duración de la presentación: </strong><span><?php echo $duracion;?> mins.</span>
     </div>
-    <div class="col-margin"><strong>Listado de equipo: </strong></div>
+    <div class="col-margin"><strong>Listado de equipo (propiedad del participante): </strong></div>
     <ol>
         <?php if(isset($equipo_lista) && count($equipo_lista) > 0){?>
             <?php foreach($equipo_lista as $equipo){?>
@@ -55,8 +55,8 @@ if (!defined('BASEPATH'))
             <strong for="">Desmontaje: </strong><span><?php echo $duracion_desmontaje;?> mins.</span>
         </span>
     </div>
-    <p><strong>* El departamento de actividades culturales no proporciona ningún tipo de escenografía</strong></p>
-    <p><strong>* El departamento de actividades culturales unicamente prestará microfonos para la presentación de las actividades artisticas a realizar en el teatro</strong></p>
+    <p><strong>* El Departamento de Actividades Culturales no proporciona ningún tipo de escenografía</strong></p>
+    <p><strong>* El Departamento de Actividades Culturales unicamente prestará microfonos para la presentación de las actividades artisticas a realizar en el teatro</strong></p>
     <p><strong>* Presentarse 2 horas antes de la hora indicada de su presentación</strong></p>
     <p><strong>* No habrá ensayos previos a la presentación</strong></p>
 </div>

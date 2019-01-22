@@ -196,6 +196,7 @@ class Talento extends CI_Controller {
         } else {  
             $this->load->helper('url');
             $this->load->helper('date');
+            $this->load->model('talento_slim_model');
             $data = array(
                 "nombre" => $this->input->post("nombre"),
                 "carrera" => $this->input->post("carrera"),
@@ -217,9 +218,13 @@ class Talento extends CI_Controller {
                 "duracion_montaje" => $this->input->post("duracion_montaje"),
                 "duracion_desmontaje" => $this->input->post("duracion_desmontaje")
             );
+
             $content = $this->load->view('alumnos/talento_pdf_view', $data, true);
             $content2 = $this->load->view('alumnos/talento_ft_pdf_view', $data, true);
             $css = $this->load->view('alumnos/talento_pdf_css', $data, true);
+            $data['integrantes'] = implode(',', $data['integrantes']);
+            $data['equipo_lista'] = implode(',', $data['equipo_lista']);
+            $this->talento_slim_model->insert($data);
             $this->load->library('mpdf');
             $mpdf = new mPDF();
             $mpdf->SetProtection(array('copy' , 'print'));
@@ -227,7 +232,7 @@ class Talento extends CI_Controller {
             $mpdf->WriteHTML($content, 2);
             $mpdf->AddPage();
             $mpdf->WriteHTML($content2, 2);
-            $mpdf->Output("FichaTalento", "D");
+            $mpdf->Output("FichaTalento.pdf", "D");
             // echo json_encode($data);
         }
     }

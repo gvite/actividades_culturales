@@ -125,7 +125,7 @@ if (!defined('BASEPATH'))
             <h3>Lista de equipo</h3>
             <div class="row">
                 <div class="col-md-12">
-                <label class="control-label" for="equipo">Equipo/instrumento a utilizar en la presentación (Llenar solamente si eres banda):</label>
+                <label class="control-label" for="equipo">Equipo/instrumento (propiedad del participante) a utilizar en la presentación (Llenar solamente si eres banda):</label>
                 </div>
                 <div class="control-group col-md-6">
                     
@@ -151,7 +151,7 @@ if (!defined('BASEPATH'))
                     </div>
                 </div>
             </div>
-            <div class="alert alert-warning" role="alert">El departamento de actividades culturales no proporciona ningún tipo de escenografía</div>
+            <div class="alert alert-warning" role="alert">El Departamento de Actividades Culturales no proporciona ningún tipo de escenografía</div>
             <div class="row">
                 <div class="control-group col-md-6">
                     <label class="control-label" for="iluminacion">Iluminación:</label>
@@ -162,7 +162,7 @@ if (!defined('BASEPATH'))
                 <div class="control-group col-md-6">
                     <label class="control-label" for="audio_video">Audio y video:</label>
                     <div class="controls">
-                        <input type="text" value="" id="audio_video" class="form-control" name="audio_video" placeholder="Duración de desmontaje"/>
+                        <input type="text" value="" id="audio_video" class="form-control" name="audio_video" placeholder="Audio y video"/>
                     </div>
                 </div>
             </div>
@@ -182,7 +182,7 @@ if (!defined('BASEPATH'))
             </div>
             
             <h2>Consideraciones</h2>
-            <div class="alert alert-info" role="alert">El departamento de actividades culturales unicamente prestará microfonos para la presentación de las actividades artisticas a realizar en el teatro</div>
+            <div class="alert alert-info" role="alert">El Departamento de Actividades Culturales unicamente prestará microfonos para la presentación de las actividades artisticas a realizar en el teatro</div>
             <div class="alert alert-info" role="alert">Presentarse 2 horas antes de la hora indicada de su presentación</div>
             <div class="alert alert-info" role="alert">No habrá ensayos previos a la presentación</div>
             <div class="text-center">
