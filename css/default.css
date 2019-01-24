@@ -414,3 +414,6 @@ body > #content_main .images-header img + img{
 .talento-aragones-content .row{
     margin-top: 20px;
 }
+.btn-formato{
+    margin: 50px;
+}

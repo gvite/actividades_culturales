@@ -30,6 +30,24 @@ class Talento extends CI_Controller {
         $this->load->view('main/footer_view', '');
     }
 
+    public function convocatoria(){
+        $this->load->helper("date");
+        $data['hide_menu'] = true;
+        $data['active'] = true;
+        $this->load->helper(array('sesion' , 'url'));
+        $this->load->model('semestres_model');
+        $data['semestre_actual'] = $this->semestres_model->get_actual();
+        if ($data['semestre_actual']) {
+            $data['puede_inscribir'] = $this->semestres_model->puede_insc($data['semestre_actual']['id']);
+        } else {
+            $data['puede_inscribir'] = false;
+        }
+        $this->load->model('carreras_model');
+        $this->load->view('main/header_view', $data);
+        $this->load->view('main/talento_convocatoria_view');
+        $this->load->view('main/footer_view', '');
+    }
+
     public function registro($event_id) {
         $this->load->helper("date");
         $data['hide_menu'] = true;
