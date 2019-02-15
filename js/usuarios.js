@@ -90,7 +90,96 @@ $(document).on('ready' , function(){
             }
         });
     });*/
-    $("#table_usuarios").DataTable();
+    // $("#table_usuarios").DataTable();
+    $("#migration").on("click" , function(){
+        var $trs = $('#table_usuarios tbody tr');
+        saveUser($trs, 0);
+    });
+    function saveUser($trss, index){
+        $("#count_users").text(index);
+        if(index < $trss.length ){
+            var $trs = $($trss[index]);
+            var user = {
+                "name": $trs.data("name"),
+                "lastname": $trs.data("lastname"),
+                "surname": $trs.data("surname"),
+                "email": $trs.data("email"),
+                "number_id": $trs.data("number_id"),
+                "phone": $trs.data("phone"),
+                "celphone": $trs.data("celphone") ? $trs.data("celphone") : "1234567890",
+                "gender": $trs.data("gender"),
+                "year": $trs.data("year"),
+                "career_id": $trs.data("career_id"),
+                "campus_id": $trs.data("campus_id"),
+                "semester": $trs.data("semester") ? $trs.data("semester") : 1,
+                // "semester": $trs.data("semester"),
+                "workshift": $trs.data("workshift"),
+                "area": $trs.data("area"),
+                "address": $trs.data("address"),
+                "occupation_id": $trs.data("occupation_id"),
+                "student_type": $trs.data("student_type"),
+            }
+            if(user.student_type == 'student' || user.student_type == 'exstudent' || user.student_type == 'employee'){
+                user.password = user.number_id;
+                user.password_confirmation = user.number_id;
+            }
+            if(user.student_type == 'external'){
+                user.password = user.email;
+                user.password_confirmation = user.email;
+            }
+            // console.log(user);
+            if($trs.data("hasdata")){
+                $.ajax({
+                    url: 'http://18.223.185.128/api/register',
+                    type: 'POST',
+                    data: JSON.stringify(user),
+                    dataType: 'json',
+                    headers: {
+                        'Content-Type':'application/json'
+                    },
+                    success: function(data){
+                        if(data.success == false) {
+                            $trs.removeClass('success');
+                            $trs.addClass('danger');
+                            $trs.find("td").eq(0).text(JSON.stringify(data));
+                            saveUser($trss , index + 1);
+                        } else {
+                            $.ajax({
+                                url: base_url + 'admin/usuarios/delete',
+                                type: 'POST',
+                                data: {id: $trs.data("id")},
+                                dataType: 'json',
+                                success: function(){
+                                    saveUser($trss , index + 1);         
+                                }
+                            });
+                        }
+                    },
+                    error: function(){
+                        $trs.removeClass('success');
+                        $trs.addClass('danger');
+                        $trs.find("td").eq(0).text("CORS");
+                        saveUser($trss , index + 1);
+                    }
+                });
+            } else {
+                $trs.removeClass('success');
+                $trs.addClass('danger');
+                $trs.find("td").eq(0).text("No data");
+                $.ajax({
+                    url: base_url + 'admin/usuarios/delete',
+                    type: 'POST',
+                    data: {id: $trs.data("id")},
+                    dataType: 'json',
+                    success: function(){
+                        saveUser($trss , index + 1);     
+                    }
+                });
+            }
+        } else {
+            console.log("process finished");
+        }
+    }
     $('#table_usuarios').on('click','.event-button' , function(){
         var action = $(this).data('action');
         var id = $(this).closest('tr').data('id');

@@ -12,6 +12,7 @@ class Listas extends CI_Controller {
         $this->load->model('taller_semestre_horario_model');
         $this->load->model('baucher_model');
         $this->load->library('archivos');
+        $this->load->helper(array('url', 'sesion', 'date'));
     }
 
     public function index() {
@@ -98,12 +99,12 @@ class Listas extends CI_Controller {
 
     public function get_pdf_lista($taller_id = '') {
         if ($taller_id != '') {
+            
             ini_set("memory_limit","1024M");
             $data['taller'] = $this->talleres_semestre_model->get_with_name($taller_id);
             if (is_array($data['taller'])) {
                 $data['taller']['horarios'] = $this->taller_semestre_horario_model->get_by_taller_sem($data['taller']['id']);
                 $data['taller']['inscritos'] = $this->baucher_model->count_insc_validados($data['taller']['id']);
-                $this->load->helper(array('url', 'sesion', 'date'));
                 $dias = $this->get_dias_taller($data['taller']['ini_sem'], $data['taller']['fin_sem'], $data['taller']['horarios']);
                 $data['alumnos'] = $this->baucher_model->get_by_taller_insc($taller_id);
                 if (is_array($dias)) {

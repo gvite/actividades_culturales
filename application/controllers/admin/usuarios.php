@@ -11,6 +11,9 @@ class Usuarios extends CI_Controller {
     public function index(){
         $this->load->model('semestres_model');
         $this->load->model('usuarios_model');
+        $this->load->model('datos_alumnos_ex_model');
+        $this->load->model('datos_externo_model');
+        $this->load->model('datos_trabajador_model');
         $this->load->helper(array('url', 'sesion', 'date'));
         $data['active'] = 'usuarios';
         $data['semestres'] = $this->semestres_model->get_all();
@@ -24,6 +27,21 @@ class Usuarios extends CI_Controller {
         $data['js'][] = 'js/usuarios.js';
         $this->load->view('main/header_view', $data);
         $data['usuarios'] = $this->usuarios_model->get_usuarios();
+        foreach($data['usuarios'] as $key => $user){
+            switch($user['slug']){
+                case 'student': case 'exstudent':
+                    $data["usuarios"][$key]["data"] = $this->datos_alumnos_ex_model->get_all_by_user($user["id"]);
+                    $data["usuarios"][$key]["number_id"] = $data["usuarios"][$key]["data"]["no_cuenta"];
+                    break;
+                case 'employee':
+                    $data["usuarios"][$key]["data"] = $this->datos_trabajador_model->get_all_by_user($user["id"]);
+                    $data["usuarios"][$key]["number_id"] = $data["usuarios"][$key]["data"]["no_trabajador"];
+                    break;
+                case 'external':
+                    $data["usuarios"][$key]["data"] = $this->datos_externo_model->get_all_by_user($user["id"]);
+                    break;
+            }
+        }
         $this->load->view("admin/usuarios_view", $data);
         $this->load->view('main/footer_view', '');
     }

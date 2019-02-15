@@ -317,8 +317,10 @@ class Usuarios_model extends CI_Model {
         return ($result->num_rows() > 0) ? $result->result_array() : false;
     }
     public function get_usuarios() {
-        $this->db->select('u.* , tu.usuario as tipo_usuario');
+        $this->db->select('u.* , tu.usuario as tipo_usuario, tu.slug');
         $this->db->join("tipo_usuario as tu","tu.id=u.tipo_usuario_id");
+        $this->db->where("u.status" , 1);
+        $this->db->where_in('u.tipo_usuario_id', array('2', '3', '4', '5'));
         $this->db->order_by('u.paterno');
         $result = $this->db->get('usuarios as u');
         return ($result->num_rows() > 0) ? $result->result_array() : false;

@@ -1,5 +1,7 @@
 <div class="row">
     <div class="col-md-12">
+        count: <?php echo count($usuarios);?> / <span id="count_users">0</span>
+        <button id="migration">Migrar</button>
         <table class="table" id="table_usuarios">
             <thead>
                 <tr>
@@ -15,8 +17,48 @@
                 if(is_array($usuarios)){
                     foreach($usuarios as $usuario){
                     ?>
-                    <tr class="<?php echo ($usuario['status'] == 1)? 'success': 'danger'; ?>" 
-                        data-id="<?php echo $usuario['id']; ?>">
+                    <tr class="<?php echo ($usuario['status'] == 1)? 'success': 'danger'; ?>"
+                        data-id="<?php echo $usuario['id']; ?>"
+                        data-name="<?php echo $usuario['nombre']; ?>"
+                        data-lastname="<?php echo $usuario['paterno']; ?>"
+                        data-surname="<?php echo $usuario['materno']; ?>"
+                        data-email="<?php echo $usuario['email']; ?>"
+                        data-student_type="<?php echo $usuario['slug']; ?>"
+                        data-gender="<?php echo ($usuario['sexo'] == "M") ? "Masculino":"Femenino"; ?>"
+                        <?php if(isset($usuario['number_id'])){?>
+                        data-number_id="<?php echo $usuario['number_id']; ?>"
+                        <?php }?>
+                        data-phone="<?php echo $usuario['telefono_fijo']; ?>"
+                        data-celphone="<?php echo $usuario['celular']; ?>"
+                        data-hasdata="<?php echo ($usuario['data'] === false) ? false: true;?>"
+                        <?php if($usuario['data']){?>
+                            <?php 
+                                switch($usuario['slug']){
+                                    case 'student': case 'exstudent':
+                                        ?>
+                                        data-year="<?php echo $usuario['data']['ingreso_egreso'];?>"
+                                        data-career_id="<?php echo $usuario['data']['carrera_id'];?>"
+                                        data-campus_id="<?php echo $usuario['data']['facultad_id'];?>"
+                                        data-semester="<?php echo $usuario['data']['semestre'];?>"
+                                        <?php
+                                    break;
+                                    case 'employee':
+                                        ?>
+                                        data-campus_id="<?php echo $usuario['data']['facultad_id'];?>"
+                                        data-workshift="<?php echo ($usuario['data']['turno'] == '0')?'Matutino':'Vespertino';?>"
+                                        data-area="<?php echo $usuario['data']['area'];?>"
+                                        <?php
+                                    break;
+                                    case 'external':
+                                        ?>
+                                        data-occupation_id="<?php echo $usuario['data']['ocupacion_id'];?>"
+                                        data-address="<?php echo $usuario['data']['direccion'];?>"
+                                        <?php
+                                    break;
+                                }
+                            ?>
+                        <?php }?>
+                        >
                         <td><?php echo $usuario['nombre']; ?></td>
                         <td><?php echo $usuario['paterno']; ?></td>
                         <td><?php echo $usuario['materno']; ?></td>

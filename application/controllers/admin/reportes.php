@@ -11,6 +11,7 @@ class Reportes extends CI_Controller {
         $this->load->model('talleres_semestre_model');
         $this->load->helper('date');
         $this->load->model('taller_semestre_horario_model');
+        $this->load->helper(array('url', 'sesion', 'date'));
         //$this->load->library('archivos');
     }
 
