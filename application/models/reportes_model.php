@@ -65,7 +65,7 @@ class Reportes_model extends CI_Model {
 
     public function getPresupuesto1($inicio, $fin) {
 
-        $this->db->select('b.id,t.taller,b.aportacion, b.beca,b.folio_caja,b.fecha_caja,b.folio,c.carrera,u.nombre,u.paterno,u.materno,u.tipo_usuario_id');
+        $this->db->select('b.id,t.taller,b.aportacion, b.beca,b.folio_caja,b.fecha_caja,b.folio,c.carrera,u.nombre,u.paterno,u.materno,u.tipo_usuario_id,da.no_cuenta');
 
         $this->db->join('taller_semestre AS ts' , 'b.taller_semestre_id = ts.id' , 'LEFT');
         $this->db->join('talleres AS t' , 'ts.taller_id = t.id' , 'LEFT');

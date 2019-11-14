@@ -11,7 +11,6 @@ class Reportes extends CI_Controller {
         $this->load->model('talleres_semestre_model');
         $this->load->helper('date');
         $this->load->model('taller_semestre_horario_model');
-        $this->load->helper(array('url', 'sesion', 'date'));
         //$this->load->library('archivos');
     }
 
@@ -156,7 +155,8 @@ class Reportes extends CI_Controller {
                 $file = $this->genera_csv('reporte1');
             }
             if ($file !== false) {
-                echo json_encode(array('status' => 'OK', "file" => $file));
+                $names = explode("/" , $file);
+                echo json_encode(array('status' => 'OK', "file" => $file, "name" =>$names[count($names) - 1]));
             } else {
                 echo json_encode(array('status' => 'MSG', 'type' => 'error', "message" => 'No se pudo crear el archivo.'));
             }
@@ -232,7 +232,8 @@ class Reportes extends CI_Controller {
                     "Importe",
                     "Nombre",
                     "Taller",
-                    "Carrera"
+                    "Carrera",
+                    "No. Cta."
                 );
                 if (is_array($alumnos)) {
                     setlocale(LC_MONETARY, 'en_US');
@@ -247,6 +248,7 @@ class Reportes extends CI_Controller {
                         $beca = $alumno["beca"];
                         if($alumno['taller'] !== $taller_ant){
                             $this->csv_rows[] = array(
+                                "",
                                 "",
                                 "",
                                 "",
@@ -281,7 +283,8 @@ class Reportes extends CI_Controller {
                             money_format('%n', $alumno['aportacion'] - $beca),
                             utf8_decode(ucfirst(strtolower($alumno['paterno'])) . ' ' . ucfirst(strtolower($alumno['materno'])) . ' ' . ucwords(strtolower($alumno['nombre']))),
                             utf8_decode($alumno['taller']),
-                            utf8_decode($carrera)
+                            utf8_decode($carrera),
+                            $alumno["no_cuenta"]
                         );
                         
                     }
@@ -318,7 +321,8 @@ class Reportes extends CI_Controller {
                 $file = $this->genera_csv('reporte2');
             }
             if ($file !== false) {
-                echo json_encode(array('status' => 'OK', "file" => $file));
+                $names = explode("/" , $file);
+                echo json_encode(array('status' => 'OK', "file" => $file, "name" =>$names[count($names) - 1]));
             } else {
                 echo json_encode(array('status' => 'MSG', 'type' => 'error', "message" => 'No se pudo crear el archivo.'));
             }
@@ -444,7 +448,8 @@ class Reportes extends CI_Controller {
                 $file = $this->genera_csv('reporte3');
             }
             if ($file !== false) {
-                echo json_encode(array('status' => 'OK', "file" => $file,'lq' => $data['meses']));
+                $names = explode("/" , $file);
+                echo json_encode(array('status' => 'OK', "file" => $file,'lq' => $data['meses'], "name" =>$names[count($names) - 1]));
             } else {
                 echo json_encode(array('status' => 'MSG', 'type' => 'error', "message" => 'No se pudo crear el archivo.'));
             }
