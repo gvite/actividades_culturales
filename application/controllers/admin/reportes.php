@@ -232,6 +232,7 @@ class Reportes extends CI_Controller {
                     "Importe",
                     "Nombre",
                     "Taller",
+                    "Tipo de Alumno",
                     "Carrera",
                     "No. Cta."
                 );
@@ -254,6 +255,7 @@ class Reportes extends CI_Controller {
                                 "",
                                 "",
                                 "",
+                                "",
                                 "Subtotal",
                                 money_format('%n', $total_taller)
                             );    
@@ -262,19 +264,19 @@ class Reportes extends CI_Controller {
                         }else{
                             $total_taller += $alumno['aportacion'] - $beca;
                         }
-                        $carrera = "";
+                        $tipo = "";
                         switch ($alumno['tipo_usuario_id']) {
                             case '2':
-                                $carrera = $alumno['carrera'];
+                                $tipo = 'Alumno';
                                 break;
                             case '3':
-                                $carrera = 'Exalumno';
+                                $tipo = 'Exalumno';
                                 break;
                             case '4':
-                                $carrera = 'Trabajador';
+                                $tipo = 'Trabajador';
                                 break;
                             case '5':
-                                $carrera = 'Externo';
+                                $tipo = 'Externo';
                                 break;
                         }
                         $this->csv_rows[] = array(
@@ -283,7 +285,8 @@ class Reportes extends CI_Controller {
                             money_format('%n', $alumno['aportacion'] - $beca),
                             utf8_decode(ucfirst(strtolower($alumno['paterno'])) . ' ' . ucfirst(strtolower($alumno['materno'])) . ' ' . ucwords(strtolower($alumno['nombre']))),
                             utf8_decode($alumno['taller']),
-                            utf8_decode($carrera),
+                            $tipo,
+                            utf8_decode($alumno['carrera']),
                             $alumno["no_cuenta"]
                         );
                         
@@ -294,10 +297,14 @@ class Reportes extends CI_Controller {
                         "",
                         "",
                         "",
+                        "",
+                        "",
                         "Subtotal",
                         money_format('%n', $total_taller)
                     );
                     $this->csv_rows[] = array(
+                        "",
+                        "",
                         "",
                         "",
                         "",
