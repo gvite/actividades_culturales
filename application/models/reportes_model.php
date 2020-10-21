@@ -109,7 +109,11 @@ class Reportes_model extends CI_Model {
     }
 
     public function getSumBySemestreMonth($semestre , $inicio = '' , $fin = ''){
-        $this->db->select('SUM(b.aportacion) as suma, SUM(b.beca) as beca_sum , MONTH(b.fecha_caja) as mes');
+        if(strtotime($fin) > strtotime("2015-07-03")){
+            $this->db->select('SUM(b.aportacion) as suma, SUM(b.beca) as beca_sum , MONTH(b.fecha_caja) as mes');
+        }else{
+            $this->db->select('SUM(b.aportacion) as suma, SUM(b.beca) as beca_sum , MONTH(b.fecha_expedicion) as mes');
+        }
         $this->db->join('taller_semestre as ts' , 'ts.id=b.taller_semestre_id');
         $this->db->join('semestres as s' , 's.id=ts.semestre_id');
         $this->db->where('b.status' , '1');
